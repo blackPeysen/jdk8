@@ -46,8 +46,7 @@ import java.util.Spliterators;
 import java.util.function.Consumer;
 
 /**
- * An optionally-bounded {@linkplain BlockingDeque blocking deque} based on
- * linked nodes.
+ * 基于链接节点的可选绑定的{@linkplain BlockingDeque 阻塞双端队列}。
  *
  * <p>The optional capacity bound constructor argument serves as a
  * way to prevent excessive expansion. The capacity, if unspecified,

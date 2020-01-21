@@ -39,20 +39,16 @@ import java.util.Collection;
 import java.util.Queue;
 
 /**
- * A {@link java.util.Queue} that additionally supports operations
- * that wait for the queue to become non-empty when retrieving an
- * element, and wait for space to become available in the queue when
- * storing an element.
+ * 一个{@link java.util.Queue}，它另外支持以下操作：
+ *  在检索元素时等待队列变为非空，并在存储元素时等待队列中的空间变为可用。
  *
- * <p>{@code BlockingQueue} methods come in four forms, with different ways
- * of handling operations that cannot be satisfied immediately, but may be
- * satisfied at some point in the future:
- * one throws an exception, the second returns a special value (either
- * {@code null} or {@code false}, depending on the operation), the third
- * blocks the current thread indefinitely until the operation can succeed,
- * and the fourth blocks for only a given maximum time limit before giving
- * up.  These methods are summarized in the following table:
+ * <p>{@code BlockingQueue}方法有四种形式，它们以不同的方式处理无法立即满足的操作，但将来可能会满足：
+ *      一个抛出异常，
+ *      第二个返回一个特殊值（{@code null}或{@code false}，取决于操作），
+ *      第三个无限期阻塞当前线程，直到操作成功为止，
+ *      第四个在放弃之前，仅在给定的最大时间限制内阻止。
  *
+ * 下表总结了这些方法：
  * <table BORDER CELLPADDING=3 CELLSPACING=1>
  * <caption>Summary of BlockingQueue methods</caption>
  *  <tr>
@@ -85,25 +81,17 @@ import java.util.Queue;
  *  </tr>
  * </table>
  *
- * <p>A {@code BlockingQueue} does not accept {@code null} elements.
- * Implementations throw {@code NullPointerException} on attempts
- * to {@code add}, {@code put} or {@code offer} a {@code null}.  A
- * {@code null} is used as a sentinel value to indicate failure of
- * {@code poll} operations.
+ * {@code BlockingQueue}不接受{@code null}元素。
+ *      实现会在尝试中向{@code add}，{@code put}或{@code offer}提供{@code null}时抛出{@code NullPointerException}。
+ *      {@code null}用作标记值，以指示{@code poll}操作失败
  *
- * <p>A {@code BlockingQueue} may be capacity bounded. At any given
- * time it may have a {@code remainingCapacity} beyond which no
- * additional elements can be {@code put} without blocking.
- * A {@code BlockingQueue} without any intrinsic capacity constraints always
- * reports a remaining capacity of {@code Integer.MAX_VALUE}.
+ * {@code BlockingQueue}可能有容量限制。
+ *      在任何给定的时间，它都可能具有{@code 剩余容量}，超过该数量就不能{@code put}添加其他元素而不会阻塞。
+ *      没有任何内部容量约束的{@code BlockingQueue}总是报告{@code Integer.MAX_VALUE}的剩余容量。
  *
- * <p>{@code BlockingQueue} implementations are designed to be used
- * primarily for producer-consumer queues, but additionally support
- * the {@link java.util.Collection} interface.  So, for example, it is
- * possible to remove an arbitrary element from a queue using
- * {@code remove(x)}. However, such operations are in general
- * <em>not</em> performed very efficiently, and are intended for only
- * occasional use, such as when a queued message is cancelled.
+ * {@code BlockingQueue}实现旨在主要用于生产者-消费者队列，但另外支持{@link java.util.Collection}接口。
+ *      因此，例如，可以使用{@code remove（x）}从队列中删除任意元素。
+ *      但是，此类操作通常非常有效地执行，并且仅用于偶尔使用，例如在取消排队的消息时。
  *
  * <p>{@code BlockingQueue} implementations are thread-safe.  All
  * queuing methods achieve their effects atomically using internal
@@ -179,67 +167,53 @@ import java.util.Queue;
  */
 public interface BlockingQueue<E> extends Queue<E> {
     /**
-     * Inserts the specified element into this queue if it is possible to do
-     * so immediately without violating capacity restrictions, returning
-     * {@code true} upon success and throwing an
-     * {@code IllegalStateException} if no space is currently available.
-     * When using a capacity-restricted queue, it is generally preferable to
-     * use {@link #offer(Object) offer}.
+     * 如果可以这样做，则立即将指定的元素插入此队列，而不会违反容量限制；
+     *      如果成功，则返回{@code true}，如果当前没有可用空间，则抛出 {@code IllegalStateException}。
+     *      使用容量受限的队列时，通常最好使用{@link #offer（Object）offer}。
      *
-     * @param e the element to add
+     * 与offer()相比：当队列满了，add()插入会报错，而offer()只会返回false
+     *
+     *
+     * @param e 要添加的元素
      * @return {@code true} (as specified by {@link Collection#add})
-     * @throws IllegalStateException if the element cannot be added at this
-     *         time due to capacity restrictions
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this queue
-     * @throws NullPointerException if the specified element is null
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this queue
+     * @throws IllegalStateException 如果由于容量限制此时无法添加元素
+     * @throws ClassCastException 如果指定元素的类阻止将其添加到此队列中
+     * @throws NullPointerException 如果指定的元素为null
+     * @throws IllegalArgumentException 如果指定的元素的某些属性阻止将其添加到此队列中
      */
     boolean add(E e);
 
     /**
-     * Inserts the specified element into this queue if it is possible to do
-     * so immediately without violating capacity restrictions, returning
-     * {@code true} upon success and {@code false} if no space is currently
-     * available.  When using a capacity-restricted queue, this method is
-     * generally preferable to {@link #add}, which can fail to insert an
-     * element only by throwing an exception.
+     * 如果可以这样做，则立即将指定的元素插入此队列，而不会违反容量限制；
+     *      如果成功，则返回{@code true}，如果当前没有可用空间，则返回{@code false}。
+     *      当使用容量受限的队列时，此方法通常比{@link #add}更好，后者只能通过抛出异常来插入元素。
      *
-     * @param e the element to add
-     * @return {@code true} if the element was added to this queue, else
-     *         {@code false}
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this queue
-     * @throws NullPointerException if the specified element is null
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this queue
+     * @param e 要添加的元素
+     * @return {@code true}（如果元素已添加到此队列），否则{@code false}
+     * @throws ClassCastException 如果指定元素的类阻止将其添加到此队列中
+     * @throws NullPointerException 如果指定的元素为null
+     * @throws IllegalArgumentException 如果指定的元素的某些属性阻止将其添加到此队列中
      */
     boolean offer(E e);
 
     /**
-     * Inserts the specified element into this queue, waiting if necessary
-     * for space to become available.
+     * 将指定的元素插入此队列，如有必要，请等待以使空间可用
      *
-     * @param e the element to add
-     * @throws InterruptedException if interrupted while waiting
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this queue
-     * @throws NullPointerException if the specified element is null
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this queue
+     * @param e 要添加的元素
+     * @throws InterruptedException 如果在等待时被打断
+     * @throws ClassCastException 如果指定元素的类阻止将其添加到此队列中
+     * @throws NullPointerException 如果指定的元素为null
+     * @throws IllegalArgumentException 如果指定的元素的某些属性阻止将其添加到此队列中
      */
     void put(E e) throws InterruptedException;
 
     /**
-     * Inserts the specified element into this queue, waiting up to the
-     * specified wait time if necessary for space to become available.
+     * 将指定的元素插入此队列，如有必要，最多等待指定的等待时间以使空间可用。
      *
-     * @param e the element to add
-     * @param timeout how long to wait before giving up, in units of
-     *        {@code unit}
-     * @param unit a {@code TimeUnit} determining how to interpret the
-     *        {@code timeout} parameter
+     * @param e 要添加的元素
+     * @param timeout 放弃之前需要等待的时间，以{@code unit}为单位
+     * @param unit {@code TimeUnit}确定如何解释{@code timeout}参数
+     *
      * @return {@code true} if successful, or {@code false} if
      *         the specified waiting time elapses before space is available
      * @throws InterruptedException if interrupted while waiting
@@ -253,20 +227,17 @@ public interface BlockingQueue<E> extends Queue<E> {
         throws InterruptedException;
 
     /**
-     * Retrieves and removes the head of this queue, waiting if necessary
-     * until an element becomes available.
+     * 检索并除去此队列的头，如有必要，请等待直到元素可用
      *
-     * @return the head of this queue
+     * @return 此队列的头
      * @throws InterruptedException if interrupted while waiting
      */
     E take() throws InterruptedException;
 
     /**
-     * Retrieves and removes the head of this queue, waiting up to the
-     * specified wait time if necessary for an element to become available.
+     * 检索并删除此队列的头，如果有必要使元素可用，则等待指定的等待时间。
      *
-     * @param timeout how long to wait before giving up, in units of
-     *        {@code unit}
+     * @param timeout 放弃之前需要等待的时间，以* {@code unit}为单位
      * @param unit a {@code TimeUnit} determining how to interpret the
      *        {@code timeout} parameter
      * @return the head of this queue, or {@code null} if the
@@ -277,32 +248,24 @@ public interface BlockingQueue<E> extends Queue<E> {
         throws InterruptedException;
 
     /**
-     * Returns the number of additional elements that this queue can ideally
-     * (in the absence of memory or resource constraints) accept without
-     * blocking, or {@code Integer.MAX_VALUE} if there is no intrinsic
-     * limit.
+     * 返回此队列可以理想地（在没有内存或资源限制的情况下）无阻塞接受的其他元素的数量；
+     * 如果没有内部限制，则返回{@code Integer.MAX_VALUE}。
      *
-     * <p>Note that you <em>cannot</em> always tell if an attempt to insert
-     * an element will succeed by inspecting {@code remainingCapacity}
-     * because it may be the case that another thread is about to
-     * insert or remove an element.
+     *
+     * 请注意，您不能总是通过检查{@code remainingCapacity} 来判断尝试插入元素是否成功，因为可能是另一线程插入或删除元素的情况。
      *
      * @return the remaining capacity
      */
     int remainingCapacity();
 
     /**
-     * Removes a single instance of the specified element from this queue,
-     * if it is present.  More formally, removes an element {@code e} such
-     * that {@code o.equals(e)}, if this queue contains one or more such
-     * elements.
-     * Returns {@code true} if this queue contained the specified element
-     * (or equivalently, if this queue changed as a result of the call).
+     * 从此队列中删除指定元素的单个实例，如果存在，则将其删除。
+     * 更正式地说，如果此队列包含一个或多个此类元素，则删除诸如{@code o.equals（e）}的元素{@code e}。
+     * 如果此队列包含指定的元素，则返回{@code true}（或者等效地，如果此队列由于调用而更改）。
      *
-     * @param o element to be removed from this queue, if present
-     * @return {@code true} if this queue changed as a result of the call
-     * @throws ClassCastException if the class of the specified element
-     *         is incompatible with this queue
+     * @param o 要从此队列中删除的元素（如果存在）
+     * @return {@code true} 该队列是否由于调用而改变
+     * @throws ClassCastException 如果指定元素的类与此队列不兼容
      *         (<a href="../Collection.html#optional-restrictions">optional</a>)
      * @throws NullPointerException if the specified element is null
      *         (<a href="../Collection.html#optional-restrictions">optional</a>)
@@ -310,14 +273,12 @@ public interface BlockingQueue<E> extends Queue<E> {
     boolean remove(Object o);
 
     /**
-     * Returns {@code true} if this queue contains the specified element.
-     * More formally, returns {@code true} if and only if this queue contains
-     * at least one element {@code e} such that {@code o.equals(e)}.
+     * 如果此队列包含指定的元素，则返回{@code true}。
+     * 更正式地，当且仅当此队列包含至少一个元素{@code e}这样{@code o.equals（e）}时，才返回{@code true}。
      *
-     * @param o object to be checked for containment in this queue
-     * @return {@code true} if this queue contains the specified element
-     * @throws ClassCastException if the class of the specified element
-     *         is incompatible with this queue
+     * @param o 要检查是否包含在此队列中的对象
+     * @return {@code true} 如果此队列包含指定的元素
+     * @throws ClassCastException 如果指定元素的类与此队列不兼容
      *         (<a href="../Collection.html#optional-restrictions">optional</a>)
      * @throws NullPointerException if the specified element is null
      *         (<a href="../Collection.html#optional-restrictions">optional</a>)
@@ -325,21 +286,15 @@ public interface BlockingQueue<E> extends Queue<E> {
     public boolean contains(Object o);
 
     /**
-     * Removes all available elements from this queue and adds them
-     * to the given collection.  This operation may be more
-     * efficient than repeatedly polling this queue.  A failure
-     * encountered while attempting to add elements to
-     * collection {@code c} may result in elements being in neither,
-     * either or both collections when the associated exception is
-     * thrown.  Attempts to drain a queue to itself result in
-     * {@code IllegalArgumentException}. Further, the behavior of
-     * this operation is undefined if the specified collection is
-     * modified while the operation is in progress.
+     * 从此队列中删除所有可用的元素，并将它们添加到给定的集合中。
+     * 此操作可能比重复轮询此队列更有效。
+     * 尝试将元素添加到集合{@code c}时遇到失败，可能会在引发关联异常时导致元素不在两个集合中任何一个或两个集合中。
+     * 尝试排空队列本身会导致{@code IllegalArgumentException}。
+     * 此外，如果在操作进行过程中修改了指定的集合，则此操作的行为是不确定的。
      *
-     * @param c the collection to transfer elements into
-     * @return the number of elements transferred
-     * @throws UnsupportedOperationException if addition of elements
-     *         is not supported by the specified collection
+     * @param c 将元素转移到的集合
+     * @return 传输的元素数
+     * @throws UnsupportedOperationException 如果指定的集合不支持元素的添加
      * @throws ClassCastException if the class of an element of this queue
      *         prevents it from being added to the specified collection
      * @throws NullPointerException if the specified collection is null
@@ -350,21 +305,15 @@ public interface BlockingQueue<E> extends Queue<E> {
     int drainTo(Collection<? super E> c);
 
     /**
-     * Removes at most the given number of available elements from
-     * this queue and adds them to the given collection.  A failure
-     * encountered while attempting to add elements to
-     * collection {@code c} may result in elements being in neither,
-     * either or both collections when the associated exception is
-     * thrown.  Attempts to drain a queue to itself result in
-     * {@code IllegalArgumentException}. Further, the behavior of
-     * this operation is undefined if the specified collection is
-     * modified while the operation is in progress.
+     * 从此队列中最多移除给定数量的可用元素，并将它们添加到给定的集合中。
+     * 尝试将元素添加到集合{@code c}时遇到失败，可能会在引发关联异常时导致元素不在两个集合中任何一个或两个集合中。
+     * 尝试排空队列本身会导致* {@code IllegalArgumentException}。
+     * 此外，如果在操作进行过程中修改了指定的集合，则此操作的行为是不确定的。
      *
-     * @param c the collection to transfer elements into
-     * @param maxElements the maximum number of elements to transfer
-     * @return the number of elements transferred
-     * @throws UnsupportedOperationException if addition of elements
-     *         is not supported by the specified collection
+     * @param c 将元素转移到的集合
+     * @param maxElements 转移的最大元素数
+     * @return 传输的元素数
+     * @throws UnsupportedOperationException 如果指定的集合不支持元素的添加
      * @throws ClassCastException if the class of an element of this queue
      *         prevents it from being added to the specified collection
      * @throws NullPointerException if the specified collection is null

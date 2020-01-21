@@ -72,13 +72,11 @@ public abstract class AbstractQueue<E>
     }
 
     /**
-     * Inserts the specified element into this queue if it is possible to do so
-     * immediately without violating capacity restrictions, returning
-     * <tt>true</tt> upon success and throwing an <tt>IllegalStateException</tt>
-     * if no space is currently available.
+     * 如果可能的话，立即将指定的元素插入此队列而不违反容量限制；
+     * 如果成功，则返回true；
+     * 如果当前没有空间，则抛出IllegalStateException可用。
      *
-     * <p>This implementation returns <tt>true</tt> if <tt>offer</tt> succeeds,
-     * else throws an <tt>IllegalStateException</tt>.
+     * 如果 offer成功，则此实现返回true，否则抛出IllegalStateException。
      *
      * @param e the element to add
      * @return <tt>true</tt> (as specified by {@link Collection#add})

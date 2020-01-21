@@ -36,92 +36,54 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * Hash table based implementation of the <tt>Map</tt> interface.  This
- * implementation provides all of the optional map operations, and permits
- * <tt>null</tt> values and the <tt>null</tt> key.  (The <tt>HashMap</tt>
- * class is roughly equivalent to <tt>Hashtable</tt>, except that it is
- * unsynchronized and permits nulls.)  This class makes no guarantees as to
- * the order of the map; in particular, it does not guarantee that the order
- * will remain constant over time.
+ * Map 接口的基于哈希表的实现。
+ * 该实现提供了所有可选的映射操作，并允许null 值和null键。
+ * HashMap 类与Hashtable 大致等效，除了它不同步并且允许空值。
+ * 此类不保证Map的顺序；特别是，它不能保证顺序会随着时间的推移保持恒定。
  *
- * <p>This implementation provides constant-time performance for the basic
- * operations (<tt>get</tt> and <tt>put</tt>), assuming the hash function
- * disperses the elements properly among the buckets.  Iteration over
- * collection views requires time proportional to the "capacity" of the
- * <tt>HashMap</tt> instance (the number of buckets) plus its size (the number
- * of key-value mappings).  Thus, it's very important not to set the initial
- * capacity too high (or the load factor too low) if iteration performance is
- * important.
+ * 该实现为基本操作（get和put）提供了恒定时间的性能，假设哈希函数将元素正确地分散在存储桶中。
+ * 在集合视图上进行迭代所需的时间与HashMap实例的“容量”（存储桶的数量）及其大小（键-值映射的数量）成比例。
+ * 因此，如果迭代性能很重要，则不要将初始容量设置得过高（或负载因子太低），这一点非常重要。
  *
- * <p>An instance of <tt>HashMap</tt> has two parameters that affect its
- * performance: <i>initial capacity</i> and <i>load factor</i>.  The
- * <i>capacity</i> is the number of buckets in the hash table, and the initial
- * capacity is simply the capacity at the time the hash table is created.  The
- * <i>load factor</i> is a measure of how full the hash table is allowed to
- * get before its capacity is automatically increased.  When the number of
- * entries in the hash table exceeds the product of the load factor and the
- * current capacity, the hash table is <i>rehashed</i> (that is, internal data
- * structures are rebuilt) so that the hash table has approximately twice the
- * number of buckets.
+ * HashMap的实例具有两个影响其性能的参数：初始容量和负载系数。
+ * capacity是哈希表中存储桶的数量，初始Capacity是创建哈希表时的容量。
+ * 负载因子是在自动增加其哈希表容量之前允许哈希表获得的满度的度量。
+ *      当哈希表中条目的数量超过负载因子与当前容量的乘积时，哈希表将被刷新（即，内部数据结构被重建），以便哈希表的存储桶数约为。
  *
- * <p>As a general rule, the default load factor (.75) offers a good
- * tradeoff between time and space costs.  Higher values decrease the
- * space overhead but increase the lookup cost (reflected in most of
- * the operations of the <tt>HashMap</tt> class, including
- * <tt>get</tt> and <tt>put</tt>).  The expected number of entries in
- * the map and its load factor should be taken into account when
- * setting its initial capacity, so as to minimize the number of
- * rehash operations.  If the initial capacity is greater than the
- * maximum number of entries divided by the load factor, no rehash
- * operations will ever occur.
+ * 作为一般规则，默认负载因子（.75）在时间和空间成本之间提供了一个很好的折衷方案。
+ *      较高的值会减少空间开销，但会增加查找成本（在HashMap类的大多数操作中都得到了体现，包括get和put）。
+ *      设置其初始容量时，应考虑映射中的预期条目数及其负载因子，以最大程度地减少重新哈希操作的数量。
+ *      如果初始容量大于最大条目数除以负载系数，则不会进行任何哈希操作。
  *
- * <p>If many mappings are to be stored in a <tt>HashMap</tt>
- * instance, creating it with a sufficiently large capacity will allow
- * the mappings to be stored more efficiently than letting it perform
- * automatic rehashing as needed to grow the table.  Note that using
- * many keys with the same {@code hashCode()} is a sure way to slow
- * down performance of any hash table. To ameliorate impact, when keys
- * are {@link Comparable}, this class may use comparison order among
- * keys to help break ties.
+ * 如果要在HashMap实例中存储许多映射实例，则以足够大的容量创建映射将比允许其执行根据需要增长表的自动重新哈希处理来更有效地存储映射。
+ * 请注意，使用许多具有相同{@code hashCode（）}的键是降低任何哈希表性能的肯定方法。
+ * 为了改善影响，当键是{@link Comparable}时，此类可以使用键之间的比较顺序来帮助打破平局。
  *
- * <p><strong>Note that this implementation is not synchronized.</strong>
- * If multiple threads access a hash map concurrently, and at least one of
- * the threads modifies the map structurally, it <i>must</i> be
- * synchronized externally.  (A structural modification is any operation
- * that adds or deletes one or more mappings; merely changing the value
- * associated with a key that an instance already contains is not a
- * structural modification.)  This is typically accomplished by
- * synchronizing on some object that naturally encapsulates the map.
+ * 请注意，此实现未同步。
+ * 如果多个线程同时访问哈希映射，并且线程中的至少一个在结构上修改了映射，则必须在外部进行同步。
+ * 结构修改是添加或删除一个或多个映射的任何操作；
+ * 仅更改与实例已经包含的键相关联的值*不是结构修改。
+ * 这通常是通过在某个对象上进行同步来实现的自然地封装了Map。
  *
- * If no such object exists, the map should be "wrapped" using the
- * {@link Collections#synchronizedMap Collections.synchronizedMap}
- * method.  This is best done at creation time, to prevent accidental
- * unsynchronized access to the map:<pre>
- *   Map m = Collections.synchronizedMap(new HashMap(...));</pre>
+ * 如果不存在这样的对象，则应使用{@link Collections＃synchronizedMap Collections.synchronizedMap} 方法来“包装”Map。
+ * 最好在创建时完成此操作，以防止意外非同步访问地图：
+ *   Map m = Collections.synchronizedMap(new HashMap(...));
  *
- * <p>The iterators returned by all of this class's "collection view methods"
- * are <i>fail-fast</i>: if the map is structurally modified at any time after
- * the iterator is created, in any way except through the iterator's own
- * <tt>remove</tt> method, the iterator will throw a
- * {@link ConcurrentModificationException}.  Thus, in the face of concurrent
- * modification, the iterator fails quickly and cleanly, rather than risking
- * arbitrary, non-deterministic behavior at an undetermined time in the
- * future.
+ * 所有此类的“集合视图方法” 返回的迭代器都是快速失败的：
+ *      如果在创建迭代器之后的任何时间对结构进行结构修改，则可以通过迭代器自己的 remove 方法，
+ *      则迭代器将抛出{@link ConcurrentModificationException}。
+ * 因此，面对并发的修改，迭代器会迅速而干净地失败，而不是冒着在不确定的将来冒着任意，不确定的行为的风险。
  *
- * <p>Note that the fail-fast behavior of an iterator cannot be guaranteed
- * as it is, generally speaking, impossible to make any hard guarantees in the
- * presence of unsynchronized concurrent modification.  Fail-fast iterators
- * throw <tt>ConcurrentModificationException</tt> on a best-effort basis.
- * Therefore, it would be wrong to write a program that depended on this
- * exception for its correctness: <i>the fail-fast behavior of iterators
- * should be used only to detect bugs.</i>
+ * 注意，不能保证迭代器的快速失败行为，因为通常来说，在存在不同步的并发修改的情况下，不可能做出任何严格的保证。
+ * 快速失败的迭代器尽力而为抛出ConcurrentModificationException。
+ * 因此，编写依赖于此异常的程序的错误性是错误的：迭代器的快速失败行为仅应用于检测错误。
  *
- * <p>This class is a member of the
+ * This class is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
- * @param <K> the type of keys maintained by this map
- * @param <V> the type of mapped values
+ * @param <K> 此Map维护的键的类型
+ * @param <V> 映射值的类型
  *
  * @author  Doug Lea
  * @author  Josh Bloch
@@ -435,7 +397,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Public operations -------------- */
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
+     * Constructs an empty HashMapwith the specified initial
      * capacity and load factor.
      *
      * @param  initialCapacity the initial capacity
@@ -457,7 +419,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the specified initial
+     * Constructs an empty HashMapwith the specified initial
      * capacity and the default load factor (0.75).
      *
      * @param  initialCapacity the initial capacity.
@@ -468,7 +430,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Constructs an empty <tt>HashMap</tt> with the default initial capacity
+     * Constructs an empty HashMapwith the default initial capacity
      * (16) and the default load factor (0.75).
      */
     public HashMap() {
@@ -476,10 +438,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Constructs a new <tt>HashMap</tt> with the same mappings as the
-     * specified <tt>Map</tt>.  The <tt>HashMap</tt> is created with
+     * Constructs a new HashMapwith the same mappings as the
+     * specified Map</tt>.  The HashMapis created with
      * default load factor (0.75) and an initial capacity sufficient to
-     * hold the mappings in the specified <tt>Map</tt>.
+     * hold the mappings in the specified Map</tt>.
      *
      * @param   m the map whose mappings are to be placed in this map
      * @throws  NullPointerException if the specified map is null
@@ -526,9 +488,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns <tt>true</tt> if this map contains no key-value mappings.
+     * Returns trueif this map contains no key-value mappings.
      *
-     * @return <tt>true</tt> if this map contains no key-value mappings
+     * @return trueif this map contains no key-value mappings
      */
     public boolean isEmpty() {
         return size == 0;
@@ -538,12 +500,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Returns the value to which the specified key is mapped,
      * or {@code null} if this map contains no mapping for the key.
      *
-     * <p>More formally, if this map contains a mapping from a key
+     * More formally, if this map contains a mapping from a key
      * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
      * key.equals(k))}, then this method returns {@code v}; otherwise
      * it returns {@code null}.  (There can be at most one such mapping.)
      *
-     * <p>A return value of {@code null} does not <i>necessarily</i>
+     * A return value of {@code null} does not necessarily
      * indicate that the map contains no mapping for the key; it's also
      * possible that the map explicitly maps the key to {@code null}.
      * The {@link #containsKey containsKey} operation may be used to
@@ -584,11 +546,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns <tt>true</tt> if this map contains a mapping for the
+     * Returns trueif this map contains a mapping for the
      * specified key.
      *
      * @param   key   The key whose presence in this map is to be tested
-     * @return <tt>true</tt> if this map contains a mapping for the specified
+     * @return trueif this map contains a mapping for the specified
      * key.
      */
     public boolean containsKey(Object key) {
@@ -602,10 +564,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      *
      * @param key key with which the specified value is to be associated
      * @param value value to be associated with the specified key
-     * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
-     *         (A <tt>null</tt> return can also indicate that the map
-     *         previously associated <tt>null</tt> with <tt>key</tt>.)
+     * @return the previous value associated with key</tt>, or
+     *         nullif there was no mapping for key</tt>.
+     *         (A nullreturn can also indicate that the map
+     *         previously associated nullwith key</tt>.)
      */
     public V put(K key, V value) {
         return putVal(hash(key), key, value, false, true);
@@ -788,10 +750,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Removes the mapping for the specified key from this map if present.
      *
      * @param  key key whose mapping is to be removed from the map
-     * @return the previous value associated with <tt>key</tt>, or
-     *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
-     *         (A <tt>null</tt> return can also indicate that the map
-     *         previously associated <tt>null</tt> with <tt>key</tt>.)
+     * @return the previous value associated with key</tt>, or
+     *         nullif there was no mapping for key</tt>.
+     *         (A nullreturn can also indicate that the map
+     *         previously associated nullwith key</tt>.)
      */
     public V remove(Object key) {
         Node<K,V> e;
@@ -865,11 +827,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns <tt>true</tt> if this map maps one or more keys to the
+     * Returns trueif this map maps one or more keys to the
      * specified value.
      *
      * @param value value whose presence in this map is to be tested
-     * @return <tt>true</tt> if this map maps one or more keys to the
+     * @return trueif this map maps one or more keys to the
      *         specified value
      */
     public boolean containsValue(Object value) {
@@ -891,12 +853,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * The set is backed by the map, so changes to the map are
      * reflected in the set, and vice-versa.  If the map is modified
      * while an iteration over the set is in progress (except through
-     * the iterator's own <tt>remove</tt> operation), the results of
+     * the iterator's own removeoperation), the results of
      * the iteration are undefined.  The set supports element removal,
      * which removes the corresponding mapping from the map, via the
-     * <tt>Iterator.remove</tt>, <tt>Set.remove</tt>,
-     * <tt>removeAll</tt>, <tt>retainAll</tt>, and <tt>clear</tt>
-     * operations.  It does not support the <tt>add</tt> or <tt>addAll</tt>
+     * Iterator.remove</tt>, Set.remove</tt>,
+     * removeAll</tt>, retainAll</tt>, and clear</tt>
+     * operations.  It does not support the addor addAll</tt>
      * operations.
      *
      * @return a set view of the keys contained in this map
@@ -942,13 +904,13 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * The collection is backed by the map, so changes to the map are
      * reflected in the collection, and vice-versa.  If the map is
      * modified while an iteration over the collection is in progress
-     * (except through the iterator's own <tt>remove</tt> operation),
+     * (except through the iterator's own removeoperation),
      * the results of the iteration are undefined.  The collection
      * supports element removal, which removes the corresponding
-     * mapping from the map, via the <tt>Iterator.remove</tt>,
-     * <tt>Collection.remove</tt>, <tt>removeAll</tt>,
-     * <tt>retainAll</tt> and <tt>clear</tt> operations.  It does not
-     * support the <tt>add</tt> or <tt>addAll</tt> operations.
+     * mapping from the map, via the Iterator.remove</tt>,
+     * Collection.remove</tt>, removeAll</tt>,
+     * retainAlland clearoperations.  It does not
+     * support the addor addAlloperations.
      *
      * @return a view of the values contained in this map
      */
@@ -990,14 +952,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * The set is backed by the map, so changes to the map are
      * reflected in the set, and vice-versa.  If the map is modified
      * while an iteration over the set is in progress (except through
-     * the iterator's own <tt>remove</tt> operation, or through the
-     * <tt>setValue</tt> operation on a map entry returned by the
+     * the iterator's own removeoperation, or through the
+     * setValueoperation on a map entry returned by the
      * iterator) the results of the iteration are undefined.  The set
      * supports element removal, which removes the corresponding
-     * mapping from the map, via the <tt>Iterator.remove</tt>,
-     * <tt>Set.remove</tt>, <tt>removeAll</tt>, <tt>retainAll</tt> and
-     * <tt>clear</tt> operations.  It does not support the
-     * <tt>add</tt> or <tt>addAll</tt> operations.
+     * mapping from the map, via the Iterator.remove</tt>,
+     * Set.remove</tt>, removeAll</tt>, retainAlland
+     * clearoperations.  It does not support the
+     * addor addAlloperations.
      *
      * @return a set view of the mappings contained in this map
      */
@@ -1313,7 +1275,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     // Cloning and serialization
 
     /**
-     * Returns a shallow copy of this <tt>HashMap</tt> instance: the keys and
+     * Returns a shallow copy of this HashMapinstance: the keys and
      * values themselves are not cloned.
      *
      * @return a shallow copy of this map
@@ -1342,12 +1304,12 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Save the state of the <tt>HashMap</tt> instance to a stream (i.e.,
+     * Save the state of the HashMapinstance to a stream (i.e.,
      * serialize it).
      *
-     * @serialData The <i>capacity</i> of the HashMap (the length of the
+     * @serialData The capacity of the HashMap (the length of the
      *             bucket array) is emitted (int), followed by the
-     *             <i>size</i> (an int, the number of key-value
+     *             size (an int, the number of key-value
      *             mappings), followed by the key (Object) and value (Object)
      *             for each key-value mapping.  The key-value mappings are
      *             emitted in no particular order.

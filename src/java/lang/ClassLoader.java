@@ -61,85 +61,55 @@ import sun.reflect.misc.ReflectUtil;
 import sun.security.util.SecurityConstants;
 
 /**
- * A class loader is an object that is responsible for loading classes. The
- * class <tt>ClassLoader</tt> is an abstract class.  Given the <a
- * href="#name">binary name</a> of a class, a class loader should attempt to
- * locate or generate data that constitutes a definition for the class.  A
- * typical strategy is to transform the name into a file name and then read a
- * "class file" of that name from a file system.
+ * 类加载器是负责加载类的对象。
+ * 类ClassLoader是抽象类。
+ * 给定类的二进制名称，类加载器应尝试定位或生成构成该类定义的数据。
+ * 一个典型的策略是将名称转换为文件名，然后从文件系统中读取该名称的“类文件”。
  *
- * <p> Every {@link Class <tt>Class</tt>} object contains a {@link
- * Class#getClassLoader() reference} to the <tt>ClassLoader</tt> that defined
- * it.
+ * 每个{@link Class Class}对象都包含一个对定义它的ClassLoader的{@link  Class＃getClassLoader（）引用}。
  *
- * <p> <tt>Class</tt> objects for array classes are not created by class
- * loaders, but are created automatically as required by the Java runtime.
- * The class loader for an array class, as returned by {@link
- * Class#getClassLoader()} is the same as the class loader for its element
- * type; if the element type is a primitive type, then the array class has no
- * class loader.
+ * 数组类的Class对象不是由class 加载程序创建的，而是根据Java运行时的要求自动创建的。
+ * 由{@link  Class＃getClassLoader（）}返回的数组类的类加载器与其元素类型的类加载器相同；
+ * 如果元素类型是原始类型，则数组类没有类加载器。
  *
- * <p> Applications implement subclasses of <tt>ClassLoader</tt> in order to
- * extend the manner in which the Java virtual machine dynamically loads
- * classes.
+ * 应用程序实现ClassLoader的子类，以便扩展Java虚拟机动态加载类的方式
  *
- * <p> Class loaders may typically be used by security managers to indicate
- * security domains.
+ * 类加载器通常可以由安全管理器用来指示安全域
  *
- * <p> The <tt>ClassLoader</tt> class uses a delegation model to search for
- * classes and resources.  Each instance of <tt>ClassLoader</tt> has an
- * associated parent class loader.  When requested to find a class or
- * resource, a <tt>ClassLoader</tt> instance will delegate the search for the
- * class or resource to its parent class loader before attempting to find the
- * class or resource itself.  The virtual machine's built-in class loader,
- * called the "bootstrap class loader", does not itself have a parent but may
- * serve as the parent of a <tt>ClassLoader</tt> instance.
+ * ClassLoader类使用委托模型搜索类和资源。
+ * ClassLoader的每个实例都有一个关联的父类加载器。
+ * 当请求查找类或资源时，ClassLoader实例会将对类或资源的搜索委托给其父类加载器，然后再尝试查找类或资源本身。
+ * 虚拟机的内置类加载器称为“引导类加载器”，本身本身没有父级，但可以作为ClassLoader实例的父级。
  *
- * <p> Class loaders that support concurrent loading of classes are known as
- * <em>parallel capable</em> class loaders and are required to register
- * themselves at their class initialization time by invoking the
- * {@link
- * #registerAsParallelCapable <tt>ClassLoader.registerAsParallelCapable</tt>}
- * method. Note that the <tt>ClassLoader</tt> class is registered as parallel
- * capable by default. However, its subclasses still need to register themselves
- * if they are parallel capable. <br>
- * In environments in which the delegation model is not strictly
- * hierarchical, class loaders need to be parallel capable, otherwise class
- * loading can lead to deadlocks because the loader lock is held for the
- * duration of the class loading process (see {@link #loadClass
- * <tt>loadClass</tt>} methods).
+ * 支持并发加载类的类加载器称为具有并行功能的类加载器，
+ * 并且需要通过调用 {@link #registerAsParallelCapable  ClassLoader在自身的类初始化时进行注册。
+ * registerAsParallelCapable} 方法。
  *
- * <p> Normally, the Java virtual machine loads classes from the local file
- * system in a platform-dependent manner.  For example, on UNIX systems, the
- * virtual machine loads classes from the directory defined by the
- * <tt>CLASSPATH</tt> environment variable.
+ * 请注意，默认情况下ClassLoader 类被注册为并行。
+ * 但是，如果它们的子类具有并行功能，则仍需要进行注册。
+ * 在委派模型不是严格分层的环境中，类加载器需要具有并行功能，
+ * 否则类加载会导致死锁，因为在类加载过程中保持了加载器锁定（请参阅{@link #loadClass loadClass}方法）。
  *
- * <p> However, some classes may not originate from a file; they may originate
- * from other sources, such as the network, or they could be constructed by an
- * application.  The method {@link #defineClass(String, byte[], int, int)
- * <tt>defineClass</tt>} converts an array of bytes into an instance of class
- * <tt>Class</tt>. Instances of this newly defined class can be created using
- * {@link Class#newInstance <tt>Class.newInstance</tt>}.
+ * 通常，Java虚拟机以平台相关的方式从本地文件系统中加载类。
+ * 例如，在UNIX系统上，虚拟机从环境变量 CLASSPATH定义的目录中加载类。
  *
- * <p> The methods and constructors of objects created by a class loader may
- * reference other classes.  To determine the class(es) referred to, the Java
- * virtual machine invokes the {@link #loadClass <tt>loadClass</tt>} method of
- * the class loader that originally created the class.
+ * 但是，某些类可能不是源自文件的。
+ * 它们可能来自其他来源，例如网络，也可能由应用程序构造。
+ * 方法{@link #defineClass（String，byte []，int，int*）defineClass}将字节数组转换为类 Class 的实例。
+ * 可以使用{@link Class＃newInstance Class.newInstance}创建此新定义的类的实例。
  *
- * <p> For example, an application could create a network class loader to
- * download class files from a server.  Sample code might look like:
+ * 由类加载器创建的对象的方法和构造函数可以引用其他类。
+ * 为了确定所引用的类，Java虚拟机将调用最初创建该类的类加载器的{@link #loadClass loadClass}方法
+ *
+ * 例如，应用程序可以创建网络类加载器以从服务器下载类文件。示例代码可能如下所示：
  *
  * <blockquote><pre>
- *   ClassLoader loader&nbsp;= new NetworkClassLoader(host,&nbsp;port);
- *   Object main&nbsp;= loader.loadClass("Main", true).newInstance();
- *       &nbsp;.&nbsp;.&nbsp;.
+ *   ClassLoader loader= new NetworkClassLoader(host,port);
+ *   Object main= loader.loadClass("Main", true).newInstance();
  * </pre></blockquote>
  *
- * <p> The network class loader subclass must define the methods {@link
- * #findClass <tt>findClass</tt>} and <tt>loadClassData</tt> to load a class
- * from the network.  Once it has downloaded the bytes that make up the class,
- * it should use the method {@link #defineClass <tt>defineClass</tt>} to
- * create a class instance.  A sample implementation is:
+ * 网络类加载器子类必须定义方法{@link #findClass findClass}和loadClassData才能从网络中加载类。
+ * 下载构成类的字节后，应该使用方法{@link #defineClass defineClass}创建类实例。一个示例实现是：
  *
  * <blockquote><pre>
  *     class NetworkClassLoader extends ClassLoader {
@@ -182,13 +152,12 @@ public abstract class ClassLoader {
         registerNatives();
     }
 
-    // The parent class loader for delegation
-    // Note: VM hardcoded the offset of this field, thus all new fields
-    // must be added *after* it.
+    // 父类加载器用于委派
+    // 注意：VM对该字段的偏移量进行了硬编码，因此必须在它之后添加所有新字段
     private final ClassLoader parent;
 
     /**
-     * Encapsulates the set of parallel capable loader types.
+     * 封装一组并行的加载器类型
      */
     private static class ParallelLoaders {
         private ParallelLoaders() {}

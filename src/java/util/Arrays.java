@@ -44,9 +44,8 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * This class contains various methods for manipulating arrays (such as
- * sorting and searching). This class also contains a static factory
- * that allows arrays to be viewed as lists.
+ * 此类包含用于操纵数组的各种方法（例如排序和搜索）。
+ * 此类还包含一个静态工厂，该工厂允许将数组视为列表。
  *
  * <p>The methods in this class all throw a {@code NullPointerException},
  * if the specified array reference is null, except where noted.

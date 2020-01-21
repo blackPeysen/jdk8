@@ -83,7 +83,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Gets the current value.
+     * 获取当前值
      *
      * @return the current value
      */
@@ -92,7 +92,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Sets to the given value.
+     * 设置为给定值
      *
      * @param newValue the new value
      */
@@ -101,7 +101,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Eventually sets to the given value.
+     * 最终设置为给定值
      *
      * @param newValue the new value
      * @since 1.6

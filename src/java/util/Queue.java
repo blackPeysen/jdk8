@@ -162,11 +162,8 @@ public interface Queue<E> extends Collection<E> {
     boolean add(E e);
 
     /**
-     * Inserts the specified element into this queue if it is possible to do
-     * so immediately without violating capacity restrictions.
-     * When using a capacity-restricted queue, this method is generally
-     * preferable to {@link #add}, which can fail to insert an element only
-     * by throwing an exception.
+     * 如果可能的话，立即将指定的元素插入此队列，而不会违反容量限制。
+     * 当使用容量受限的队列时，此方法通常比{@link #add}更可取，后者可能会因抛出异常而无法仅插入元素。
      *
      * @param e the element to add
      * @return {@code true} if the element was added to this queue, else

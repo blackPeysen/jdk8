@@ -31,19 +31,14 @@ import java.util.function.Function;
 import java.io.Serializable;
 
 /**
- * An object that maps keys to values.  A map cannot contain duplicate keys;
- * each key can map to at most one value.
+ * 将键映射到值的对象。
+ * 映射不能包含重复的键； 每个键最多可以映射到一个值。
  *
- * <p>This interface takes the place of the <tt>Dictionary</tt> class, which
- * was a totally abstract class rather than an interface.
+ * <p>该接口代替了Dictionary 类，该类是完全抽象的类，而不是接口。
  *
- * <p>The <tt>Map</tt> interface provides three <i>collection views</i>, which
- * allow a map's contents to be viewed as a set of keys, collection of values,
- * or set of key-value mappings.  The <i>order</i> of a map is defined as
- * the order in which the iterators on the map's collection views return their
- * elements.  Some map implementations, like the <tt>TreeMap</tt> class, make
- * specific guarantees as to their order; others, like the <tt>HashMap</tt>
- * class, do not.
+ * <p>Map 界面提供了三个collection视图，它们允许将地图的内容作为一组键，值的集合或或键-值映射的形式查看。
+ * 映射的order定义为地图集合视图上的迭代器返回其元素的顺序。
+ * 某些地图实现（例如TreeMap类）对它们的顺序做出特定的保证；其他对象，例如HashMap类，则不要。
  *
  * <p>Note: great care must be exercised if mutable objects are used as map
  * keys.  The behavior of a map is not specified if the value of an object is
@@ -130,16 +125,15 @@ public interface Map<K,V> {
     // Query Operations
 
     /**
-     * Returns the number of key-value mappings in this map.  If the
-     * map contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
-     * <tt>Integer.MAX_VALUE</tt>.
+     * 返回此映射中的键值映射数。
+     * 如果映射包含多个Integer.MAX_VALUE元素，则返回Integer.MAX_VALUE。
      *
-     * @return the number of key-value mappings in this map
+     * @return 此映射中的键值映射数
      */
     int size();
 
     /**
-     * Returns <tt>true</tt> if this map contains no key-value mappings.
+     * 如果此映射不包含键值映射，则返回true.
      *
      * @return <tt>true</tt> if this map contains no key-value mappings
      */
