@@ -38,38 +38,27 @@ import java.util.List;
 import java.util.Collection;
 
 /**
- * An {@link Executor} that provides methods to manage termination and
- * methods that can produce a {@link Future} for tracking progress of
- * one or more asynchronous tasks.
+ * 提供用于管理终止的方法的{@link Executor}和可以生成用于跟踪一个或多个异步任务的进度的{@link Future}的方法。
  *
- * <p>An {@code ExecutorService} can be shut down, which will cause
- * it to reject new tasks.  Two different methods are provided for
- * shutting down an {@code ExecutorService}. The {@link #shutdown}
- * method will allow previously submitted tasks to execute before
- * terminating, while the {@link #shutdownNow} method prevents waiting
- * tasks from starting and attempts to stop currently executing tasks.
- * Upon termination, an executor has no tasks actively executing, no
- * tasks awaiting execution, and no new tasks can be submitted.  An
- * unused {@code ExecutorService} should be shut down to allow
- * reclamation of its resources.
+ * <p>可以关闭{@code ExecutorService}，这将导致它拒绝新任务。
+ * 关闭{@code ExecutorService}提供了两种不同的方法。
+ *      {@link #shutdown}方法将允许以前提交的任务在终止之前执行，
+ *      {@link #shutdownNow}方法将防止等待任务启动并尝试停止当前正在执行的任务。
+ * 终止时，执行器没有正在执行的任务，没有等待执行的任务，也不能提交新的任务。
+ * 应该关闭未使用的{@code ExecutorService}，以允许回收其资源。
  *
- * <p>Method {@code submit} extends base method {@link
- * Executor#execute(Runnable)} by creating and returning a {@link Future}
- * that can be used to cancel execution and/or wait for completion.
- * Methods {@code invokeAny} and {@code invokeAll} perform the most
- * commonly useful forms of bulk execution, executing a collection of
- * tasks and then waiting for at least one, or all, to
- * complete. (Class {@link ExecutorCompletionService} can be used to
- * write customized variants of these methods.)
+ * <p>方法{@code submit}通过创建和返回一个{@link Future}来扩展基本方法{@link Executor#execute(Runnable)}，
+ * 这个{@link Future}可以用来取消执行和/或等待完成。
+ * 方法{@code invokeAny}和{@code invokeAll}执行最常用的批量执行形式，执行一个任务集合，
+ * 然后等待至少一个或全部完成。
+ * (Class {@link ExecutorCompletionService}可用于编写这些方法的定制变体。)
  *
- * <p>The {@link Executors} class provides factory methods for the
- * executor services provided in this package.
+ * <p>{@link Executors}类为这个包中提供的executor服务提供工厂方法。
  *
  * <h3>Usage Examples</h3>
  *
- * Here is a sketch of a network service in which threads in a thread
- * pool service incoming requests. It uses the preconfigured {@link
- * Executors#newFixedThreadPool} factory method:
+ * 下面是一个网络服务的示意图，其中线程池服务中的线程传入请求。
+ * 它使用预先配置的{@link * exec# newFixedThreadPool} factory方法:
  *
  *  <pre> {@code
  * class NetworkService implements Runnable {
@@ -137,39 +126,28 @@ import java.util.Collection;
 public interface ExecutorService extends Executor {
 
     /**
-     * Initiates an orderly shutdown in which previously submitted
-     * tasks are executed, but no new tasks will be accepted.
-     * Invocation has no additional effect if already shut down.
+     * 启动一个有序关闭，在此过程中执行先前提交的任务，但不接受任何新任务。
+     * 如果已经关闭，调用将没有其他效果。
      *
-     * <p>This method does not wait for previously submitted tasks to
-     * complete execution.  Use {@link #awaitTermination awaitTermination}
-     * to do that.
+     * <p>此方法不等待以前提交的任务完成执行。
+     * 使用{@link #awaitTermination awaitTermination}来完成。
      *
-     * @throws SecurityException if a security manager exists and
-     *         shutting down this ExecutorService may manipulate
-     *         threads that the caller is not permitted to modify
-     *         because it does not hold {@link
-     *         java.lang.RuntimePermission}{@code ("modifyThread")},
-     *         or the security manager's {@code checkAccess} method
-     *         denies access.
+     * @throws SecurityException 如果存在一个安全管理器，并且关闭这个ExecutorService可能会操作调用者不允许修改的线程，
+     *          因为它不包含{@link java.lang。RuntimePermission}{@code ("modifyThread")}，
+     *          或安全管理器的{@code checkAccess}方法*拒绝访问。
      */
     void shutdown();
 
     /**
-     * Attempts to stop all actively executing tasks, halts the
-     * processing of waiting tasks, and returns a list of the tasks
-     * that were awaiting execution.
+     * 尝试停止所有正在执行的任务，停止等待任务的处理，并返回等待执行的任务列表。
      *
-     * <p>This method does not wait for actively executing tasks to
-     * terminate.  Use {@link #awaitTermination awaitTermination} to
-     * do that.
+     * <p>此方法不会等待正在积极执行的任务终止。
+     *      使用{@link #awaitTermination awaitTermination}来做这个。
      *
-     * <p>There are no guarantees beyond best-effort attempts to stop
-     * processing actively executing tasks.  For example, typical
-     * implementations will cancel via {@link Thread#interrupt}, so any
-     * task that fails to respond to interrupts may never terminate.
+     * <p>除了尽最大努力停止处理正在执行的任务外，没有任何保证。
+     * 例如，典型的*实现将通过{@link Thread#interrupt}取消，因此任何未能响应中断的任务都可能永远不会终止。
      *
-     * @return list of tasks that never commenced execution
+     * @return 从未开始执行的任务列表
      * @throws SecurityException if a security manager exists and
      *         shutting down this ExecutorService may manipulate
      *         threads that the caller is not permitted to modify
@@ -181,25 +159,23 @@ public interface ExecutorService extends Executor {
     List<Runnable> shutdownNow();
 
     /**
-     * Returns {@code true} if this executor has been shut down.
+     * 如果此执行程序已关闭，则返回{@code true}。
      *
-     * @return {@code true} if this executor has been shut down
+     * 如果这个执行器已经关闭，则返回{@code true}
      */
     boolean isShutdown();
 
     /**
-     * Returns {@code true} if all tasks have completed following shut down.
-     * Note that {@code isTerminated} is never {@code true} unless
-     * either {@code shutdown} or {@code shutdownNow} was called first.
+     * 如果所有任务都在关闭后完成，则返回{@code true}。
+     * 注意，{@code isTerminated}从来不是{@code true}，
+     * 除非先调用{@code shutdown}或{@code shutdownNow}。
      *
-     * @return {@code true} if all tasks have completed following shut down
+     * @return {@code true}如果所有任务都在关闭后完成
      */
     boolean isTerminated();
 
     /**
-     * Blocks until all tasks have completed execution after a shutdown
-     * request, or the timeout occurs, or the current thread is
-     * interrupted, whichever happens first.
+     * 块，直到所有任务在一个关机请求后完成执行，或超时发生，或当前线程被中断，以先发生的情况为准。
      *
      * @param timeout the maximum time to wait
      * @param unit the time unit of the timeout argument
@@ -236,9 +212,8 @@ public interface ExecutorService extends Executor {
     <T> Future<T> submit(Callable<T> task);
 
     /**
-     * Submits a Runnable task for execution and returns a Future
-     * representing that task. The Future's {@code get} method will
-     * return the given result upon successful completion.
+     * 提交一个可运行任务以供执行，并返回一个表示该任务的Future。
+     * 将来的{@code get}方法将成功完成后返回给定的结果。
      *
      * @param task the task to submit
      * @param result the result to return
@@ -251,9 +226,8 @@ public interface ExecutorService extends Executor {
     <T> Future<T> submit(Runnable task, T result);
 
     /**
-     * Submits a Runnable task for execution and returns a Future
-     * representing that task. The Future's {@code get} method will
-     * return {@code null} upon <em>successful</em> completion.
+     * 提交一个可运行任务以供执行，并返回一个表示该任务的Future。
+     * 将来的{@code get}方法将在成功完成时返回{@code null}。
      *
      * @param task the task to submit
      * @return a Future representing pending completion of the task
@@ -342,13 +316,9 @@ public interface ExecutorService extends Executor {
         throws InterruptedException, ExecutionException;
 
     /**
-     * Executes the given tasks, returning the result
-     * of one that has completed successfully (i.e., without throwing
-     * an exception), if any do before the given timeout elapses.
-     * Upon normal or exceptional return, tasks that have not
-     * completed are cancelled.
-     * The results of this method are undefined if the given
-     * collection is modified while this operation is in progress.
+     * 执行给定的任务，返回一个已经成功完成的任务的结果，而不抛出异常，如果在给定超时超时之前有任何操作。
+     * 在正常或异常情况下，未完成的任务将被取消。
+     * 如果在操作过程中修改了给定的集合，则此方法的结果是未定义的。
      *
      * @param tasks the collection of tasks
      * @param timeout the maximum time to wait

@@ -39,14 +39,10 @@ import java.util.function.IntBinaryOperator;
 import sun.misc.Unsafe;
 
 /**
- * An {@code int} value that may be updated atomically.  See the
- * {@link java.util.concurrent.atomic} package specification for
- * description of the properties of atomic variables. An
- * {@code AtomicInteger} is used in applications such as atomically
- * incremented counters, and cannot be used as a replacement for an
- * {@link java.lang.Integer}. However, this class does extend
- * {@code Number} to allow uniform access by tools and utilities that
- * deal with numerically-based classes.
+ * 可以自动更新的{@code int}值。
+ * 参见{@link java.util.concurrent.atomic}包规范描述原子变量的属性。
+ * {@code AtomicInteger}用于原子递增的计数器等应用程序，不能用作{@link java.lang.Integer}的替代。
+ * 但是，这个类扩展了{@code Number}，允许处理基于数字的类的工具和实用程序进行统一访问。
  *
  * @since 1.5
  * @author Doug Lea

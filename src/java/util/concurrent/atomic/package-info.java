@@ -34,11 +34,8 @@
  */
 
 /**
- * A small toolkit of classes that support lock-free thread-safe
- * programming on single variables.  In essence, the classes in this
- * package extend the notion of {@code volatile} values, fields, and
- * array elements to those that also provide an atomic conditional update
- * operation of the form:
+ * 一个支持单变量无锁线程安全编程的类的小工具包。
+ * 本质上，这个包中的类将{@code volatile}值、字段和数组元素的概念扩展到了那些同样提供了一个原子条件更新操作的表单:
  *
  *  <pre> {@code boolean compareAndSet(expectedValue, updateValue);}</pre>
  *

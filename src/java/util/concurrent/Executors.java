@@ -45,10 +45,9 @@ import java.security.AccessControlException;
 import sun.security.util.SecurityConstants;
 
 /**
- * Factory and utility methods for {@link Executor}, {@link
- * ExecutorService}, {@link ScheduledExecutorService}, {@link
- * ThreadFactory}, and {@link Callable} classes defined in this
- * package. This class supports the following kinds of methods:
+ * 用于{@link Executor}、{@link  ExecutorService}、
+ * {@link ScheduledExecutorService}、{@link  ThreadFactory}和{@link Callable}类的工厂和实用程序方法。
+ * 这个类支持以下几种方法:
  *
  * <ul>
  *   <li> Methods that create and return an {@link ExecutorService}

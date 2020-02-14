@@ -155,8 +155,7 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class CountDownLatch {
     /**
-     * Synchronization control For CountDownLatch.
-     * Uses AQS state to represent count.
+     * 倒计时锁存器的同步控制。使用AQS状态表示计数。
      */
     private static final class Sync extends AbstractQueuedSynchronizer {
         private static final long serialVersionUID = 4982264981922014374L;
@@ -174,7 +173,7 @@ public class CountDownLatch {
         }
 
         protected boolean tryReleaseShared(int releases) {
-            // Decrement count; signal when transition to zero
+            // 递减计数;当信号转换到零
             for (;;) {
                 int c = getState();
                 if (c == 0)

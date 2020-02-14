@@ -36,13 +36,10 @@
 package java.util.concurrent.locks;
 
 /**
- * A synchronizer that may be exclusively owned by a thread.  This
- * class provides a basis for creating locks and related synchronizers
- * that may entail a notion of ownership.  The
- * {@code AbstractOwnableSynchronizer} class itself does not manage or
- * use this information. However, subclasses and tools may use
- * appropriately maintained values to help control and monitor access
- * and provide diagnostics.
+ * 一种同步器，可以由一个线程独占。
+ * 这个类为创建锁和相关的同步器提供了基础，这些同步器可能包含所有权的概念。
+ * {@code AbstractOwnableSynchronizer}类本身并不管理或使用这些信息。
+ * 但是，子类和工具可能使用适当维护的值来帮助控制和监视访问并提供诊断。
  *
  * @since 1.6
  * @author Doug Lea
@@ -50,24 +47,22 @@ package java.util.concurrent.locks;
 public abstract class AbstractOwnableSynchronizer
     implements java.io.Serializable {
 
-    /** Use serial ID even though all fields transient. */
+    /** 即使所有字段都是瞬态的，也要使用串行ID。 */
     private static final long serialVersionUID = 3737899427754241961L;
 
     /**
-     * Empty constructor for use by subclasses.
+     * 为子类使用的空构造函数。
      */
     protected AbstractOwnableSynchronizer() { }
 
     /**
-     * The current owner of exclusive mode synchronization.
+     * 独占模式同步的当前所有者。
      */
     private transient Thread exclusiveOwnerThread;
 
     /**
-     * Sets the thread that currently owns exclusive access.
-     * A {@code null} argument indicates that no thread owns access.
-     * This method does not otherwise impose any synchronization or
-     * {@code volatile} field accesses.
+     * 设置当前拥有独占访问权的线程。
+     * {@code null}参数表示没有线程拥有访问权限。此方法不强制任何同步或{@code volatile}字段访问。
      * @param thread the owner thread
      */
     protected final void setExclusiveOwnerThread(Thread thread) {
@@ -75,9 +70,7 @@ public abstract class AbstractOwnableSynchronizer
     }
 
     /**
-     * Returns the thread last set by {@code setExclusiveOwnerThread},
-     * or {@code null} if never set.  This method does not otherwise
-     * impose any synchronization or {@code volatile} field accesses.
+     * 返回{@code setExclusiveOwnerThread}或{@code null}设置的最后一个线程集。
      * @return the owner thread
      */
     protected final Thread getExclusiveOwnerThread() {

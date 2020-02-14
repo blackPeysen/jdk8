@@ -164,10 +164,9 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a {@code String} object representing the specified
-     * boolean.  If the specified boolean is {@code true}, then
-     * the string {@code "true"} will be returned, otherwise the
-     * string {@code "false"} will be returned.
+     * 返回一个{@code String}对象，表示指定的布尔值。
+     * 如果指定的布尔值是{@code true}，那么将返回string {@code "true"}，
+     * 否则将返回string {@code "false"}。
      *
      * @param b the boolean to be converted
      * @return the string representation of the specified {@code boolean}
@@ -178,10 +177,9 @@ public final class Boolean implements java.io.Serializable,
     }
 
     /**
-     * Returns a {@code String} object representing this Boolean's
-     * value.  If this object represents the value {@code true},
-     * a string equal to {@code "true"} is returned. Otherwise, a
-     * string equal to {@code "false"} is returned.
+     * 返回一个表示布尔值*的{@code String}对象。
+     * 如果此对象表示值{@code true}，则返回一个等于{@code "true"}的字符串。
+     * 否则，返回一个string = {@code "false"}。
      *
      * @return  a string representation of this object.
      */
