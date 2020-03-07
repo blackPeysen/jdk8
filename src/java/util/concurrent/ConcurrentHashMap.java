@@ -1364,8 +1364,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Stripped-down version of helper class used in previous version,
-     * declared for the sake of serialization compatibility
+     * 以前版本中使用的助手类的简化版本，为了序列化兼容性而声明
      */
     static class Segment<K,V> extends ReentrantLock implements Serializable {
         private static final long serialVersionUID = 2249069246763182397L;

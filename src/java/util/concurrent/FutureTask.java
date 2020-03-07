@@ -137,9 +137,9 @@ public class FutureTask<V> implements RunnableFuture<V> {
     }
 
     /**
-     * Creates a {@code FutureTask} that will, upon running, execute the
-     * given {@code Runnable}, and arrange that {@code get} will return the
-     * given result on successful completion.
+     * 创建一个{@code FutureTask}，
+     * 该{@code FutureTask}将在运行时执行given {@code Runnable}，
+     * 并安排{@code get}在成功完成后返回given result。
      *
      * @param runnable the runnable task
      * @param result the result to return on successful completion. If

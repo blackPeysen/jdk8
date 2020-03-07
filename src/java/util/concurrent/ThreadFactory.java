@@ -36,12 +36,12 @@
 package java.util.concurrent;
 
 /**
- * An object that creates new threads on demand.  Using thread factories
- * removes hardwiring of calls to {@link Thread#Thread(Runnable) new Thread},
- * enabling applications to use special thread subclasses, priorities, etc.
+ * 根据需要创建新线程的对象。
+ * 使用线程工厂删除对{@link Thread # thread (Runnable) new thread}的调用的硬连接，
+ * 允许应用程序使用特殊的线程子类、优先级等。
  *
  * <p>
- * The simplest implementation of this interface is just:
+ * 这个接口最简单的实现就是:
  *  <pre> {@code
  * class SimpleThreadFactory implements ThreadFactory {
  *   public Thread newThread(Runnable r) {
@@ -49,21 +49,19 @@ package java.util.concurrent;
  *   }
  * }}</pre>
  *
- * The {@link Executors#defaultThreadFactory} method provides a more
- * useful simple implementation, that sets the created thread context
- * to known values before returning it.
+ * {@link exec# defaultThreadFactory}方法提供了一个更有用的简单实现，
+ *      它将创建的线程上下文设置为已知值，然后返回它。
  * @since 1.5
  * @author Doug Lea
  */
 public interface ThreadFactory {
 
     /**
-     * Constructs a new {@code Thread}.  Implementations may also initialize
-     * priority, name, daemon status, {@code ThreadGroup}, etc.
+     *构造一个新的{@code线程}。
+     *  实现还可以初始化优先级、名称、守护进程状态、{@code ThreadGroup}等。
      *
-     * @param r a runnable to be executed by new thread instance
-     * @return constructed thread, or {@code null} if the request to
-     *         create a thread is rejected
+     * @param r 一个可由新线程实例执行的runnable
+     * @return 构造的线程，或者{@code null}，如果创建线程的请求被拒绝
      */
     Thread newThread(Runnable r);
 }

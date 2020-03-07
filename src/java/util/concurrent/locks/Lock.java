@@ -167,67 +167,43 @@ import java.util.concurrent.TimeUnit;
 public interface Lock {
 
     /**
-     * Acquires the lock.
+     * 获得锁。
      *
-     * <p>If the lock is not available then the current thread becomes
-     * disabled for thread scheduling purposes and lies dormant until the
-     * lock has been acquired.
+     * <p>如果该锁不可用，那么当前线程将出于线程调度的目的变为禁用，并处于休眠状态，直到获得锁为止。
      *
-     * <p><b>Implementation Considerations</b>
+     * <p><b>实现注意事项</b>
      *
-     * <p>A {@code Lock} implementation may be able to detect erroneous use
-     * of the lock, such as an invocation that would cause deadlock, and
-     * may throw an (unchecked) exception in such circumstances.  The
-     * circumstances and the exception type must be documented by that
-     * {@code Lock} implementation.
+     * <p>一个{@code Lock}实现可能会检测到锁的错误使用，
+     * 例如导致死锁的调用，在这种情况下，可能会抛出(未选中的)异常。
+     * {@code Lock}实现必须记录环境和异常类型。
      */
     void lock();
 
     /**
-     * Acquires the lock unless the current thread is
-     * {@linkplain Thread#interrupt interrupted}.
+     * 获取锁，除非当前线程是{@linkplain Thread #interrupt}。
      *
-     * <p>Acquires the lock if it is available and returns immediately.
+     * <p>如果锁可用，则获取锁并立即返回。
      *
-     * <p>If the lock is not available then the current thread becomes
-     * disabled for thread scheduling purposes and lies dormant until
-     * one of two things happens:
+     * <p>如果锁不可用，那么当前线程就会变成禁用线程调度的目的，并处于休眠状态，直到发生以下两种情况之一:
      *
      * <ul>
-     * <li>The lock is acquired by the current thread; or
-     * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
-     * current thread, and interruption of lock acquisition is supported.
+     * <li>锁被当前线程获取;
+     * <li>其他线程{@linkplain Thread #interrupt interrupts}当前线程，支持中断锁获取。
      * </ul>
      *
-     * <p>If the current thread:
-     * <ul>
-     * <li>has its interrupted status set on entry to this method; or
-     * <li>is {@linkplain Thread#interrupt interrupted} while acquiring the
-     * lock, and interruption of lock acquisition is supported,
-     * </ul>
-     * then {@link InterruptedException} is thrown and the current thread's
-     * interrupted status is cleared.
+     * <p>如果当前线程:
+     * <li>在进入此方法时已设置其中断状态;
+     * <li>{@linkplain Thread#interrupt}在获取锁时中断，支持锁获取中断，然后抛出{@link InterruptedException}，并清除当前线程的InterruptedException状态。
      *
-     * <p><b>Implementation Considerations</b>
      *
-     * <p>The ability to interrupt a lock acquisition in some
-     * implementations may not be possible, and if possible may be an
-     * expensive operation.  The programmer should be aware that this
-     * may be the case. An implementation should document when this is
-     * the case.
+     * <p><b>实现注意事项</b>
      *
-     * <p>An implementation can favor responding to an interrupt over
-     * normal method return.
+     * <p>在某些实现中中断锁获取的能力可能是不可能的，如果可能的话，可能是一个昂贵的操作。
+     * 程序员应该意识到情况可能是这样的。在这种情况下，实现应该记录。
      *
-     * <p>A {@code Lock} implementation may be able to detect
-     * erroneous use of the lock, such as an invocation that would
-     * cause deadlock, and may throw an (unchecked) exception in such
-     * circumstances.  The circumstances and the exception type must
-     * be documented by that {@code Lock} implementation.
+     * <p>一个实现可能倾向于响应一个中断而不是正常的方法返回。
      *
-     * @throws InterruptedException if the current thread is
-     *         interrupted while acquiring the lock (and interruption
-     *         of lock acquisition is supported)
+     * @throws InterruptedException 如果当前线程在获取锁时被中断(支持中断获取锁)
      */
     void lockInterruptibly() throws InterruptedException;
 

@@ -37,33 +37,13 @@ package java.util.concurrent;
 import java.util.*;
 
 /**
- * Provides default implementations of {@link ExecutorService}
- * execution methods. This class implements the {@code submit},
- * {@code invokeAny} and {@code invokeAll} methods using a
- * {@link RunnableFuture} returned by {@code newTaskFor}, which defaults
- * to the {@link FutureTask} class provided in this package.  For example,
- * the implementation of {@code submit(Runnable)} creates an
- * associated {@code RunnableFuture} that is executed and
- * returned. Subclasses may override the {@code newTaskFor} methods
- * to return {@code RunnableFuture} implementations other than
- * {@code FutureTask}.
- *
- * <p><b>Extension example</b>. Here is a sketch of a class
- * that customizes {@link ThreadPoolExecutor} to use
- * a {@code CustomTask} class instead of the default {@code FutureTask}:
- *  <pre> {@code
- * public class CustomThreadPoolExecutor extends ThreadPoolExecutor {
- *
- *   static class CustomTask<V> implements RunnableFuture<V> {...}
- *
- *   protected <V> RunnableFuture<V> newTaskFor(Callable<V> c) {
- *       return new CustomTask<V>(c);
- *   }
- *   protected <V> RunnableFuture<V> newTaskFor(Runnable r, V v) {
- *       return new CustomTask<V>(r, v);
- *   }
- *   // ... add constructors, etc.
- * }}</pre>
+ * 提供{@link ExecutorService} 执行方法的默认实现。
+ * 这个类使用{@code newTaskFor}返回的{@link RunnableFuture}实现
+ * {@code submit}、 {@code invokeAny}和{@code invokeAll}方法，
+ * {@code newTaskFor}在这个包中提供的{@link FutureTask}类的默认值是。
+ * 例如，{@code submit(Runnable)}的实现创建了一个关联的{@code RunnableFuture}，
+ * 该{@code RunnableFuture}被执行并返回。
+ * 子类可以覆盖{@code newTaskFor}方法来返回{@code RunnableFuture}实现，而不是{@code FutureTask}。
  *
  * @since 1.5
  * @author Doug Lea
@@ -71,8 +51,7 @@ import java.util.*;
 public abstract class AbstractExecutorService implements ExecutorService {
 
     /**
-     * Returns a {@code RunnableFuture} for the given runnable and default
-     * value.
+     * 为给定的runnable和默认值返回{@code RunnableFuture}。
      *
      * @param runnable the runnable task being wrapped
      * @param value the default value for the returned future
@@ -136,7 +115,7 @@ public abstract class AbstractExecutorService implements ExecutorService {
     }
 
     /**
-     * the main mechanics of invokeAny.
+     * invokeAny的主要机制
      */
     private <T> T doInvokeAny(Collection<? extends Callable<T>> tasks,
                               boolean timed, long nanos)

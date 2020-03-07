@@ -243,15 +243,14 @@ public class LinkedBlockingQueue<E> extends AbstractQueue<E>
 //     }
 
     /**
-     * Creates a {@code LinkedBlockingQueue} with a capacity of
-     * {@link Integer#MAX_VALUE}.
+     * 创建一个容量为{@link Integer#MAX_VALUE}的{@code LinkedBlockingQueue}。
      */
     public LinkedBlockingQueue() {
         this(Integer.MAX_VALUE);
     }
 
     /**
-     * Creates a {@code LinkedBlockingQueue} with the given (fixed) capacity.
+     * 创建一个具有给定(固定)容量的{@code LinkedBlockingQueue}。
      *
      * @param capacity the capacity of this queue
      * @throws IllegalArgumentException if {@code capacity} is not greater

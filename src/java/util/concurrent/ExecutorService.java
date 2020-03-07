@@ -175,7 +175,7 @@ public interface ExecutorService extends Executor {
     boolean isTerminated();
 
     /**
-     * 块，直到所有任务在一个关机请求后完成执行，或超时发生，或当前线程被中断，以先发生的情况为准。
+     * 直到所有任务在一个关机请求后完成执行，或超时发生，或当前线程被中断，以先发生的情况为准。
      *
      * @param timeout the maximum time to wait
      * @param unit the time unit of the timeout argument
@@ -187,20 +187,14 @@ public interface ExecutorService extends Executor {
         throws InterruptedException;
 
     /**
-     * Submits a value-returning task for execution and returns a
-     * Future representing the pending results of the task. The
-     * Future's {@code get} method will return the task's result upon
-     * successful completion.
+     * 提交一个返回值的任务以供执行，并返回一个Future，表示该任务的未决结果。
+     * Future的{@code get}方法将在成功完成后返回任务的结果。
      *
      * <p>
-     * If you would like to immediately block waiting
-     * for a task, you can use constructions of the form
-     * {@code result = exec.submit(aCallable).get();}
+     * 如果您想立即阻止等待任务，您可以使用表单{@code result = exec.submit(aCallable).get();}的结构。
      *
-     * <p>Note: The {@link Executors} class includes a set of methods
-     * that can convert some other common closure-like objects,
-     * for example, {@link java.security.PrivilegedAction} to
-     * {@link Callable} form so they can be submitted.
+     * <p>注意:{@link Executor}类包含一组方法，可以转换其他一些类似关闭的对象，
+     * 例如{@link java.security.PrivilegedAction} to {@link Callable}表单，以便提交。
      *
      * @param task the task to submit
      * @param <T> the type of the task's result
@@ -217,8 +211,8 @@ public interface ExecutorService extends Executor {
      *
      * @param task the task to submit
      * @param result the result to return
-     * @param <T> the type of the result
-     * @return a Future representing pending completion of the task
+     * @param <T> 结果的类型
+     * @return 表示任务未完成的将来
      * @throws RejectedExecutionException if the task cannot be
      *         scheduled for execution
      * @throws NullPointerException if the task is null

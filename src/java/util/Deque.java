@@ -36,25 +36,19 @@
 package java.util;
 
 /**
- * A linear collection that supports element insertion and removal at
- * both ends.  The name <i>deque</i> is short for "double ended queue"
- * and is usually pronounced "deck".  Most {@code Deque}
- * implementations place no fixed limits on the number of elements
- * they may contain, but this interface supports capacity-restricted
- * deques as well as those with no fixed size limit.
+ * 支持在两端插入和移除元素的线性集合。
+ * 名称deque是“双端队列”的缩写，通常读作“deck”。
+ * 大多数{@code Deque}实现对它们可能包含的元素的数量没有固定的限制，但是这个接口支持容量受限的deques以及没有固定大小限制的deques。
  *
- * <p>This interface defines methods to access the elements at both
- * ends of the deque.  Methods are provided to insert, remove, and
- * examine the element.  Each of these methods exists in two forms:
- * one throws an exception if the operation fails, the other returns a
- * special value (either {@code null} or {@code false}, depending on
- * the operation).  The latter form of the insert operation is
- * designed specifically for use with capacity-restricted
- * {@code Deque} implementations; in most implementations, insert
- * operations cannot fail.
+ * <p>这个接口定义了访问deque两端元素的方法。
+ * 提供了用于插入、删除和检查元素的方法。
+ * 这些方法都以两种形式存在:
+ *      一个在操作失败时抛出异常，
+ *      另一个返回特殊值({@code null}或{@code false}，取决于操作)。
+ * 后一种形式的插入操作是专门为容量受限的{@code Deque}实现而设计的;
+ * 在大多数实现中，insert操作不会失败。
  *
- * <p>The twelve methods described above are summarized in the
- * following table:
+ * <p>以上12种方法总结如下表:
  *
  * <table BORDER CELLPADDING=3 CELLSPACING=1>
  * <caption>Summary of Deque methods</caption>
@@ -93,11 +87,10 @@ package java.util;
  *  </tr>
  * </table>
  *
- * <p>This interface extends the {@link Queue} interface.  When a deque is
- * used as a queue, FIFO (First-In-First-Out) behavior results.  Elements are
- * added at the end of the deque and removed from the beginning.  The methods
- * inherited from the {@code Queue} interface are precisely equivalent to
- * {@code Deque} methods as indicated in the following table:
+ * <p>该接口扩展了{@link队列}接口。
+ * 当deque用作队列时，FIFO(先进先出)行为产生。
+ * 元素添加在deque的末尾，并从开头删除。
+ * 继承自{@code Queue}接口的方法与{@code Deque}方法完全等价，如下表所示:
  *
  * <table BORDER CELLPADDING=3 CELLSPACING=1>
  * <caption>Comparison of Queue and Deque methods</caption>
@@ -131,11 +124,10 @@ package java.util;
  *  </tr>
  * </table>
  *
- * <p>Deques can also be used as LIFO (Last-In-First-Out) stacks.  This
- * interface should be used in preference to the legacy {@link Stack} class.
- * When a deque is used as a stack, elements are pushed and popped from the
- * beginning of the deque.  Stack methods are precisely equivalent to
- * {@code Deque} methods as indicated in the table below:
+ * <p>Deques也可以作为后进先出的堆叠。
+ * 这个接口应该优先用于遗留的{@link Stack}类。
+ * 当deque用作堆栈时，元素从deque的开始被推入和弹出。
+ * 如下表所示，堆栈方法与{@code Deque}方法完全等价:
  *
  * <table BORDER CELLPADDING=3 CELLSPACING=1>
  * <caption>Comparison of Stack and Deque methods</caption>
@@ -157,29 +149,20 @@ package java.util;
  *  </tr>
  * </table>
  *
- * <p>Note that the {@link #peek peek} method works equally well when
- * a deque is used as a queue or a stack; in either case, elements are
- * drawn from the beginning of the deque.
+ * <p>注意，当deque用作队列或堆栈时，{@link #peek peek}方法同样有效;
+ * 在这两种情况下，元素都是从deque的开头抽取的.
  *
- * <p>This interface provides two methods to remove interior
- * elements, {@link #removeFirstOccurrence removeFirstOccurrence} and
- * {@link #removeLastOccurrence removeLastOccurrence}.
+ * <p>该接口提供了两个方法来删除内部元素，
+ * {@link #removeFirstOccurrence removeFirstOccurrence}和{@link #removeLastOccurrence removeLastOccurrence}。
  *
- * <p>Unlike the {@link List} interface, this interface does not
- * provide support for indexed access to elements.
+ * <p>与{@link List}接口不同，这个接口不支持对元素的索引访问。
  *
- * <p>While {@code Deque} implementations are not strictly required
- * to prohibit the insertion of null elements, they are strongly
- * encouraged to do so.  Users of any {@code Deque} implementations
- * that do allow null elements are strongly encouraged <i>not</i> to
- * take advantage of the ability to insert nulls.  This is so because
- * {@code null} is used as a special return value by various methods
- * to indicated that the deque is empty.
+ * <p>虽然{@code Deque}实现并不严格要求禁止插入空元素，但强烈建议这样做。
+ * 强烈建议任何{@code Deque}实现允许空元素的用户not利用插入空元素的能力。
+ * 这是因为{@code null}被各种方法用作特殊的返回值来表示deque是空的。
  *
- * <p>{@code Deque} implementations generally do not define
- * element-based versions of the {@code equals} and {@code hashCode}
- * methods, but instead inherit the identity-based versions from class
- * {@code Object}.
+ * <p>{@code Deque}实现通常不定义{@code =}和{@code hashCode}方法的元素版本，
+ * 而是从类{@code Object}继承基于身份的版本
  *
  * <p>This interface is a member of the <a
  * href="{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -188,7 +171,7 @@ package java.util;
  * @author Doug Lea
  * @author Josh Bloch
  * @since  1.6
- * @param <E> the type of elements held in this collection
+ * @param <E> 此集合中包含的元素的类型
  */
 public interface Deque<E> extends Queue<E> {
     /**

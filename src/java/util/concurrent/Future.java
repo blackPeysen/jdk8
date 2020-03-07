@@ -36,19 +36,14 @@
 package java.util.concurrent;
 
 /**
- * A {@code Future} represents the result of an asynchronous
- * computation.  Methods are provided to check if the computation is
- * complete, to wait for its completion, and to retrieve the result of
- * the computation.  The result can only be retrieved using method
- * {@code get} when the computation has completed, blocking if
- * necessary until it is ready.  Cancellation is performed by the
- * {@code cancel} method.  Additional methods are provided to
- * determine if the task completed normally or was cancelled. Once a
- * computation has completed, the computation cannot be cancelled.
- * If you would like to use a {@code Future} for the sake
- * of cancellability but not provide a usable result, you can
- * declare types of the form {@code Future<?>} and
- * return {@code null} as a result of the underlying task.
+ * {@code Future}表示异步计算的结果。
+ *      提供的方法用于检查计算是否完成，等待其完成，并检索计算的结果。
+ * 只有当计算完成时，才可以使用方法{@code get}检索结果，如果需要，则阻塞，直到计算完成为止。
+ * 取消由{@code cancel}方法执行。
+ * 提供其他方法确定任务是否正常完成或已取消。
+ * 一旦运算完成，就不能取消运算。
+ * 如果你想使用{@code Future}的目的是可取消，但不提供一个可用的结果，
+ *      你可以声明形式{@code Future<?作为底层任务的结果>}和返回{@code null}。
  *
  * <p>
  * <b>Sample Usage</b> (Note that the following classes are all
@@ -83,9 +78,8 @@ package java.util.concurrent;
  *   }});
  * executor.execute(future);}</pre>
  *
- * <p>Memory consistency effects: Actions taken by the asynchronous computation
- * <a href="package-summary.html#MemoryVisibility"> <i>happen-before</i></a>
- * actions following the corresponding {@code Future.get()} in another thread.
+ * <p>内存一致性效果:异步计算所采取的操作<a href="package-summary"。
+ * 在另一个线程中，发生在跟随相应的{@code Future.get()}的操作之前。
  *
  * @see FutureTask
  * @see Executor

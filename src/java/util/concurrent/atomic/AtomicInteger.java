@@ -50,7 +50,7 @@ import sun.misc.Unsafe;
 public class AtomicInteger extends Number implements java.io.Serializable {
     private static final long serialVersionUID = 6214790243416807050L;
 
-    // setup to use Unsafe.compareAndSwapInt for updates
+    // 设置为使用Unsafe.compareAndSwapInt进行更新
     private static final Unsafe unsafe = Unsafe.getUnsafe();
     private static final long valueOffset;
 
@@ -64,7 +64,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     private volatile int value;
 
     /**
-     * Creates a new AtomicInteger with the given initial value.
+     * 使用给定的初始值创建一个新的AtomicInteger
      *
      * @param initialValue the initial value
      */
@@ -73,7 +73,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicInteger with initial value {@code 0}.
+     * 用初值{@code 0}创建一个新的AtomicInteger。
      */
     public AtomicInteger() {
     }
@@ -107,7 +107,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets to the given value and returns the old value.
+     * 自动设置为给定值并返回旧值
      *
      * @param newValue the new value
      * @return the previous value
@@ -117,11 +117,10 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the value to the given updated value
-     * if the current value {@code ==} the expected value.
+     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值
      *
-     * @param expect the expected value
-     * @param update the new value
+     * @param expect 期望值
+     * @param update 新值
      * @return {@code true} if successful. False return indicates that
      * the actual value was not equal to the expected value.
      */
@@ -130,8 +129,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the value to the given updated value
-     * if the current value {@code ==} the expected value.
+     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值
      *
      * <p><a href="package-summary.html#weakCompareAndSet">May fail
      * spuriously and does not provide ordering guarantees</a>, so is
@@ -146,56 +144,57 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically increments by one the current value.
+     * 原子地增加一个当前值
      *
-     * @return the previous value
+     * @return 前一个值
      */
     public final int getAndIncrement() {
         return unsafe.getAndAddInt(this, valueOffset, 1);
     }
 
     /**
-     * Atomically decrements by one the current value.
+     * 原子性地使当前值递减1
      *
-     * @return the previous value
+     * @return 前一个值
      */
     public final int getAndDecrement() {
         return unsafe.getAndAddInt(this, valueOffset, -1);
     }
 
+
     /**
-     * Atomically adds the given value to the current value.
+     * 原子地将给定值添加到当前值
      *
      * @param delta the value to add
-     * @return the previous value
+     * @return 前一个值
      */
     public final int getAndAdd(int delta) {
         return unsafe.getAndAddInt(this, valueOffset, delta);
     }
 
     /**
-     * Atomically increments by one the current value.
+     * 原子地增加一个当前值
      *
-     * @return the updated value
+     * @return 更新后的值
      */
     public final int incrementAndGet() {
         return unsafe.getAndAddInt(this, valueOffset, 1) + 1;
     }
 
     /**
-     * Atomically decrements by one the current value.
+     * 原子性地使当前值递减1
      *
-     * @return the updated value
+     * @return 更新后的值
      */
     public final int decrementAndGet() {
         return unsafe.getAndAddInt(this, valueOffset, -1) - 1;
     }
 
     /**
-     * Atomically adds the given value to the current value.
+     * 原子地将给定值添加到当前值
      *
      * @param delta the value to add
-     * @return the updated value
+     * @return 更新后的值
      */
     public final int addAndGet(int delta) {
         return unsafe.getAndAddInt(this, valueOffset, delta) + delta;

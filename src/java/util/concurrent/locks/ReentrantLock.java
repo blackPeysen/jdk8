@@ -127,8 +127,14 @@ public class ReentrantLock implements Lock, java.io.Serializable {
          * tryAcquire是在子类中实现的，但是两者都需要对trylock方法进行不公平的尝试。
          */
         final boolean nonfairTryAcquire(int acquires) {
+            // 获取当前线程
             final Thread current = Thread.currentThread();
+            // 获取锁状态
             int c = getState();
+            /**
+             * 如果c=0，则锁属于自由状态，则CAS操作尝试获取锁
+             * 如果c!=0,则锁被占用，再判断是否是重入锁
+             */
             if (c == 0) {
                 if (compareAndSetState(0, acquires)) {
                     setExclusiveOwnerThread(current);
@@ -199,7 +205,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
         private static final long serialVersionUID = 7316153563782823691L;
 
         /**
-         * 执行锁定.  尝试立即驳船，备份到正常获取失败。
+         * 执行锁定。尝试立即CAS，备份到正常获取失败。
          * 非公平锁，不管是否排队，直接进行CAS操作。
          */
         final void lock() {
@@ -222,11 +228,12 @@ public class ReentrantLock implements Lock, java.io.Serializable {
         private static final long serialVersionUID = -3000897897090466540L;
 
         final void lock() {
+            // 调用父类的acquire()获取锁资源
             acquire(1);
         }
 
         /**
-         * 公平版的收购。不要授予访问权限，除非递归调用或没有等待者或第一个。
+         * 公平版的获取锁。不要授予访问权限，除非递归调用或没有等待者或第一个。
          * 公平锁，判断当前线程是否需要排队，然后才进行CAS操作。
          */
         protected final boolean tryAcquire(int acquires) {
@@ -291,45 +298,23 @@ public class ReentrantLock implements Lock, java.io.Serializable {
     /**
      * 获取锁，除非当前线程是{@linkplain Thread #interrupt}。
      *
-     * <p>Acquires the lock if it is not held by another thread and returns
-     * immediately, setting the lock hold count to one.
+     * <p>如果锁不是由其他线程持有，则获取锁，并立即返回，将锁持有计数设置为1。
      *
-     * <p>If the current thread already holds this lock then the hold count
-     * is incremented by one and the method returns immediately.
+     * <p>如果当前线程已经持有该锁，那么持有计数增加1，方法立即返回。
      *
-     * <p>If the lock is held by another thread then the
-     * current thread becomes disabled for thread scheduling
-     * purposes and lies dormant until one of two things happens:
+     * <p>如果锁是由另一个线程持有，那么当前线程将成为禁用线程调度的目的和休眠，直到发生以下两种情况之一:
+     * <li>锁被当前线程获取
+     * <li>其他一些线程{@linkplain Thread #interrupt interrupts}当前线程。
      *
-     * <ul>
-     *
-     * <li>The lock is acquired by the current thread; or
-     *
-     * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
-     * current thread.
-     *
-     * </ul>
-     *
-     * <p>If the lock is acquired by the current thread then the lock hold
-     * count is set to one.
-     *
-     * <p>If the current thread:
-     *
-     * <ul>
-     *
-     * <li>has its interrupted status set on entry to this method; or
-     *
+     * <p>如果锁被当前线程获取，那么锁持有*计数被设置为1。
+     * <p>如果当前线程:
+     * <li>在进入此方法时已设置其中断状态
      * <li>is {@linkplain Thread#interrupt interrupted} while acquiring
-     * the lock,
+     * the lock
      *
-     * </ul>
+     * 然后抛出{@link InterruptedException}，并清除当前线程的InterruptedException状态。
      *
-     * then {@link InterruptedException} is thrown and the current thread's
-     * interrupted status is cleared.
-     *
-     * <p>In this implementation, as this method is an explicit
-     * interruption point, preference is given to responding to the
-     * interrupt over normal or reentrant acquisition of the lock.
+     * <p>在这个实现中，由于这个方法是一个显式的中断点，所以优先响应中断，而不是正常的或可重入的锁获取。
      *
      * @throws InterruptedException if the current thread is interrupted
      */
@@ -536,12 +521,10 @@ public class ReentrantLock implements Lock, java.io.Serializable {
     }
 
     /**
-     * Queries if this lock is held by the current thread.
+     * 查询此锁是否由当前线程持有
      *
-     * <p>Analogous to the {@link Thread#holdsLock(Object)} method for
-     * built-in monitor locks, this method is typically used for
-     * debugging and testing. For example, a method that should only be
-     * called while a lock is held can assert that this is the case:
+     * <p>类似于用于内置监视器锁的{@link Thread#holdsLock(Object)}方法，
+     * 此方法通常用于调试和测试。例如，一个只有在锁被持有时才应该被调用的方法可以断言:
      *
      *  <pre> {@code
      * class X {
@@ -573,20 +556,16 @@ public class ReentrantLock implements Lock, java.io.Serializable {
      *   }
      * }}</pre>
      *
-     * @return {@code true} if current thread holds this lock and
-     *         {@code false} otherwise
+     * @return 如果当前线程持有此锁，则为{@code true}，否则为{@code false}
      */
     public boolean isHeldByCurrentThread() {
         return sync.isHeldExclusively();
     }
 
     /**
-     * Queries if this lock is held by any thread. This method is
-     * designed for use in monitoring of the system state,
-     * not for synchronization control.
+     * 查询此锁是否由任何线程持有。此方法用于监控系统状态，不用于同步控制。
      *
-     * @return {@code true} if any thread holds this lock and
-     *         {@code false} otherwise
+     * @return 如果任何线程持有此锁，则为{@code true}，否则为{@code false}
      */
     public boolean isLocked() {
         return sync.isLocked();

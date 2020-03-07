@@ -185,8 +185,9 @@ public interface BlockingQueue<E> extends Queue<E> {
 
     /**
      * 如果可以这样做，则立即将指定的元素插入此队列，而不会违反容量限制；
-     *      如果成功，则返回{@code true}，如果当前没有可用空间，则返回{@code false}。
-     *      当使用容量受限的队列时，此方法通常比{@link #add}更好，后者只能通过抛出异常来插入元素。
+     *      如果成功，则返回{@code true}，
+     *      如果当前没有可用空间，则返回{@code false}。
+     * 当使用容量受限的队列时，此方法通常比{@link #add}更好，后者只能通过抛出异常来插入元素。
      *
      * @param e 要添加的元素
      * @return {@code true}（如果元素已添加到此队列），否则{@code false}

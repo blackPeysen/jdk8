@@ -36,18 +36,12 @@
 package java.util.concurrent;
 
 /**
- * A task that returns a result and may throw an exception.
- * Implementors define a single method with no arguments called
- * {@code call}.
+ * 返回结果并可能引发异常的任务。实现者定义了一个没有参数的方法{@code call}。
  *
- * <p>The {@code Callable} interface is similar to {@link
- * java.lang.Runnable}, in that both are designed for classes whose
- * instances are potentially executed by another thread.  A
- * {@code Runnable}, however, does not return a result and cannot
- * throw a checked exception.
+ * <p>{@code Callable}接口类似于{@link java.lang。因为它们都是为那些实例可能由另一个线程执行的类设计的。
+ * 但是，{@code Runnable}不返回结果，也不能抛出已检查的异常。
  *
- * <p>The {@link Executors} class contains utility methods to
- * convert from other common forms to {@code Callable} classes.
+ * <p>{@link Executor}类包含实用程序方法，用于将其他常见表单转换为{@code Callable}类。
  *
  * @see Executor
  * @since 1.5

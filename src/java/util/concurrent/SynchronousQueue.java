@@ -42,9 +42,10 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 
 /**
- * {@linkplain BlockingQueue 阻塞队列}，其中每个插入操作必须等待另一个线程进行相应的删除操作，反之亦然。
+ * {@linkplain BlockingQueue 阻塞队列}，
+ *      其中每个插入操作必须等待另一个线程进行相应的删除操作，反之亦然。
  *      同步队列没有任何内部容量，甚至没有一个容量。
- *      您不能{@code peek}在同步队列中，因为当您尝试删除一个元素时，该元素仅存在；
+ * 您不能{@code peek}在同步队列中，因为当您尝试删除一个元素时，该元素仅存在；
  *      您不能插入元素（使用任何方法），除非另一个线程试图将其删除；
  *      您无法迭代，因为没有要迭代的内容。
  *   队列的head是第一个排队的插入线程试图添加到队列中的元素；
@@ -151,7 +152,7 @@ public class SynchronousQueue<E> extends AbstractQueue<E>
      */
 
     /**
-     * Shared internal API for dual stacks and queues.
+     * 用于双堆栈和队列的共享内部API
      */
     abstract static class Transferer<E> {
         /**
@@ -837,7 +838,7 @@ public class SynchronousQueue<E> extends AbstractQueue<E>
     private transient volatile Transferer<E> transferer;
 
     /**
-     * Creates a {@code SynchronousQueue} with nonfair access policy.
+     * 使用非公平访问策略创建{@code SynchronousQueue}。
      */
     public SynchronousQueue() {
         this(false);

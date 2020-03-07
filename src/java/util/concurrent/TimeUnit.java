@@ -36,16 +36,10 @@
 package java.util.concurrent;
 
 /**
- * A {@code TimeUnit} represents time durations at a given unit of
- * granularity and provides utility methods to convert across units,
- * and to perform timing and delay operations in these units.  A
- * {@code TimeUnit} does not maintain time information, but only
- * helps organize and use time representations that may be maintained
- * separately across various contexts.  A nanosecond is defined as one
- * thousandth of a microsecond, a microsecond as one thousandth of a
- * millisecond, a millisecond as one thousandth of a second, a minute
- * as sixty seconds, an hour as sixty minutes, and a day as twenty four
- * hours.
+ * {@code TimeUnit}表示给定的粒度单位上的时间持续时间，并提供实用程序方法来跨单位转换，
+ * 以及在这些单位中执行定时和延迟操作。
+ * {@code TimeUnit}不维护时间信息，但仅帮助组织和使用可能在不同上下文中分别维护的时间表示形式。
+ * 纳秒被定义为千分之一微秒，千分之一微秒，千分之一毫秒，一分一秒是六十秒，一小时是六十分钟，一天是二十四小时。
  *
  * <p>A {@code TimeUnit} is mainly used to inform time-based methods
  * how a given timing parameter should be interpreted. For example,
@@ -70,7 +64,7 @@ package java.util.concurrent;
  */
 public enum TimeUnit {
     /**
-     * Time unit representing one thousandth of a microsecond
+     * 表示千分之一微秒的时间单位
      */
     NANOSECONDS {
         public long toNanos(long d)   { return d; }
@@ -85,7 +79,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing one thousandth of a millisecond
+     * 时间单位，表示千分之一毫秒
      */
     MICROSECONDS {
         public long toNanos(long d)   { return x(d, C1/C0, MAX/(C1/C0)); }
@@ -100,7 +94,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing one thousandth of a second
+     * 表示千分之一秒的时间单位
      */
     MILLISECONDS {
         public long toNanos(long d)   { return x(d, C2/C0, MAX/(C2/C0)); }
@@ -115,7 +109,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing one second
+     * 表示一秒的时间单位
      */
     SECONDS {
         public long toNanos(long d)   { return x(d, C3/C0, MAX/(C3/C0)); }
@@ -130,7 +124,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing sixty seconds
+     * 表示六十秒的时间单位
      */
     MINUTES {
         public long toNanos(long d)   { return x(d, C4/C0, MAX/(C4/C0)); }
@@ -145,7 +139,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing sixty minutes
+     * 表示六十分钟的时间单位
      */
     HOURS {
         public long toNanos(long d)   { return x(d, C5/C0, MAX/(C5/C0)); }
@@ -160,7 +154,7 @@ public enum TimeUnit {
     },
 
     /**
-     * Time unit representing twenty four hours
+     * 表示24小时的时间单位
      */
     DAYS {
         public long toNanos(long d)   { return x(d, C6/C0, MAX/(C6/C0)); }
@@ -174,7 +168,7 @@ public enum TimeUnit {
         int excessNanos(long d, long m) { return 0; }
     };
 
-    // Handy constants for conversion methods
+    // 转换方法的便利常数
     static final long C0 = 1L;
     static final long C1 = C0 * 1000L;
     static final long C2 = C1 * 1000L;
@@ -370,10 +364,8 @@ public enum TimeUnit {
     }
 
     /**
-     * Performs a {@link Thread#sleep(long, int) Thread.sleep} using
-     * this time unit.
-     * This is a convenience method that converts time arguments into the
-     * form required by the {@code Thread.sleep} method.
+     * 执行一个{@link Thread#sleep(long, int)Thread.sleep}使用这个时间单位。
+     * 这是一个方便的方法，可以将时间参数转换成{@code线程所需的*形式。睡眠}方法。
      *
      * @param timeout the minimum time to sleep. If less than
      * or equal to zero, do not sleep at all.
