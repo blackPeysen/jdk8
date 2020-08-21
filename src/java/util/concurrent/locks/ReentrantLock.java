@@ -38,6 +38,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.Collection;
 
 /**
+ * ReentrantLock是互斥排他锁，同一时间只能有一个线程在执行任务，ReentrantLock支持锁的重入功能，
+ * 虽然保证了线程的安全性。
+ * 但是效率不高，实际上应该是写操作互斥，读操作共享。而jdk提供了读写锁ReentrantReadWriteLock。
+ *
+ *
  * A reentrant mutual exclusion {@link Lock} with the same basic
  * behavior and semantics as the implicit monitor lock accessed using
  * {@code synchronized} methods and statements, but with extended
@@ -244,7 +249,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
 
             // 如果=0，说明锁没有被占用
             if (c == 0) {
-                // hasQueuedPredecessors():判断是否有任何线程等待获取锁的时间比当前线程长
+                // hasQueuedPredecessors():判断当前线程前面是否还有别的线程在排队
                 if (!hasQueuedPredecessors() &&
                     compareAndSetState(0, acquires)) {
                     // 设置当前拥有独占访问权的线程
@@ -252,7 +257,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
                     return true;
                 }
             }
-            // 如果!=0,说明锁已经被占用，则需要入队列中进行等待
+            // 如果!=0,说明锁已经被占用，则判断是否是重入锁
             else if (current == getExclusiveOwnerThread()) {
                 int nextc = c + acquires;
                 if (nextc < 0)
@@ -260,6 +265,8 @@ public class ReentrantLock implements Lock, java.io.Serializable {
                 setState(nextc);
                 return true;
             }
+
+            // 如果c!=0，并且也不是当前线程，所以此时锁已经被其他线程占用,返回false
             return false;
         }
     }

@@ -755,7 +755,8 @@ public abstract class AbstractQueuedSynchronizer
      */
 
     /**
-     * 对于已经在队列中的线程，以独占的不可中断模式获取。用于条件等待方法以及获取。
+     * 对于已经在队列中的线程，以独占的不可中断模式获取。
+     * 用于条件等待方法以及获取。
      *
      * @param node the node
      * @param arg the acquire argument

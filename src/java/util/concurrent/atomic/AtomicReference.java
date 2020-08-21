@@ -39,9 +39,10 @@ import java.util.function.BinaryOperator;
 import sun.misc.Unsafe;
 
 /**
- * An object reference that may be updated atomically. See the {@link
- * java.util.concurrent.atomic} package specification for description
- * of the properties of atomic variables.
+ * 可以自动更新的对象引用。
+ * 参见{@link * java.util.concurrent.atomic}包规范，用于描述原子变量的属性。
+ * 可能出现ABA问题，使用AtomicStampedReference解决。
+ *
  * @since 1.5
  * @author Doug Lea
  * @param <V> The type of object referred to by this reference
@@ -62,7 +63,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     private volatile V value;
 
     /**
-     * Creates a new AtomicReference with the given initial value.
+     * 使用给定的初始值创建一个新的AtomicReference
      *
      * @param initialValue the initial value
      */
@@ -71,7 +72,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicReference with null initial value.
+     * 创建一个新的AtomicReference，初始值为空
      */
     public AtomicReference() {
     }
@@ -95,7 +96,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Eventually sets to the given value.
+     * 最终设置为给定的值。
      *
      * @param newValue the new value
      * @since 1.6
@@ -105,8 +106,8 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the value to the given updated value
-     * if the current value {@code ==} the expected value.
+     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值。
+     *
      * @param expect the expected value
      * @param update the new value
      * @return {@code true} if successful. False return indicates that
@@ -117,8 +118,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the value to the given updated value
-     * if the current value {@code ==} the expected value.
+     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值
      *
      * <p><a href="package-summary.html#weakCompareAndSet">May fail
      * spuriously and does not provide ordering guarantees</a>, so is
@@ -133,7 +133,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets to the given value and returns the old value.
+     * 自动设置为给定值并返回旧值
      *
      * @param newValue the new value
      * @return the previous value
@@ -144,10 +144,8 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the previous value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 原子更新当前值与结果应用给定的函数，返回以前的值。
+     * 函数应该是无副作用的，因为它可能会被重新应用当试图更新失败由于线程之间的竞争。
      *
      * @param updateFunction a side-effect-free function
      * @return the previous value
@@ -163,10 +161,8 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the updated value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 使用应用给定函数的结果自动更新当前值，并返回更新后的值。
+     * 函数应该是无副作用的，因为它可能会被重新应用当试图更新失败由于线程之间的竞争。
      *
      * @param updateFunction a side-effect-free function
      * @return the updated value
@@ -230,7 +226,7 @@ public class AtomicReference<V> implements java.io.Serializable {
     }
 
     /**
-     * Returns the String representation of the current value.
+     * 返回当前值的字符串表示形式
      * @return the String representation of the current value
      */
     public String toString() {

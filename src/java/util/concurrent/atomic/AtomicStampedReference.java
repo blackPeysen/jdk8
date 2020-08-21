@@ -36,12 +36,10 @@
 package java.util.concurrent.atomic;
 
 /**
- * An {@code AtomicStampedReference} maintains an object reference
- * along with an integer "stamp", that can be updated atomically.
+ * {@code AtomicStampedReference}维护一个对象引用和一个可以自动更新的整数“stamp”。
  *
- * <p>Implementation note: This implementation maintains stamped
- * references by creating internal objects representing "boxed"
- * [reference, integer] pairs.
+ * <p>实现注意:这个实现通过创建表示“装箱的”[reference, integer]对的内部对象来维护带戳记的引用。
+ *      解决了AtomicReference可能出现的ABA问题
  *
  * @since 1.5
  * @author Doug Lea
@@ -50,8 +48,8 @@ package java.util.concurrent.atomic;
 public class AtomicStampedReference<V> {
 
     private static class Pair<T> {
-        final T reference;
-        final int stamp;
+        final T reference;  // 对象引用
+        final int stamp;    // 时间戳
         private Pair(T reference, int stamp) {
             this.reference = reference;
             this.stamp = stamp;
@@ -64,18 +62,17 @@ public class AtomicStampedReference<V> {
     private volatile Pair<V> pair;
 
     /**
-     * Creates a new {@code AtomicStampedReference} with the given
-     * initial values.
+     * 使用给定的初始值创建一个新的{@code AtomicStampedReference}。
      *
-     * @param initialRef the initial reference
-     * @param initialStamp the initial stamp
+     * @param initialRef 最初的引用
+     * @param initialStamp 最初的时间戳
      */
     public AtomicStampedReference(V initialRef, int initialStamp) {
         pair = Pair.of(initialRef, initialStamp);
     }
 
     /**
-     * Returns the current value of the reference.
+     * 返回引用的当前值。
      *
      * @return the current value of the reference
      */
@@ -84,7 +81,7 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Returns the current value of the stamp.
+     * 返回戳记的当前值
      *
      * @return the current value of the stamp
      */
@@ -93,11 +90,10 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Returns the current values of both the reference and the stamp.
-     * Typical usage is {@code int[1] holder; ref = v.get(holder); }.
+     * 返回引用和戳记的当前值。
+     * 典型用法是{@code int[1] holder;ref = v.get(持有人);}。
      *
-     * @param stampHolder an array of size of at least one.  On return,
-     * {@code stampholder[0]} will hold the value of the stamp.
+     * @param stampHolder 至少一个大小的数组。在返回时，{@code stampholder[0]}将保存该戳记的值。
      * @return the current value of the reference
      */
     public V get(int[] stampHolder) {
@@ -107,10 +103,7 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Atomically sets the value of both the reference and stamp
-     * to the given update values if the
-     * current reference is {@code ==} to the expected reference
-     * and the current stamp is equal to the expected stamp.
+     * 如果当前引用是{@code ==}到预期引用，并且当前戳等于预期戳，则自动将引用和stamp的值设置为给定的更新值。
      *
      * <p><a href="package-summary.html#weakCompareAndSet">May fail
      * spuriously and does not provide ordering guarantees</a>, so is
@@ -131,10 +124,7 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Atomically sets the value of both the reference and stamp
-     * to the given update values if the
-     * current reference is {@code ==} to the expected reference
-     * and the current stamp is equal to the expected stamp.
+     * 如果当前引用是{@code ==}到预期引用，并且当前戳等于预期戳，则自动将引用和stamp的值设置为给定的更新值。
      *
      * @param expectedReference the expected value of the reference
      * @param newReference the new value for the reference
@@ -156,7 +146,7 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Unconditionally sets the value of both the reference and stamp.
+     * 无条件地设置引用和戳记的值
      *
      * @param newReference the new value for the reference
      * @param newStamp the new value for the stamp
@@ -168,13 +158,10 @@ public class AtomicStampedReference<V> {
     }
 
     /**
-     * Atomically sets the value of the stamp to the given update value
-     * if the current reference is {@code ==} to the expected
-     * reference.  Any given invocation of this operation may fail
-     * (return {@code false}) spuriously, but repeated invocation
-     * when the current value holds the expected value and no other
-     * thread is also attempting to set the value will eventually
-     * succeed.
+     * 如果当前引用是{@code ==}，则自动将戳记的值设置为给定的更新值，
+     * 如果当前引用是{@code ==}，则设置为预期的引用。
+     * 该操作的任何给定调用都可能会错误地失败(返回{@code false})，
+     * 但是当当前值持有期望值并且没有其他线程也试图设置该值时，重复调用将最终成功。
      *
      * @param expectedReference the expected value of the reference
      * @param newStamp the new value for the stamp

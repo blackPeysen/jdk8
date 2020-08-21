@@ -36,18 +36,13 @@
 package java.util.concurrent.locks;
 
 /**
- * A {@code ReadWriteLock} maintains a pair of associated {@link
- * Lock locks}, one for read-only operations and one for writing.
- * The {@link #readLock read lock} may be held simultaneously by
- * multiple reader threads, so long as there are no writers.  The
- * {@link #writeLock write lock} is exclusive.
+ * 一个{@code ReadWriteLock}维护一对关联的{@link Lock 锁}，一个用于只读操作，一个用于写操作。
+ * 只要没有写线程，多个读线程可以同时持有{@link #readLock read lock}。
+ * {@link #writeLock 写锁}是独占的。
  *
- * <p>All {@code ReadWriteLock} implementations must guarantee that
- * the memory synchronization effects of {@code writeLock} operations
- * (as specified in the {@link Lock} interface) also hold with respect
- * to the associated {@code readLock}. That is, a thread successfully
- * acquiring the read lock will see all updates made upon previous
- * release of the write lock.
+ * <p>所有{@code ReadWriteLock}实现必须保证{@code writeLock}操作的内存同步效果
+ * (在{@link Lock}接口中指定)对关联的{@code readLock}也适用。
+ * 也就是说，一个成功获取读锁的线程将看到在以前的写锁版本上所做的所有更新。
  *
  * <p>A read-write lock allows for a greater level of concurrency in
  * accessing shared data than that permitted by a mutual exclusion lock.
@@ -118,14 +113,14 @@ package java.util.concurrent.locks;
  */
 public interface ReadWriteLock {
     /**
-     * Returns the lock used for reading.
+     * 返回用于读取的锁。
      *
      * @return the lock used for reading
      */
     Lock readLock();
 
     /**
-     * Returns the lock used for writing.
+     * 返回用于写入的锁。
      *
      * @return the lock used for writing
      */

@@ -37,16 +37,12 @@ package java.util.concurrent.locks;
 import sun.misc.Unsafe;
 
 /**
- * Basic thread blocking primitives for creating locks and other
- * synchronization classes.
+ * 创建锁和其他同步类的基本线程阻塞原语。
  *
- * <p>This class associates, with each thread that uses it, a permit
- * (in the sense of the {@link java.util.concurrent.Semaphore
- * Semaphore} class). A call to {@code park} will return immediately
- * if the permit is available, consuming it in the process; otherwise
- * it <em>may</em> block.  A call to {@code unpark} makes the permit
- * available, if it was not already available. (Unlike with Semaphores
- * though, permits do not accumulate. There is at most one.)
+ * <p>这个类与使用它的每个线程关联一个permit(在{@link java.util.concurrent 的意义上)。信号量*信号量}类)。
+ * 如果许可证可用，对{@code park}的调用将立即返回，并在过程中消耗它;
+ * 否则it可能块。对{@code unpark}的调用使许可证可用(如果它还没有可用)。
+ * (不像信号量，许可证不会累积。最多只有一个。)
  *
  * <p>Methods {@code park} and {@code unpark} provide efficient
  * means of blocking and unblocking threads that do not encounter the

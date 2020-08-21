@@ -39,9 +39,8 @@ import java.util.function.DoubleBinaryOperator;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * A package-local class holding common representation and mechanics
- * for classes supporting dynamic striping on 64bit values. The class
- * extends Number so that concrete subclasses must publicly do so.
+ * 一个包本地类，包含公共表示和机制，用于支持64位值的动态分段。
+ * 类扩展了Number，因此具体的子类必须公开这样做。
  */
 @SuppressWarnings("serial")
 abstract class Striped64 extends Number {
@@ -159,13 +158,13 @@ abstract class Striped64 extends Number {
     transient volatile int cellsBusy;
 
     /**
-     * Package-private default constructor
+     * 包的私有默认构造函数
      */
     Striped64() {
     }
 
     /**
-     * CASes the base field.
+     * 以基本字段为例
      */
     final boolean casBase(long cmp, long val) {
         return UNSAFE.compareAndSwapLong(this, BASE, cmp, val);

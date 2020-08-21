@@ -37,32 +37,20 @@ package java.util.concurrent.atomic;
 import java.io.Serializable;
 
 /**
- * One or more variables that together maintain an initially zero
- * {@code long} sum.  When updates (method {@link #add}) are contended
- * across threads, the set of variables may grow dynamically to reduce
- * contention. Method {@link #sum} (or, equivalently, {@link
- * #longValue}) returns the current total combined across the
- * variables maintaining the sum.
+ * 一个或多个变量共同维护一个初始值为0的{@code long}和。
+ * 当线程间的更新(方法{@link #add})发生争用时，该变量集可能会动态增长以减少争用。
+ * 方法{@link #sum}(或者，同样地，{@link #longValue})返回维护和的变量的当前总和。
  *
- * <p>This class is usually preferable to {@link AtomicLong} when
- * multiple threads update a common sum that is used for purposes such
- * as collecting statistics, not for fine-grained synchronization
- * control.  Under low update contention, the two classes have similar
- * characteristics. But under high contention, expected throughput of
- * this class is significantly higher, at the expense of higher space
- * consumption.
+ * <p>当多个线程更新一个公共和时，这个类通常比{@link AtomicLong}更可取，
+ * 该和用于收集统计信息等目的，而不是用于细粒度的同步控制。
+ * 在低更新争用情况下，这两个类具有相似的特征。
+ * 但是在高争用情况下，这个类的预期吞吐量明显更高，这是以更高的空间消耗为代价的。
  *
- * <p>LongAdders can be used with a {@link
- * java.util.concurrent.ConcurrentHashMap} to maintain a scalable
- * frequency map (a form of histogram or multiset). For example, to
- * add a count to a {@code ConcurrentHashMap<String,LongAdder> freqs},
- * initializing if not already present, you can use {@code
- * freqs.computeIfAbsent(k -> new LongAdder()).increment();}
+ * <p>LongAdders可以与{@link * java.util.concurrent一起使用。ConcurrentHashMap}来维护一个可伸缩的频率映射(直方图或多集的一种形式)。
+ * 例如，要添加一个计数到{@code ConcurrentHashMap<String,LongAdder> freqs}，初始化如果还没有出现，
+ * 你可以使用{@code * freqs. computeifabsent (k -> new LongAdder()).increment();};
  *
- * <p>This class extends {@link Number}, but does <em>not</em> define
- * methods such as {@code equals}, {@code hashCode} and {@code
- * compareTo} because instances are expected to be mutated, and so are
- * not useful as collection keys.
+ * <p>这个类扩展了{@link Number}，但是<em>不是</em>定义了{@code =}、{@code hashCode}和{@code * compareTo}等方法吗?
  *
  * @since 1.8
  * @author Doug Lea
@@ -77,7 +65,7 @@ public class LongAdder extends Striped64 implements Serializable {
     }
 
     /**
-     * Adds the given value.
+     * 添加给定的值
      *
      * @param x the value to add
      */
@@ -212,8 +200,7 @@ public class LongAdder extends Striped64 implements Serializable {
     }
 
     /**
-     * Serialization proxy, used to avoid reference to the non-public
-     * Striped64 superclass in serialized forms.
+     * 序列化代理，用于避免对序列化形式中的非公共striped64超类的引用。
      * @serial include
      */
     private static class SerializationProxy implements Serializable {
