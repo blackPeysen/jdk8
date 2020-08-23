@@ -36,23 +36,23 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * Map 接口的基于哈希表的实现。
- * 该实现提供了所有可选的映射操作，并允许null 值和null键。
+ * Map接口的基于哈希表的实现。
+ * 该实现提供了所有可选的映射操作，并允许null值 和 null键。
  * HashMap 类与Hashtable 大致等效，除了它不同步并且允许空值。
- * 此类不保证Map的顺序；特别是，它不能保证顺序会随着时间的推移保持恒定。
+ * 此类不保证Map的顺序:特别是，它不能保证顺序会随着时间的推移保持恒定。
  *
  * 该实现为基本操作（get和put）提供了恒定时间的性能，假设哈希函数将元素正确地分散在存储桶中。
  * 在集合视图上进行迭代所需的时间与HashMap实例的“容量”（存储桶的数量）及其大小（键-值映射的数量）成比例。
  * 因此，如果迭代性能很重要，则不要将初始容量设置得过高（或负载因子太低），这一点非常重要。
  *
  * HashMap的实例具有两个影响其性能的参数：初始容量和负载系数。
- * capacity是哈希表中存储桶的数量，初始Capacity是创建哈希表时的容量。
- * 负载因子是在自动增加其哈希表容量之前允许哈希表获得的满度的度量。
+ *      初始容量capacity是哈希表中存储桶的数量，初始Capacity是创建哈希表时的容量。
+ *      负载因子是在自动增加其哈希表容量之前允许哈希表获得的满度的度量。
  *      当哈希表中条目的数量超过负载因子与当前容量的乘积时，哈希表将被刷新（即，内部数据结构被重建），以便哈希表的存储桶数约为。
  *
- * 作为一般规则，默认负载因子（.75）在时间和空间成本之间提供了一个很好的折衷方案。
+ * 作为一般规则，默认负载因子（0.75）在时间和空间成本之间提供了一个很好的折衷方案。
  *      较高的值会减少空间开销，但会增加查找成本（在HashMap类的大多数操作中都得到了体现，包括get和put）。
- *      设置其初始容量时，应考虑映射中的预期条目数及其负载因子，以最大程度地减少重新哈希操作的数量。
+ * 设置其初始容量时，应考虑映射中的预期条目数及其负载因子，以最大程度地减少重新哈希操作的数量。
  *      如果初始容量大于最大条目数除以负载系数，则不会进行任何哈希操作。
  *
  * 如果要在HashMap实例中存储许多映射实例，则以足够大的容量创建映射将比允许其执行根据需要增长表的自动重新哈希处理来更有效地存储映射。
@@ -62,7 +62,7 @@ import java.util.function.Function;
  * 请注意，此实现未同步。
  * 如果多个线程同时访问哈希映射，并且线程中的至少一个在结构上修改了映射，则必须在外部进行同步。
  * 结构修改是添加或删除一个或多个映射的任何操作；
- * 仅更改与实例已经包含的键相关联的值*不是结构修改。
+ * 仅更改与实例已经包含的键相关联的值不是结构修改。
  * 这通常是通过在某个对象上进行同步来实现的自然地封装了Map。
  *
  * 如果不存在这样的对象，则应使用{@link Collections＃synchronizedMap Collections.synchronizedMap} 方法来“包装”Map。
@@ -77,10 +77,6 @@ import java.util.function.Function;
  * 注意，不能保证迭代器的快速失败行为，因为通常来说，在存在不同步的并发修改的情况下，不可能做出任何严格的保证。
  * 快速失败的迭代器尽力而为抛出ConcurrentModificationException。
  * 因此，编写依赖于此异常的程序的错误性是错误的：迭代器的快速失败行为仅应用于检测错误。
- *
- * This class is a member of the
- * <a href="{@docRoot}/../technotes/guides/collections/index.html">
- * Java Collections Framework</a>.
  *
  * @param <K> 此Map维护的键的类型
  * @param <V> 映射值的类型
@@ -102,7 +98,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     private static final long serialVersionUID = 362498820763181265L;
 
     /*
-     * Implementation notes.
+     * 实现注意事项.
      *
      * This map usually acts as a binned (bucketed) hash table, but
      * when bins get too large, they are transformed into bins of
@@ -192,50 +188,47 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
 
     /**
-     * The default initial capacity - MUST be a power of two.
+     * 默认初始容量-必须是2的幂.
      */
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
-     * The maximum capacity, used if a higher value is implicitly specified
-     * by either of the constructors with arguments.
-     * MUST be a power of two <= 1<<30.
+     * 最大容量，如果任何一个带参数的构造函数隐式指定了一个更高的值*，则使用。
+     * 必须是2的幂 <= 1<<30
      */
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
-     * The load factor used when none specified in constructor.
+     * 在构造函数中未指定时使用的加载因子.
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
-     * The bin count threshold for using a tree rather than list for a
-     * bin.  Bins are converted to trees when adding an element to a
-     * bin with at least this many nodes. The value must be greater
-     * than 2 and should be at least 8 to mesh with assumptions in
-     * tree removal about conversion back to plain bins upon
-     * shrinkage.
+     * 当链表长度>=8时，转换为红黑树
+     * 对于bin使用树而不是列表的bin计数阈值。
+     * 当向至少有这么多节点的bin中添加一个元素时，bin被转换为树。
+     * 该值必须大于2，并至少为8，以符合树删除中关于收缩后转换回普通箱的假设.
      */
     static final int TREEIFY_THRESHOLD = 8;
 
     /**
-     * The bin count threshold for untreeifying a (split) bin during a
-     * resize operation. Should be less than TREEIFY_THRESHOLD, and at
-     * most 6 to mesh with shrinkage detection under removal.
+     * 当链表长度<=6时，转换为链表
+     * 在调整大小操作期间对(分割)bin进行重新格式化时的bin计数阈值。
+     * 应该小于TREEIFY_THRESHOLD，并且最多6到网格收缩检测下去除。
      */
     static final int UNTREEIFY_THRESHOLD = 6;
 
     /**
-     * The smallest table capacity for which bins may be treeified.
-     * (Otherwise the table is resized if too many nodes in a bin.)
-     * Should be at least 4 * TREEIFY_THRESHOLD to avoid conflicts
-     * between resizing and treeification thresholds.
+     * 容器可能被treeified的最小表容量.
+     * (否则，如果容器中有太多节点，就会调整表的大小.)
+     * 应该至少4 * TREEIFY_THRESHOLD以避免冲突之间的调整大小和treeification阈值.
      */
     static final int MIN_TREEIFY_CAPACITY = 64;
 
     /**
-     * Basic hash bin node, used for most entries.  (See below for
-     * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
+     * 用于表示一个节点数据
+     * 基本哈希bin节点，用于大多数条目。
+     * (参见下面的TreeNode子类，以及LinkedHashMap中的Entry子类。)
      */
     static class Node<K,V> implements Map.Entry<K,V> {
         final int hash;
@@ -280,29 +273,24 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Static utilities -------------- */
 
     /**
-     * Computes key.hashCode() and spreads (XORs) higher bits of hash
-     * to lower.  Because the table uses power-of-two masking, sets of
-     * hashes that vary only in bits above the current mask will
-     * always collide. (Among known examples are sets of Float keys
-     * holding consecutive whole numbers in small tables.)  So we
-     * apply a transform that spreads the impact of higher bits
-     * downward. There is a tradeoff between speed, utility, and
-     * quality of bit-spreading. Because many common sets of hashes
-     * are already reasonably distributed (so don't benefit from
-     * spreading), and because we use trees to handle large sets of
-     * collisions in bins, we just XOR some shifted bits in the
-     * cheapest possible way to reduce systematic lossage, as well as
-     * to incorporate impact of the highest bits that would otherwise
-     * never be used in index calculations because of table bounds.
+     * 计算key.hashCode()并将哈希的较高位扩展到较低位。
+     * 因为表使用了2次幂屏蔽，所以散列的变化只在当前掩码以上的位上，所以总是会发生冲突。
+     * (已知的例子包括在小表中保存连续整数的浮点键集。)所以我们应用了一个变换，向下传播更高位的影响。
+     * 比特传播的速度、效用和质量之间需要权衡。
+     * 因为许多常见的散列集已经合理分布(所以不要受益传播),因为我们用树来处理大型套碰撞在垃圾箱,
+     * 我们只是一些转位XOR最便宜的方式来减少系统lossage,以及将最高位的影响,否则永远不会因为指数计算中使用的表。
      */
     static final int hash(Object key) {
         int h;
+        /**
+         * 如果key为null，则hash=0
+         * 如果key不为null，则使用key的hashCode ^ 高16位
+         */
         return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
     /**
-     * Returns x's Class if it is of the form "class C implements
-     * Comparable<C>", else null.
+     * 返回x的类，如果它的形式是“类C实现Comparable<C>”，否则为空。
      */
     static Class<?> comparableClassFor(Object x) {
         if (x instanceof Comparable) {
@@ -324,8 +312,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns k.compareTo(x) if x matches kc (k's screened comparable
-     * class), else 0.
+     * 如果x匹配kc (k的筛选的comparable 类)，返回k.compareto (x)，否则为0。
      */
     @SuppressWarnings({"rawtypes","unchecked"}) // for cast to Comparable
     static int compareComparables(Class<?> kc, Object k, Object x) {
@@ -334,7 +321,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns a power of two size for the given target capacity.
+     * 根据给定目标的容量，返回最接近该容量并比他大的 2的幂
      */
     static final int tableSizeFor(int cap) {
         int n = cap - 1;
@@ -349,47 +336,37 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Fields -------------- */
 
     /**
-     * The table, initialized on first use, and resized as
-     * necessary. When allocated, length is always a power of two.
-     * (We also tolerate length zero in some operations to allow
-     * bootstrapping mechanics that are currently not needed.)
+     * 表格，在第一次使用时初始化，并根据需要调整大小。
+     * 当分配时，长度总是2的幂。(我们也允许长度为零的一些操作，以允许目前不需要的引导机制。)
      */
     transient Node<K,V>[] table;
 
     /**
-     * Holds cached entrySet(). Note that AbstractMap fields are used
-     * for keySet() and values().
+     * 保存缓存entrySet()。注意，对于keySet()和values()使用了AbstractMap字段.
      */
     transient Set<Map.Entry<K,V>> entrySet;
 
     /**
-     * The number of key-value mappings contained in this map.
+     * 此映射中包含的键-值映射的数目.
      */
     transient int size;
 
     /**
-     * The number of times this HashMap has been structurally modified
-     * Structural modifications are those that change the number of mappings in
-     * the HashMap or otherwise modify its internal structure (e.g.,
-     * rehash).  This field is used to make iterators on Collection-views of
-     * the HashMap fail-fast.  (See ConcurrentModificationException).
+     * HashMap被结构修改的次数结构修改是指那些改变了映射数量的HashMap或者修改了它的内部结构(例如，rehash)。
+     * 这个字段用于使the HashMap的集合视图上的迭代器快速失效。(见ConcurrentModificationException).
      */
     transient int modCount;
 
     /**
-     * The next size value at which to resize (capacity * load factor).
-     *
+     * 调整大小的下一个大小值(容量*装载系数).
+     * (javadoc描述在序列化时是正确的。
+     * 另外，如果没有分配表数组，这个字段保存数组的初始容量，或者表示DEFAULT_INITIAL_CAPACITY为零。)
      * @serial
      */
-    // (The javadoc description is true upon serialization.
-    // Additionally, if the table array has not been allocated, this
-    // field holds the initial array capacity, or zero signifying
-    // DEFAULT_INITIAL_CAPACITY.)
     int threshold;
 
     /**
-     * The load factor for the hash table.
-     *
+     * 哈希表的装载因子，默认0.75
      * @serial
      */
     final float loadFactor;
@@ -397,13 +374,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Public operations -------------- */
 
     /**
-     * Constructs an empty HashMapwith the specified initial
-     * capacity and load factor.
+     * 使用指定的初始容量和装载因子构造一个空hashmap.
      *
-     * @param  initialCapacity the initial capacity
-     * @param  loadFactor      the load factor
-     * @throws IllegalArgumentException if the initial capacity is negative
-     *         or the load factor is nonpositive
+     * @param  initialCapacity 初始容量
+     * @param  loadFactor      负载因子
+     * @throws IllegalArgumentException 如果初始容量为负或负载因子为非正
      */
     public HashMap(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0)
@@ -415,36 +390,34 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             throw new IllegalArgumentException("Illegal load factor: " +
                                                loadFactor);
         this.loadFactor = loadFactor;
+        // 使用tableSizeFor()初始化threshold，即初始化时，表格的长度
         this.threshold = tableSizeFor(initialCapacity);
     }
 
     /**
-     * Constructs an empty HashMapwith the specified initial
-     * capacity and the default load factor (0.75).
+     * 使用指定的初始容量和默认加载因子(0.75)构造一个空的hashmap.
      *
-     * @param  initialCapacity the initial capacity.
-     * @throws IllegalArgumentException if the initial capacity is negative.
+     * @param  initialCapacity 初始容量
+     * @throws IllegalArgumentException 如果初始容量为负
      */
     public HashMap(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
     /**
-     * Constructs an empty HashMapwith the default initial capacity
-     * (16) and the default load factor (0.75).
+     * 使用默认初始容量*(16)和默认装载因子(0.75)构造一个空的hashmap.
      */
     public HashMap() {
-        this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
+        // 所有其他字段为默认值
+        this.loadFactor = DEFAULT_LOAD_FACTOR;
     }
 
     /**
-     * Constructs a new HashMapwith the same mappings as the
-     * specified Map</tt>.  The HashMapis created with
-     * default load factor (0.75) and an initial capacity sufficient to
-     * hold the mappings in the specified Map</tt>.
+     * 构造一个新的HashMapwith与指定的映射相同的映射。
+     * HashMapis使用默认负载因子(0.75)和足以容纳指定映射中的映射的初始容量创建。
      *
-     * @param   m the map whose mappings are to be placed in this map
-     * @throws  NullPointerException if the specified map is null
+     * @param   m 将在此地图中放置其映射的地图
+     * @throws  NullPointerException 如果指定的映射为空
      */
     public HashMap(Map<? extends K, ? extends V> m) {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
@@ -452,15 +425,20 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Implements Map.putAll and Map constructor
+     * 实现了Map.putAll和地图构造器
      *
      * @param m the map
-     * @param evict false when initially constructing this map, else
-     * true (relayed to method afterNodeInsertion).
+     * @param evict 初始构建此映射时为假, 否则为true(转发到方法afternoon deinsertion).
      */
     final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
         int s = m.size();
         if (s > 0) {
+            /**
+             * 判断当前table是否为空
+             *      如果为空，则进行初始化操作
+             *      如果不为空，判断原Map集合的size 是否大于 当前Map的threshold
+             *              如果大于，则进行扩容操作
+             */
             if (table == null) { // pre-size
                 float ft = ((float)s / loadFactor) + 1.0F;
                 int t = ((ft < (float)MAXIMUM_CAPACITY) ?
@@ -473,13 +451,16 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
                 K key = e.getKey();
                 V value = e.getValue();
+                /**
+                 * 将原Map集合中的key，value加入当前Map集合中
+                 */
                 putVal(hash(key), key, value, false, evict);
             }
         }
     }
 
     /**
-     * Returns the number of key-value mappings in this map.
+     * 返回此映射中键-值映射的数目.
      *
      * @return the number of key-value mappings in this map
      */
@@ -488,7 +469,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns trueif this map contains no key-value mappings.
+     * 如果该映射不包含键-值映射，则返回true.
      *
      * @return trueif this map contains no key-value mappings
      */
@@ -497,45 +478,83 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns the value to which the specified key is mapped,
-     * or {@code null} if this map contains no mapping for the key.
+     * 返回指定键映射到的值，如果该映射不包含该键的映射，则返回{@code null}.
      *
-     * More formally, if this map contains a mapping from a key
-     * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
-     * key.equals(k))}, then this method returns {@code v}; otherwise
-     * it returns {@code null}.  (There can be at most one such mapping.)
+     * 更正式地说，如果这个映射包含一个从键{@code k}到值{@code v}的映射，
+     * 那么{@code (key==null ?k==null: key.equals(k))}，则该方法返回{@code v};
+     * 否则返回{@code null}。(最多只能有一个这样的映射。)
      *
-     * A return value of {@code null} does not necessarily
-     * indicate that the map contains no mapping for the key; it's also
-     * possible that the map explicitly maps the key to {@code null}.
-     * The {@link #containsKey containsKey} operation may be used to
-     * distinguish these two cases.
+     * 返回值{@code null}并不一定表示映射不包含键的映射;
+     * 映射也可能显式地将键映射到{@code null}。
+     * {@link #containsKey containsKey}操作可以用来区分这两种情况.
      *
      * @see #put(Object, Object)
      */
     public V get(Object key) {
         Node<K,V> e;
+        /**
+         * 1、通过hash(key)，计算出key对应的hash值
+         * 2、通过getNode(hash,key)，获取key对应的Node节点
+         */
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
     /**
-     * Implements Map.get and related methods
+     * 实现了Map.get及相关方法
      *
-     * @param hash hash for key
-     * @param key the key
-     * @return the node, or null if none
+     * @param hash key的hash值
+     * @param key key值
+     * @return 节点，如果没有则为空
      */
     final Node<K,V> getNode(int hash, Object key) {
-        Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        // 定义临时的数组tab
+        Node<K,V>[] tab;
+        // 定义链表的头部节点first，临时节点e
+        Node<K,V> first, e;
+        // 临时数据tab的长度
+        int n;
+        // 临时节点的key值
+        K k;
+
+        /**
+         * (tab = table) != null: 将table赋值为tab，并判断tab != null,即判断table是否为空
+         * (n = tab.length) > 0: 此时说明table不为空，获取tab的长度，并判断是否>0
+         * (first = tab[(n - 1) & hash]) != null:
+         *      int index = (n - 1) & hash: 通过下标 & hash，计算出该node所在数组的下标位置
+         *      first = tab[index]: 获取该下标在tab数组的链表头节点
+         */
         if ((tab = table) != null && (n = tab.length) > 0 &&
             (first = tab[(n - 1) & hash]) != null) {
-            if (first.hash == hash && // always check first node
+            /**
+             * 判断链表的头节点是否我们要查找的节点信息：
+             *      始终检查第一个节点，不仅要判断hash值一致，还要判断key是否一致，使用equals进行判断
+             *      first.hash == hash: 判断头节点的hash值是否等于传入的hash
+             *      (k = first.key) == key || (key != null && key.equals(k)))
+             *           （k = first.key） == key: 判断key值是否相等，适用于引用变量的key类型，比如Integer作为key
+             *            (key != null && key.equals(k)): key不为空时，使用equals()比较，比如String作为key
+             *     如果判断条件全都满足，则返回该头节点信息
+             */
+            if (first.hash == hash &&
                 ((k = first.key) == key || (key != null && key.equals(k))))
                 return first;
+
+            /**
+             * 此时头节点不是要查询的节点信息，则根据头节点遍历链表 | 红黑树，获取对应的节点信息
+             *      判断是否存在下一个节点
+             */
             if ((e = first.next) != null) {
+                /**
+                 * 判断节点类型是否是红黑树
+                 */
                 if (first instanceof TreeNode)
                     return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+                /**
+                 * 如果不是红黑树，则遍历链表
+                 */
                 do {
+                    /**
+                     * 判断hash值是否一致 && 判断key值是否一致
+                     */
                     if (e.hash == hash &&
                         ((k = e.key) == key || (key != null && key.equals(k))))
                         return e;
@@ -546,50 +565,75 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Returns trueif this map contains a mapping for the
-     * specified key.
+     * 如果该映射包含指定键的映射，则返回truef.
      *
      * @param   key   The key whose presence in this map is to be tested
-     * @return trueif this map contains a mapping for the specified
-     * key.
+     * @return 如果这个映射包含指定的键的映射.
      */
     public boolean containsKey(Object key) {
         return getNode(hash(key), key) != null;
     }
 
     /**
-     * Associates the specified value with the specified key in this map.
-     * If the map previously contained a mapping for the key, the old
-     * value is replaced.
+     * 将此映射中的指定值与指定键关联。
+     * 如果以前的映射包含键的映射，旧的值将被替换.
      *
-     * @param key key with which the specified value is to be associated
-     * @param value value to be associated with the specified key
-     * @return the previous value associated with key</tt>, or
-     *         nullif there was no mapping for key</tt>.
-     *         (A nullreturn can also indicate that the map
-     *         previously associated nullwith key</tt>.)
+     * @param key 指定值要与之关联的键
+     * @param value 与指定键相关联的值
+     * @return key或null 如果没有映射到key。(null return还可以指示之前的映射将null withkey关联起来。)
      */
     public V put(K key, V value) {
         return putVal(hash(key), key, value, false, true);
     }
 
     /**
-     * Implements Map.put and related methods
+     * 实现了Map.put及相关方法
      *
-     * @param hash hash for key
-     * @param key the key
-     * @param value the value to put
-     * @param onlyIfAbsent if true, don't change existing value
-     * @param evict if false, the table is in creation mode.
-     * @return previous value, or null if none
+     * @param hash key的hash值
+     * @param key 键值
+     * @param value put的value值
+     * @param onlyIfAbsent 如果为真，则不要更改现有值；如果为false，则替换现有值
+     * @param evict 如果为false，则表处于创建模式.
+     * @return 前一个值，如果没有则为空
      */
-    final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
-                   boolean evict) {
-        Node<K,V>[] tab; Node<K,V> p; int n, i;
+    final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
+        // 定义临时的数组tab
+        Node<K,V>[] tab;
+        // 定义临时的节点信息
+        Node<K,V> p;
+        /**
+         * n 等于tab的长度
+         * i 等于节点所在的下标
+         */
+        int n, i;
+
+        /**
+         * 判断数组table是否已经初始化
+         *      table == null || tab.length == 0
+         */
         if ((tab = table) == null || (n = tab.length) == 0)
+            /**
+             * 使用resize()对table进行初始化
+             *      初始化后，将table赋值给tab
+             *      n = tab数组的长度
+             */
             n = (tab = resize()).length;
+
+        /**
+         * i = (n - 1) & hash 计算出该key所在的下标
+         * (p = tab[i = (n - 1) & hash]) == null：获取数组下标的头节点，并判断是否为空
+         * 如果条件成立，说明该下标还没有头节点，则将该数据，作为对应下标位置的头节点
+         */
         if ((p = tab[i = (n - 1) & hash]) == null)
+            /**
+             *
+             */
             tab[i] = newNode(hash, key, value, null);
+        /**
+         * 如果以上条件不成立，说明该下标已经存在头节点，则遍历该节点对应的链表 | 红黑树结构
+         *      如果有一个节点是否跟新节点数据的hash 和 key一致，如果一致则进行更新操作
+         *      如果没有，则采用尾插法，将新节点插入到链表的尾部，或者加入到红黑树中
+         */
         else {
             Node<K,V> e; K k;
             if (p.hash == hash &&
@@ -627,58 +671,139 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Initializes or doubles table size.  If null, allocates in
-     * accord with initial capacity target held in field threshold.
-     * Otherwise, because we are using power-of-two expansion, the
-     * elements from each bin must either stay at same index, or move
-     * with a power of two offset in the new table.
+     * 初始化或加倍表的大小。
+     * 如果为空，在数组中分配符合字段阈值中持有的初始容量目标。
+     * 否则，因为我们使用的是2的幂展开，所以每个bin中的元素必须保持在相同的索引中，或者在新表中以2的幂偏移量移动。
      *
      * @return the table
      */
     final Node<K,V>[] resize() {
+        // 保存旧的数组table
         Node<K,V>[] oldTab = table;
+        // 获取旧数组的容量
         int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        // 获取旧数组的扩容阈值
         int oldThr = threshold;
+        // 定义新数据的容量、扩容阈值
         int newCap, newThr = 0;
+
+        /**
+         * 判断旧数组是否已经存在节点数据
+         * 判断旧数组的容量是否>0
+         *      说明旧数组已经被初始化，并存入节点数据
+         *      如果旧容量 >= MAXIMUM_CAPACITY：则threshold = Integer.MAX_VALUE；并返回旧数组
+         *      如果旧容量 >= DEFAULT_INITIAL_CAPACITY && 旧容量的2倍 < MAXIMUM_CAPACITY: 将newThr = oldThr * 2
+         */
         if (oldCap > 0) {
+            /**
+             * 如果数组元素个数大于等于限定的最大容量（2的30次方）
+             * 扩容阀值设置为int最大值（2的31次方 -1 ），因为oldCap再乘2就溢出了
+             * 返回老的元素数组
+             */
             if (oldCap >= MAXIMUM_CAPACITY) {
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
             }
+            /**
+             * 如果数组元素个数在正常范围内，那么新的数组容量为老的数组容量的2倍（左移1位相当于乘以2）
+             * 如果扩容之后的新容量小于最大容量  并且 老的数组容量大于等于默认初始化容量（16），那么新数组的扩容阀值设置为老阀值的2倍。
+             * （老的数组容量大于16意味着：要么构造函数指定了一个大于16的初始化容量值，要么已经经历过了至少一次扩容）
+             */
             else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
                      oldCap >= DEFAULT_INITIAL_CAPACITY)
-                newThr = oldThr << 1; // double threshold
+                // 2倍oldThr
+                newThr = oldThr << 1;
         }
-        else if (oldThr > 0) // initial capacity was placed in threshold
+
+        /**
+         * 代码到此，说明老数组没有任何元素，
+         * 这一步也就意味着构造该map的时候，指定了初始化容量，根据初始化容量设置了threshold阈值
+         * 如果老数组的扩容阀值大于0，那么设置新数组的容量为该阀值
+         */
+        else if (oldThr > 0)
             newCap = oldThr;
-        else {               // zero initial threshold signifies using defaults
+
+        /**
+         * 代码到此，说明table是个未初始化的状态，说明是调用无参构造函数创建的该map，并且第一次添加元素
+         * 初始阈值为零表示使用默认值
+         */
+        else {
             newCap = DEFAULT_INITIAL_CAPACITY;
             newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
         }
+
+        // 如果扩容阀值为0
         if (newThr == 0) {
             float ft = (float)newCap * loadFactor;
             newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
                       (int)ft : Integer.MAX_VALUE);
         }
+        // 设置map的扩容阀值为 新的阀值
         threshold = newThr;
         @SuppressWarnings({"rawtypes","unchecked"})
-            Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+                // 创建新的数组（对于第一次添加元素，那么这个数组就是第一个数组；
+                // 对于存在oldTab的时候，那么这个数组就是要需要扩容到的新数组）
+                Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+        // 将该map的table属性指向到该新数组
         table = newTab;
+
+        /**
+         * 如果老数组不为空，说明是扩容操作，那么涉及到元素的转移操作
+         */
         if (oldTab != null) {
+            // 遍历老数组
             for (int j = 0; j < oldCap; ++j) {
+                //
                 Node<K,V> e;
+                /**
+                 * 如果当前位置元素不为空，那么需要转移该元素到新数组
+                 */
                 if ((e = oldTab[j]) != null) {
+                    // 释放掉老数组对于要转移走的元素的引用（主要为了使得数组可被回收）
                     oldTab[j] = null;
+                    // 如果元素没有有下一个节点，说明该元素不存在hash冲突
                     if (e.next == null)
+                        //  把元素存储到新的数组中，存储到数组的哪个位置需要根据hash值和数组长度来进行取模
+                        // 【hash值 % 数组长度】 =  【hash值 & 数组长度-1）】
+                        //  这种与运算求模的方式要求  数组长度必须是2的N次方，但是可以通过构造函数随意指定初始化容量，
+                        //  如果指定了17,15这种，岂不是出问题了就？
+                        //  没关系，最终会通过tableSizeFor方法将用户指定的转化为大于其并且最相近的2的N次方。 15 -> 16、17-> 32
                         newTab[e.hash & (newCap - 1)] = e;
+
+                    // 如果该节点为TreeNode类型
                     else if (e instanceof TreeNode)
                         ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+
+                    /**
+                     * 如果该元素有下一个节点，那么说明该位置上存在一个链表了（hash相同的多个元素以链表的方式存储到了老数组的这个位置上了）
+                     *      例如：数组长度为16，那么hash值为1（1%16=1）的和hash值为17（17%16=1）的两个元素都是会存储在数组的第2个位置上（对应数组下标为1），
+                     *      当数组扩容为32（1%32=1）时，hash值为1的还应该存储在新数组的第二个位置上，但是hash值为17（17%32=17）的就应该存储在新数组的第18个位置上了。
+                     * 所以，数组扩容后，所有元素都需要重新计算在新数组中的位置。
+                     */
                     else { // preserve order
                         Node<K,V> loHead = null, loTail = null;
                         Node<K,V> hiHead = null, hiTail = null;
                         Node<K,V> next;
+
+                        // 遍历链表
                         do {
+                            // 获取下一个节点信息
                             next = e.next;
+
+                            /**
+                             * 这一步判断好狠，拿元素的hash值  和  老数组的长度  做与运算
+                             * 数组的长度一定是2的N次方（例如16），如果hash值和该长度做与运算，
+                             *      那么该hash值可参与计算的有效二进制位就是和长度二进制对等的后几位，如果结果为0，
+                             *      说明hash值中参与计算的对等的二进制位的最高位一定为0.
+                             * 因为数组长度的二进制有效最高位是1（例如16对应的二进制是10000），
+                             *      只有*..0**** 和 10000 进行与运算结果才为00000（*..表示不确定的多个二进制位）。
+                             *      又因为定位下标时的取模运算是以hash值和长度减1进行与运算，
+                             *      所以下标 = (*..0**** & 1111) 也= (*..0**** & 11111) 。
+                             *      1111是15的二进制、11111是16*2-1 也就是31的二级制（2倍扩容）。
+                             * 所以该hash值再和新数组的长度取摸的话mod值也不会放生变化，也就是说该元素的在新数组的位置和在老数组的位置是相同的，
+                             *      所以该元素可以放置在低位链表中。
+                             *
+                             */
                             if ((e.hash & oldCap) == 0) {
                                 if (loTail == null)
                                     loHead = e;
@@ -686,6 +811,13 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                                     loTail.next = e;
                                 loTail = e;
                             }
+                            /**
+                             * 如果与运算结果不为0，说明hash值大于老数组长度（例如hash值为17）
+                             *        此时该元素应该放置到新数组的高位位置上
+                             * 例：老数组长度16，那么新数组长度为32，hash为17的应该放置在数组的第17个位置上，也就是下标为16，
+                             *        那么下标为16已经属于高位了，低位是[0-15]，高位是[16-31]
+                             *
+                             */
                             else {
                                 if (hiTail == null)
                                     hiHead = e;
@@ -693,19 +825,25 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                                     hiTail.next = e;
                                 hiTail = e;
                             }
-                        } while ((e = next) != null);
+                        } while ((e = next) != null); // 判断是否还有下一个节点
+
+                        // 低位的元素组成的链表还是放置在原来的位置
                         if (loTail != null) {
                             loTail.next = null;
                             newTab[j] = loHead;
                         }
+                        // 高位的元素组成的链表放置的位置只是在原有位置上偏移了老数组的长度个位置。
                         if (hiTail != null) {
                             hiTail.next = null;
+                            // 例：hash为 17 在老数组放置在0下标，在新数组放置在16下标；
+                            // hash为 18 在老数组放置在1下标，在新数组放置在17下标；
                             newTab[j + oldCap] = hiHead;
                         }
                     }
                 }
             }
         }
+        // 返回新数组
         return newTab;
     }
 
@@ -1757,6 +1895,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Entry for Tree bins. Extends LinkedHashMap.Entry (which in turn
      * extends Node) so can be used as extension of either regular or
      * linked node.
+     *
+     * 红黑树的入口。
+     * LinkedHashMap延伸。条目(反过来扩展节点)，因此可以用作常规或链接节点的扩展
      */
     static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
         TreeNode<K,V> parent;  // red-black tree links
@@ -1837,7 +1978,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
-         * Calls find for root node.
+         * 调用查找根节点.
          */
         final TreeNode<K,V> getTreeNode(int h, Object k) {
             return ((parent != null) ? root() : this).find(h, k, null);
