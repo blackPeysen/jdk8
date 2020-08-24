@@ -626,7 +626,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
          */
         if ((p = tab[i = (n - 1) & hash]) == null)
             /**
-             *
+             * 生成一个新节点
              */
             tab[i] = newNode(hash, key, value, null);
         /**
@@ -635,36 +635,57 @@ public class HashMap<K,V> extends AbstractMap<K,V>
          *      如果没有，则采用尾插法，将新节点插入到链表的尾部，或者加入到红黑树中
          */
         else {
-            Node<K,V> e; K k;
+            //新的链表头节点
+            Node<K,V> e;
+            K k;
+
+            // 如果put的key和hash恰好与对应桶的首个对象一样,那么可以不用考虑直接替换
             if (p.hash == hash &&
                 ((k = p.key) == key || (key != null && key.equals(k))))
+                // 直接将p赋值给e
                 e = p;
+            // 如果Node的类型是红黑树将值更新到树中
             else if (p instanceof TreeNode)
                 e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            // 代码到此，说明Node的类型是链表结构
             else {
+                // 遍历链表，binCount主要用来判断什么时候由链表转换成红黑树
                 for (int binCount = 0; ; ++binCount) {
+                    // 如果遍历到链表末端,还没有插到链表中
                     if ((e = p.next) == null) {
+                        //生成一个新的节点,放到链表的末尾
                         p.next = newNode(hash, key, value, null);
+                        // 如果链表长度大于 8-1 则转换成红黑树
                         if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
                             treeifyBin(tab, hash);
                         break;
                     }
+
+                    // e.hash就是p.next,那么e.hash如果与要put的key碰撞到,那么跟直接跳出,此处的逻辑判断与桶首个对象的判断逻辑一样
                     if (e.hash == hash &&
                         ((k = e.key) == key || (key != null && key.equals(k))))
                         break;
+
+                    //如果没找到相同的key和hash 那么将e赋值为当前p,让他到下次循环中
                     p = e;
                 }
             }
-            if (e != null) { // existing mapping for key
+
+            // e!=null 代表原来Map中存在这个key
+            if (e != null) {
                 V oldValue = e.value;
+                // 如果onlyIfAbsent=false,或者old_Value=null,不产生新的对象,直接替换value,默认是直接替换
                 if (!onlyIfAbsent || oldValue == null)
                     e.value = value;
+                //将这个元素放到链表尾部 1.7之前是头插
                 afterNodeAccess(e);
                 return oldValue;
             }
         }
         ++modCount;
+        // 如果桶的数量超过阈值
         if (++size > threshold)
+            //重新分布桶,如果多线程的时候  会出现循环链表的情况,造成CPU升高,值错乱
             resize();
         afterNodeInsertion(evict);
         return null;
@@ -848,8 +869,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Replaces all linked nodes in bin at index for given hash unless
-     * table is too small, in which case resizes instead.
+     * 为给定的散列替换bin at index中的所有链接节点，除非表太小，在这种情况下调整大小.
      */
     final void treeifyBin(Node<K,V>[] tab, int hash) {
         int n, index; Node<K,V> e;
@@ -873,25 +893,21 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Copies all of the mappings from the specified map to this map.
-     * These mappings will replace any mappings that this map had for
-     * any of the keys currently in the specified map.
+     * 将指定映射中的所有映射复制到此映射。
+     * 这些映射将替换该映射对指定映射中当前任意键的任何映射.
      *
-     * @param m mappings to be stored in this map
-     * @throws NullPointerException if the specified map is null
+     * @param m 要存储在此映射中的映射
+     * @throws NullPointerException 如果指定的映射为空
      */
     public void putAll(Map<? extends K, ? extends V> m) {
         putMapEntries(m, true);
     }
 
     /**
-     * Removes the mapping for the specified key from this map if present.
+     * 如果存在，则从此映射中删除指定键的映射.
      *
-     * @param  key key whose mapping is to be removed from the map
-     * @return the previous value associated with key</tt>, or
-     *         nullif there was no mapping for key</tt>.
-     *         (A nullreturn can also indicate that the map
-     *         previously associated nullwith key</tt>.)
+     * @param  key 要从映射中删除其映射的
+     * @return 与key关联的前一个值，或nullif没有对key的映射。(一个nullreturn还可以指示之前映射与nullwith键关联.)
      */
     public V remove(Object key) {
         Node<K,V> e;
@@ -951,8 +967,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
-     * Removes all of the mappings from this map.
-     * The map will be empty after this call returns.
+     * 从该映射中删除所有映射。
+     * 此调用返回后映射将为空.
      */
     public void clear() {
         Node<K,V>[] tab;
@@ -1829,15 +1845,13 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     // LinkedHashMap support
 
 
-    /*
-     * The following package-protected methods are designed to be
-     * overridden by LinkedHashMap, but not by any other subclass.
-     * Nearly all other internal methods are also package-protected
-     * but are declared final, so can be used by LinkedHashMap, view
-     * classes, and HashSet.
+    /**
+     * 下面的包保护方法被设计为被LinkedHashMap覆盖，但不被任何其他子类覆盖。
+     * 几乎所有其他的内部方法也是包保护的，但是声明为final，
+     * 所以可以被LinkedHashMap、view类和HashSet使用
      */
 
-    // Create a regular (non-tree) node
+    // 创建一个常规(非树)节点
     Node<K,V> newNode(int hash, K key, V value, Node<K,V> next) {
         return new Node<>(hash, key, value, next);
     }
