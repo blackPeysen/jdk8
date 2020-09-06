@@ -40,13 +40,10 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * The {@code String} class represents character strings. All
- * string literals in Java programs, such as {@code "abc"}, are
- * implemented as instances of this class.
+ * 表示字符串的类。Java程序中的所有字符串，比如{@code "abc"}，都被作为这个类的实例实现。
+ *
  * <p>
- * Strings are constant; their values cannot be changed after they
- * are created. String buffers support mutable strings.
- * Because String objects are immutable they can be shared. For example:
+ * 字符串常量;它们的值在它们被创建之后不能被改变。字符串缓冲区支持可变字符串。因为字符串对象是不可变的，它们可以被共享。例如:
  * <blockquote><pre>
  *     String str = "abc";
  * </pre></blockquote><p>
@@ -110,17 +107,17 @@ import java.util.regex.PatternSyntaxException;
 
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
-    /** The value is used for character storage. */
+    /** 该值用于字符存储. */
     private final char value[];
 
-    /** Cache the hash code for the string */
+    /** 缓存字符串的哈希代码 */
     private int hash; // Default to 0
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /** 使用来自JDK 1.0.2的serialVersionUID实现互操作性 */
     private static final long serialVersionUID = -6849794470754667710L;
 
     /**
-     * Class String is special cased within the Serialization Stream Protocol.
+     * 类字符串是序列化流协议中的特殊大小写类型.
      *
      * A String instance is written into an ObjectOutputStream according to
      * <a href="{@docRoot}/../platform/serialization/spec/output.html">
@@ -130,9 +127,8 @@ public final class String
         new ObjectStreamField[0];
 
     /**
-     * Initializes a newly created {@code String} object so that it represents
-     * an empty character sequence.  Note that use of this constructor is
-     * unnecessary since Strings are immutable.
+     * 初始化一个新创建的{@code String}对象，使其表示一个空字符序列。
+     * 注意，这个构造函数的使用是不必要的，因为字符串是不可变的.
      */
     public String() {
         this.value = "".value;
@@ -3142,27 +3138,22 @@ public final class String
     }
 
     /**
-     * Returns a canonical representation for the string object.
+     * 返回字符串对象的规范表示形式.
      * <p>
-     * A pool of strings, initially empty, is maintained privately by the
-     * class {@code String}.
+     * 字符串池最初是空的，由类{@code String}私有地维护.
+     * <p>当intern方法被调用时，
+     *     如果池中已经包含了一个字符串，它等于这个由{@link #equals(Object)}方法确定的{@code string}对象，那么池中的字符串将被返回。
+     *     否则，该{@code String}对象将被添加到池中，并返回对该{@code String}对象的引用
      * <p>
-     * When the intern method is invoked, if the pool already contains a
-     * string equal to this {@code String} object as determined by
-     * the {@link #equals(Object)} method, then the string from the pool is
-     * returned. Otherwise, this {@code String} object is added to the
-     * pool and a reference to this {@code String} object is returned.
-     * <p>
-     * It follows that for any two strings {@code s} and {@code t},
-     * {@code s.intern() == t.intern()} is {@code true}
-     * if and only if {@code s.equals(t)} is {@code true}.
+     * 对于任意两个字符串{@code s}和{@code t}，
+     *      当且仅当{@code s = (t)}是{@code true}时，
+     *      {@code s = () == t.intern()}是{@code true}.
      * <p>
      * All literal strings and string-valued constant expressions are
      * interned. String literals are defined in section 3.10.5 of the
      * <cite>The Java&trade; Language Specification</cite>.
      *
-     * @return  a string that has the same contents as this string, but is
-     *          guaranteed to be from a pool of unique strings.
+     * @return  与此字符串内容相同，但保证来自唯一字符串池的字符串.
      */
     public native String intern();
 }
