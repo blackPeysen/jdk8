@@ -46,8 +46,8 @@ public interface BiConsumer<T, U> {
     /**
      * 对给定的参数执行此操作。
      *
-     * @param t the first input argument
-     * @param u the second input argument
+     * @param t 第一个输入参数
+     * @param u 第二个输入参数
      */
     void accept(T t, U u);
 
@@ -58,8 +58,7 @@ public interface BiConsumer<T, U> {
      * 如果执行此操作会引发异常，则不会执行{@code after}操作。
      *
      * @param after 在这个操作之后要执行的操作
-     * @return a composed {@code BiConsumer} that performs in sequence this
-     * operation followed by the {@code after} operation
+     * @return 一个由{@code BiConsumer}组成的函数，它按顺序执行这个操作，然后再执行{@code after}操作
      * @throws NullPointerException if {@code after} is null
      */
     default BiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {

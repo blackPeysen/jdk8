@@ -25,13 +25,13 @@
 package java.util.function;
 
 /**
- * Represents a function that produces a double-valued result.  This is the
- * {@code double}-producing primitive specialization for {@link Function}.
+ * 表示产生双值结果的函数： 将一个实例对象 转换成 double
+ * 这是为{@link Function}产生{@code double}的原语专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsDouble(Object)}.
  *
- * @param <T> the type of the input to the function
+ * @param <T> 函数的输入类型
  *
  * @see Function
  * @since 1.8
@@ -40,9 +40,9 @@ package java.util.function;
 public interface ToDoubleFunction<T> {
 
     /**
-     * Applies this function to the given argument.
+     * 对给定的参数应用这个函数。
      *
-     * @param value the function argument
+     * @param value 函数参数
      * @return the function result
      */
     double applyAsDouble(T value);

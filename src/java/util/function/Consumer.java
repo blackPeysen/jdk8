@@ -27,14 +27,13 @@ package java.util.function;
 import java.util.Objects;
 
 /**
- * Represents an operation that accepts a single input argument and returns no
- * result. Unlike most other functional interfaces, {@code Consumer} is expected
- * to operate via side-effects.
+ * 表示接受单个输入参数且不返回结果的操作。
+ * 与大多数其他功能接口不同，{@code Consumer}预期通过副作用进行操作。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #accept(Object)}.
  *
- * @param <T> the type of the input to the operation
+ * @param <T> 操作输入的类型
  *
  * @since 1.8
  */
@@ -42,22 +41,19 @@ import java.util.Objects;
 public interface Consumer<T> {
 
     /**
-     * Performs this operation on the given argument.
+     * 对给定参数执行此操作。
      *
-     * @param t the input argument
+     * @param t 输入参数
      */
     void accept(T t);
 
     /**
-     * Returns a composed {@code Consumer} that performs, in sequence, this
-     * operation followed by the {@code after} operation. If performing either
-     * operation throws an exception, it is relayed to the caller of the
-     * composed operation.  If performing this operation throws an exception,
-     * the {@code after} operation will not be performed.
+     * 返回一个组合的{@code 消费者}，该消费者依次执行这个操作和后面的{@code after}操作。
+     * 如果执行任何一个操作引发异常，则将其转发给组合操作的调用者。
+     * 如果执行此操作引发异常，则不会执行后面的{@code}操作。
      *
-     * @param after the operation to perform after this operation
-     * @return a composed {@code Consumer} that performs in sequence this
-     * operation followed by the {@code after} operation
+     * @param after 该操作完成后需要执行的操作
+     * @return 组合的{@code 消费者}按顺序执行这个操作，然后再执行{@code after}操作
      * @throws NullPointerException if {@code after} is null
      */
     default Consumer<T> andThen(Consumer<? super T> after) {

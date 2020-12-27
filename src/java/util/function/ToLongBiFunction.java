@@ -25,9 +25,7 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts two arguments and produces a long-valued
- * result.  This is the {@code long}-producing primitive specialization for
- * {@link BiFunction}.
+ * 表示接受两个参数并产生长值结果的函数。这是{@link BiFunction}产生{@code long}的原语专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsLong(Object, Object)}.
@@ -42,7 +40,7 @@ package java.util.function;
 public interface ToLongBiFunction<T, U> {
 
     /**
-     * Applies this function to the given arguments.
+     * 将此函数应用于给定的参数。
      *
      * @param t the first function argument
      * @param u the second function argument

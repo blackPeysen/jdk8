@@ -25,9 +25,8 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts a double-valued argument and produces an
- * int-valued result.  This is the {@code double}-to-{@code int} primitive
- * specialization for {@link Function}.
+ * 表示接受双值实参并产生整型结果的函数。
+ * 这是{@link Function}的{@code double}到-{@code int}基元专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsInt(double)}.
@@ -39,10 +38,10 @@ package java.util.function;
 public interface DoubleToIntFunction {
 
     /**
-     * Applies this function to the given argument.
+     * 对给定的参数应用这个函数。
      *
-     * @param value the function argument
-     * @return the function result
+     * @param value 函数参数
+     * @return 函数的结果
      */
     int applyAsInt(double value);
 }

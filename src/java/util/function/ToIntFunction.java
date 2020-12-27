@@ -25,8 +25,8 @@
 package java.util.function;
 
 /**
- * Represents a function that produces an int-valued result.  This is the
- * {@code int}-producing primitive specialization for {@link Function}.
+ * 表示一个产生整型值结果的函数： 将一个实例对象 转换成 int
+ * 这是为{@link Function}产生{@code int}的基元专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsInt(Object)}.

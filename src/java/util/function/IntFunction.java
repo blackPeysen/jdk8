@@ -25,14 +25,13 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts an int-valued argument and produces a
- * result.  This is the {@code int}-consuming primitive specialization for
- * {@link Function}.
+ * 表示接受整型值实参并产生结果的函数： 将给定的int参数转换为指定的返回类型实例对象
+ * 这是为{@link Function}使用{@code int}的原语专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #apply(int)}.
  *
- * @param <R> the type of the result of the function
+ * @param <R> 函数结果的类型
  *
  * @see Function
  * @since 1.8

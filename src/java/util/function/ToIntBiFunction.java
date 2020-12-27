@@ -25,15 +25,14 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts two arguments and produces an int-valued
- * result.  This is the {@code int}-producing primitive specialization for
- * {@link BiFunction}.
+ * 表示接受两个参数并产生一个整型值结果的函数。
+ * 这是为{@link BiFunction}生成{@code int}的基元专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsInt(Object, Object)}.
  *
- * @param <T> the type of the first argument to the function
- * @param <U> the type of the second argument to the function
+ * @param <T> 函数的第一个参数的类型
+ * @param <U> 函数的第二个参数的类型
  *
  * @see BiFunction
  * @since 1.8

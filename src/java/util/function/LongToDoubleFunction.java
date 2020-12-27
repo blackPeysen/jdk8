@@ -25,9 +25,8 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts a long-valued argument and produces a
- * double-valued result.  This is the {@code long}-to-{@code double} primitive
- * specialization for {@link Function}.
+ * 表示接受长值实参并产生双值结果的函数： 将一个long参数 -》 double
+ * 这是{@link Function}的{@code long}- -{@code double}基元专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsDouble(long)}.

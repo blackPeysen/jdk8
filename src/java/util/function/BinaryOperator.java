@@ -28,15 +28,13 @@ import java.util.Objects;
 import java.util.Comparator;
 
 /**
- * Represents an operation upon two operands of the same type, producing a result
- * of the same type as the operands.  This is a specialization of
- * {@link BiFunction} for the case where the operands and the result are all of
- * the same type.
+ * 表示对两个相同类型的操作数的操作，产生与操作数相同类型的结果。
+ * 这是{@link BiFunction}的专门化，用于操作数和结果都是同一类型的情况。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #apply(Object, Object)}.
  *
- * @param <T> the type of the operands and result of the operator
+ * @param <T> 操作数的类型和操作符的结果
  *
  * @see BiFunction
  * @see UnaryOperator
@@ -45,13 +43,11 @@ import java.util.Comparator;
 @FunctionalInterface
 public interface BinaryOperator<T> extends BiFunction<T,T,T> {
     /**
-     * Returns a {@link BinaryOperator} which returns the lesser of two elements
-     * according to the specified {@code Comparator}.
+     * 返回一个{@link BinaryOperator}，根据指定的{@code Comparator}返回两个元素中较小的一个。
      *
-     * @param <T> the type of the input arguments of the comparator
-     * @param comparator a {@code Comparator} for comparing the two values
-     * @return a {@code BinaryOperator} which returns the lesser of its operands,
-     *         according to the supplied {@code Comparator}
+     * @param <T> 比较器输入参数的类型
+     * @param comparator 用于比较两个值的{@code Comparator}
+     * @return 一个{@code BinaryOperator}，根据提供的{@code Comparator}返回其操作数中较小的一个。
      * @throws NullPointerException if the argument is null
      */
     public static <T> BinaryOperator<T> minBy(Comparator<? super T> comparator) {
@@ -60,13 +56,11 @@ public interface BinaryOperator<T> extends BiFunction<T,T,T> {
     }
 
     /**
-     * Returns a {@link BinaryOperator} which returns the greater of two elements
-     * according to the specified {@code Comparator}.
+     * 返回一个{@link BinaryOperator}，根据指定的{@code Comparator}返回两个元素中较大的一个。
      *
-     * @param <T> the type of the input arguments of the comparator
-     * @param comparator a {@code Comparator} for comparing the two values
-     * @return a {@code BinaryOperator} which returns the greater of its operands,
-     *         according to the supplied {@code Comparator}
+     * @param <T> 比较器输入参数的类型
+     * @param comparator 用于比较两个值的{@code Comparator}
+     * @return {@code BinaryOperator}，根据提供的{@code Comparator}返回其操作数中较大的一个。
      * @throws NullPointerException if the argument is null
      */
     public static <T> BinaryOperator<T> maxBy(Comparator<? super T> comparator) {

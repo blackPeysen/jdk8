@@ -25,9 +25,8 @@
 package java.util.function;
 
 /**
- * Represents a function that accepts a long-valued argument and produces an
- * int-valued result.  This is the {@code long}-to-{@code int} primitive
- * specialization for {@link Function}.
+ * 表示接受长值实参并产生双值结果的函数： 将一个long参数 -》 int
+ *  * 这是{@link Function}的{@code long}- -{@code int}基元专门化。
  *
  * <p>This is a <a href="package-summary.html">functional interface</a>
  * whose functional method is {@link #applyAsInt(long)}.
