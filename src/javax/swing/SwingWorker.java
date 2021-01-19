@@ -32,11 +32,9 @@ import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.concurrent.locks.*;
+import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
 
 import java.awt.event.*;
-
-import javax.swing.SwingUtilities;
 
 import sun.awt.AppContext;
 import sun.swing.AccumulativeRunnable;

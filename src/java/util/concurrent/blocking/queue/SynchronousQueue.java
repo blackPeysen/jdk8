@@ -34,7 +34,9 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.queue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.blocking.queue.BlockingQueue;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.*;
@@ -42,7 +44,7 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 
 /**
- * {@linkplain BlockingQueue 阻塞队列}，
+ * {@linkplain java.util.concurrent.blocking.queue.BlockingQueue 阻塞队列}，
  *      其中每个插入操作必须等待另一个线程进行相应的删除操作，反之亦然。
  *      同步队列没有任何内部容量，甚至没有一个容量。
  * 您不能{@code peek}在同步队列中，因为当您尝试删除一个元素时，该元素仅存在；

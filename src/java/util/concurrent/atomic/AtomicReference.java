@@ -40,7 +40,7 @@ import sun.misc.Unsafe;
 
 /**
  * 可以自动更新的对象引用。
- * 参见{@link * java.util.concurrent.atomic}包规范，用于描述原子变量的属性。
+ * 参见{@link java.util.concurrent.atomic}包规范，用于描述原子变量的属性。
  * 可能出现ABA问题，使用AtomicStampedReference解决。
  *
  * @since 1.5

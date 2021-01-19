@@ -47,13 +47,10 @@ import sun.reflect.CallerSensitive;
 import sun.reflect.Reflection;
 
 /**
- * A reflection-based utility that enables atomic updates to
- * designated {@code volatile} reference fields of designated
- * classes.  This class is designed for use in atomic data structures
- * in which several reference fields of the same node are
- * independently subject to atomic updates. For example, a tree node
- * might be declared as
- *
+ * 原子更新引用类型里的字段。
+ * 一个基于反射的实用程序，支持对指定类的指定{@code volatile}引用字段进行原子更新。
+ * 该类设计用于同一节点的多个引用字段独立地接受原子更新的原子数据结构中。
+ * 例如，树节点可以声明为
  * <pre> {@code
  * class Node {
  *   private volatile Node left, right;
@@ -70,12 +67,9 @@ import sun.reflect.Reflection;
  *   // ... and so on
  * }}</pre>
  *
- * <p>Note that the guarantees of the {@code compareAndSet}
- * method in this class are weaker than in other atomic classes.
- * Because this class cannot ensure that all uses of the field
- * are appropriate for purposes of atomic access, it can
- * guarantee atomicity only with respect to other invocations of
- * {@code compareAndSet} and {@code set} on the same updater.
+ * <p>注意，这个类中的{@code compareAndSet}方法的保证比其他原子类弱。
+ * 因为这个类不能确保对字段的所有使用都适合于原子访问的目的，
+ * 所以它只能保证在同一个更新器上对{@code compareAndSet}和{@code set}的其他调用具有原子性。
  *
  * @since 1.5
  * @author Doug Lea

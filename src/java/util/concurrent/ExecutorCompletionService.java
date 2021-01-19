@@ -35,6 +35,9 @@
 
 package java.util.concurrent;
 
+import java.util.concurrent.blocking.queue.BlockingQueue;
+import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
+
 /**
  * A {@link CompletionService} that uses a supplied {@link Executor}
  * to execute tasks.  This class arranges that submitted tasks are,
@@ -107,7 +110,7 @@ package java.util.concurrent;
 public class ExecutorCompletionService<V> implements CompletionService<V> {
     private final Executor executor;
     private final AbstractExecutorService aes;
-    private final BlockingQueue<Future<V>> completionQueue;
+    private final java.util.concurrent.blocking.queue.BlockingQueue<Future<V>> completionQueue;
 
     /**
      * FutureTask extension to enqueue upon completion
@@ -138,7 +141,7 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
     /**
      * Creates an ExecutorCompletionService using the supplied
      * executor for base task execution and a
-     * {@link LinkedBlockingQueue} as a completion queue.
+     * {@link java.util.concurrent.blocking.queue.LinkedBlockingQueue} as a completion queue.
      *
      * @param executor the executor to use
      * @throws NullPointerException if executor is {@code null}

@@ -25,7 +25,7 @@
 package javax.swing.plaf.synth;
 
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.blocking.queue.ConcurrentLinkedQueue;
 import javax.swing.JComponent;
 
 /**

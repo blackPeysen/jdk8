@@ -26,7 +26,7 @@
 package java.util;
 
 import java.io.*;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.collection.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.BiFunction;
@@ -112,7 +112,7 @@ import java.util.function.BiFunction;
  * thread-safe implementation is not needed, it is recommended to use
  * {@link HashMap} in place of {@code Hashtable}.  If a thread-safe
  * highly-concurrent implementation is desired, then it is recommended
- * to use {@link java.util.concurrent.ConcurrentHashMap} in place of
+ * to use {@link ConcurrentHashMap} in place of
  * {@code Hashtable}.
  *
  * @author  Arthur van Hoff

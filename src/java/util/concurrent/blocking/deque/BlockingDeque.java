@@ -33,8 +33,10 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.deque;
 import java.util.*;
+import java.util.concurrent.blocking.queue.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 另外一个{@link Deque}支持阻塞操作，该操作在获取元素时等待Deque变为非空，在存储元素时等待Deque中的space变为可用。

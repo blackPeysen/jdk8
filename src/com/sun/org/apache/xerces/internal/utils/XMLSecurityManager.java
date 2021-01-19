@@ -27,7 +27,7 @@ package com.sun.org.apache.xerces.internal.utils;
 
 import com.sun.org.apache.xerces.internal.impl.Constants;
 import com.sun.org.apache.xerces.internal.util.SecurityManager;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.collection.CopyOnWriteArrayList;
 import org.xml.sax.SAXException;
 
 /**

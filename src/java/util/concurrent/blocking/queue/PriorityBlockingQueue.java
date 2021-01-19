@@ -33,8 +33,9 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.queue;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.AbstractQueue;
@@ -50,7 +51,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * An unbounded {@linkplain BlockingQueue blocking queue} that uses
+ * An unbounded {@linkplain java.util.concurrent.blocking.queue.BlockingQueue blocking queue} that uses
  * the same ordering rules as class {@link PriorityQueue} and supplies
  * blocking retrieval operations.  While this queue is logically
  * unbounded, attempted additions may fail due to resource exhaustion
@@ -107,7 +108,7 @@ import java.util.function.Consumer;
  */
 @SuppressWarnings("unchecked")
 public class PriorityBlockingQueue<E> extends AbstractQueue<E>
-    implements BlockingQueue<E>, java.io.Serializable {
+    implements java.util.concurrent.blocking.queue.BlockingQueue<E>, java.io.Serializable {
     private static final long serialVersionUID = 5595510919245408276L;
 
     /*
@@ -520,7 +521,7 @@ public class PriorityBlockingQueue<E> extends AbstractQueue<E>
      * @param timeout This parameter is ignored as the method never blocks
      * @param unit This parameter is ignored as the method never blocks
      * @return {@code true} (as specified by
-     *  {@link BlockingQueue#offer(Object,long,TimeUnit) BlockingQueue.offer})
+     *  {@link BlockingQueue#offer(Object,long, TimeUnit) BlockingQueue.offer})
      * @throws ClassCastException if the specified element cannot be compared
      *         with elements currently in the priority queue according to the
      *         priority queue's ordering

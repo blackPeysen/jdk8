@@ -35,6 +35,11 @@
 
 package java.util;
 
+import java.util.concurrent.blocking.queue.ArrayBlockingQueue;
+import java.util.concurrent.blocking.queue.BlockingQueue;
+import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
+import java.util.concurrent.blocking.queue.PriorityBlockingQueue;
+
 /**
  * 用于在处理之前保存元素的集合。
  * 除了basic {@link java.util.Collection}操作，队列提供额外的插入、提取和检查操作。
@@ -87,7 +92,7 @@ package java.util;
  * <p>{@link #element()}和{@link #peek()}方法返回队列的头部，但不移除该元素
  *
  * <p>{@code Queue}接口没有定义在并发编程中常见的阻塞队列方法。
- * 在{@link java.util.concurrent.BlockingQueue}中定义了这些方法，它们等待元素出现或空间可用。
+ * 在{@link BlockingQueue}中定义了这些方法，它们等待元素出现或空间可用。
  * BlockingQueue}接口，它扩展此接口。
  *
  *
@@ -114,11 +119,11 @@ package java.util;
  * @see java.util.Collection
  * @see LinkedList
  * @see PriorityQueue
- * @see java.util.concurrent.LinkedBlockingQueue
- * @see java.util.concurrent.BlockingQueue
- * @see java.util.concurrent.ArrayBlockingQueue
- * @see java.util.concurrent.LinkedBlockingQueue
- * @see java.util.concurrent.PriorityBlockingQueue
+ * @see LinkedBlockingQueue
+ * @see BlockingQueue
+ * @see ArrayBlockingQueue
+ * @see LinkedBlockingQueue
+ * @see PriorityBlockingQueue
  * @since 1.5
  * @author Doug Lea
  * @param <E> the type of elements held in this collection

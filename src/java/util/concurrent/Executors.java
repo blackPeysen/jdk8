@@ -42,6 +42,9 @@ import java.security.PrivilegedAction;
 import java.security.PrivilegedExceptionAction;
 import java.security.PrivilegedActionException;
 import java.security.AccessControlException;
+import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
+import java.util.concurrent.blocking.queue.SynchronousQueue;
+
 import sun.security.util.SecurityConstants;
 
 /**
@@ -50,18 +53,11 @@ import sun.security.util.SecurityConstants;
  * 这个类支持以下几种方法:
  *
  * <ul>
- *   <li> Methods that create and return an {@link ExecutorService}
- *        set up with commonly useful configuration settings.
- *   <li> Methods that create and return a {@link ScheduledExecutorService}
- *        set up with commonly useful configuration settings.
- *   <li> Methods that create and return a "wrapped" ExecutorService, that
- *        disables reconfiguration by making implementation-specific methods
- *        inaccessible.
- *   <li> Methods that create and return a {@link ThreadFactory}
- *        that sets newly created threads to a known state.
- *   <li> Methods that create and return a {@link Callable}
- *        out of other closure-like forms, so they can be used
- *        in execution methods requiring {@code Callable}.
+ *   <li> 方法创建并返回一个具有常用配置设置的{@link ExecutorService}。
+ *   <li> 使用常用的配置设置创建并返回{@link ScheduledExecutorService}设置的方法。
+ *   <li> 方法创建并返回一个“包装的”ExecutorService，通过使特定于实现的方法不可访问来禁用重新配置。
+ *   <li> 方法创建并返回一个{@link ThreadFactory}，该方法将新创建的线程设置为已知状态。
+ *   <li> 在其他类似闭包的窗体中创建并返回{@link Callable}的方法，因此它们可以用于要求{@code Callable}的执行方法。
  * </ul>
  *
  * @since 1.5
@@ -76,14 +72,14 @@ public class Executors {
      * 如果任何线程在执行过程中由于失败而终止在关闭之前，如果需要执行后续任务，将会有一个新的线程代替它。
      * 池中的线程将一直存在，直到显式地出现{@link ExecutorService#shutdown shutdown}。
      *
-     * @param nThreads the number of threads in the pool
-     * @return the newly created thread pool
+     * @param nThreads 池中的线程数
+     * @return 新创建的线程池
      * @throws IllegalArgumentException if {@code nThreads <= 0}
      */
     public static ExecutorService newFixedThreadPool(int nThreads) {
         return new ThreadPoolExecutor(nThreads, nThreads,
                                       0L, TimeUnit.MILLISECONDS,
-                                      new LinkedBlockingQueue<Runnable>());
+                (BlockingQueue<Runnable>) new LinkedBlockingQueue<Runnable>());
     }
 
     /**
@@ -104,7 +100,7 @@ public class Executors {
     public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory threadFactory) {
         return new ThreadPoolExecutor(nThreads, nThreads,
                 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>(),
+                (BlockingQueue<Runnable>) new LinkedBlockingQueue<Runnable>(),
                 threadFactory);
     }
 
@@ -153,7 +149,7 @@ public class Executors {
         return new FinalizableDelegatedExecutorService
             (new ThreadPoolExecutor(1, 1,
                                     0L, TimeUnit.MILLISECONDS,
-                                    new LinkedBlockingQueue<Runnable>()));
+                    (BlockingQueue<Runnable>) new LinkedBlockingQueue<Runnable>()));
     }
 
     /**
@@ -169,7 +165,7 @@ public class Executors {
         return new FinalizableDelegatedExecutorService
             (new ThreadPoolExecutor(1, 1,
                                     0L, TimeUnit.MILLISECONDS,
-                                    new LinkedBlockingQueue<Runnable>(),
+                    (BlockingQueue<Runnable>) new LinkedBlockingQueue<Runnable>(),
                                     threadFactory));
     }
 
@@ -187,7 +183,7 @@ public class Executors {
     public static ExecutorService newCachedThreadPool() {
         return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                                       60L, TimeUnit.SECONDS,
-                                      new SynchronousQueue<Runnable>());
+                (BlockingQueue<Runnable>) new SynchronousQueue<Runnable>());
     }
 
     /**
@@ -199,7 +195,7 @@ public class Executors {
     public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
         return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                                       60L, TimeUnit.SECONDS,
-                                      new SynchronousQueue<Runnable>(),
+                (BlockingQueue<Runnable>) new SynchronousQueue<Runnable>(),
                                       threadFactory);
     }
 

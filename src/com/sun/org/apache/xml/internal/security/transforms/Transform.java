@@ -24,7 +24,7 @@ package com.sun.org.apache.xml.internal.security.transforms;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 

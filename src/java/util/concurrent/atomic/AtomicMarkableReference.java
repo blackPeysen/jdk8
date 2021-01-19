@@ -36,12 +36,10 @@
 package java.util.concurrent.atomic;
 
 /**
- * An {@code AtomicMarkableReference} maintains an object reference
- * along with a mark bit, that can be updated atomically.
+ * 原子更新带有标记位的引用类型。
+ * {@code AtomicMarkableReference}维护一个对象引用和一个标记位，该标记位可以自动更新。
  *
- * <p>Implementation note: This implementation maintains markable
- * references by creating internal objects representing "boxed"
- * [reference, boolean] pairs.
+ * <p>注意:这个实现通过创建表示“框”[引用，布尔]对的内部对象来维护显著引用。
  *
  * @since 1.5
  * @author Doug Lea

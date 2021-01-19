@@ -35,8 +35,8 @@ import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.function.Function;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 
 import jdk.internal.org.objectweb.asm.FieldVisitor;
 import sun.invoke.util.ValueConversions;

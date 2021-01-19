@@ -25,6 +25,7 @@
 
 package java.util;
 
+import java.util.concurrent.collection.ConcurrentMap;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -923,7 +924,7 @@ public interface Map<K,V> {
      * or atomicity properties of this method. Any implementation providing
      * atomicity guarantees must override this method and document its
      * concurrency properties. In particular, all implementations of
-     * subinterface {@link java.util.concurrent.ConcurrentMap} must document
+     * subinterface {@link ConcurrentMap} must document
      * whether the function is applied once atomically only if the value is not
      * present.
      *
@@ -985,7 +986,7 @@ public interface Map<K,V> {
      * or atomicity properties of this method. Any implementation providing
      * atomicity guarantees must override this method and document its
      * concurrency properties. In particular, all implementations of
-     * subinterface {@link java.util.concurrent.ConcurrentMap} must document
+     * subinterface {@link ConcurrentMap} must document
      * whether the function is applied once atomically only if the value is not
      * present.
      *
@@ -1061,7 +1062,7 @@ public interface Map<K,V> {
      * or atomicity properties of this method. Any implementation providing
      * atomicity guarantees must override this method and document its
      * concurrency properties. In particular, all implementations of
-     * subinterface {@link java.util.concurrent.ConcurrentMap} must document
+     * subinterface {@link ConcurrentMap} must document
      * whether the function is applied once atomically only if the value is not
      * present.
      *
@@ -1138,7 +1139,7 @@ public interface Map<K,V> {
      * or atomicity properties of this method. Any implementation providing
      * atomicity guarantees must override this method and document its
      * concurrency properties. In particular, all implementations of
-     * subinterface {@link java.util.concurrent.ConcurrentMap} must document
+     * subinterface {@link ConcurrentMap} must document
      * whether the function is applied once atomically only if the value is not
      * present.
      *

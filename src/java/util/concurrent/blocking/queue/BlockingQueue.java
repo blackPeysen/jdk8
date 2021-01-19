@@ -33,10 +33,11 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.queue;
 
 import java.util.Collection;
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 一个{@link java.util.Queue}，它另外支持以下操作：
@@ -172,7 +173,6 @@ public interface BlockingQueue<E> extends Queue<E> {
      *      使用容量受限的队列时，通常最好使用{@link #offer（Object）offer}。
      *
      * 与offer()相比：当队列满了，add()插入会报错，而offer()只会返回false
-     *
      *
      * @param e 要添加的元素
      * @return {@code true} (as specified by {@link Collection#add})

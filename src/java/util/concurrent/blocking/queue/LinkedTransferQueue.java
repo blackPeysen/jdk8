@@ -33,13 +33,14 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.queue;
 
 import java.util.AbstractQueue;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Queue;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 import java.util.Spliterator;
@@ -1176,7 +1177,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
      * return {@code false}.
      *
      * @return {@code true} (as specified by
-     *  {@link java.util.concurrent.BlockingQueue#offer(Object,long,TimeUnit)
+     *  {@link java.util.concurrent.blocking.queue.BlockingQueue#offer(Object,long, TimeUnit)
      *  BlockingQueue.offer})
      * @throws NullPointerException if the specified element is null
      */
@@ -1414,7 +1415,7 @@ public class LinkedTransferQueue<E> extends AbstractQueue<E>
      * {@code LinkedTransferQueue} is not capacity constrained.
      *
      * @return {@code Integer.MAX_VALUE} (as specified by
-     *         {@link java.util.concurrent.BlockingQueue#remainingCapacity()
+     *         {@link BlockingQueue#remainingCapacity()
      *         BlockingQueue.remainingCapacity})
      */
     public int remainingCapacity() {

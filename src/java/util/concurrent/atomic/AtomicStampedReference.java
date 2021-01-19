@@ -43,7 +43,7 @@ package java.util.concurrent.atomic;
  *
  * @since 1.5
  * @author Doug Lea
- * @param <V> The type of object referred to by this reference
+ * @param <V> 此引用引用的对象类型
  */
 public class AtomicStampedReference<V> {
 

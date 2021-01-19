@@ -34,10 +34,8 @@
  */
 
 /**
- * Interfaces and classes providing a framework for locking and waiting
- * for conditions that is distinct from built-in synchronization and
- * monitors.  The framework permits much greater flexibility in the use of
- * locks and conditions, at the expense of more awkward syntax.
+ * 接口和类为锁定和等待条件提供了一个框架，这与内置同步和监视器不同。
+ * 该框架在使用锁和条件方面提供了更大的灵活性，但代价是语法更加笨拙。
  *
  * <p>The {@link java.util.concurrent.locks.Lock} interface supports
  * locking disciplines that differ in semantics (reentrant, fair, etc),

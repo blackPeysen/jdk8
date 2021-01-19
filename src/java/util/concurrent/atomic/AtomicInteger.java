@@ -39,6 +39,7 @@ import java.util.function.IntBinaryOperator;
 import sun.misc.Unsafe;
 
 /**
+ * 原子性更新int值
  * 可以自动更新的{@code int}值。
  * 参见{@link java.util.concurrent.atomic}包规范描述原子变量的属性。
  * {@code AtomicInteger}用于原子递增的计数器等应用程序，不能用作{@link java.lang.Integer}的替代。
@@ -201,10 +202,8 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the previous value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 用应用给定函数的结果自动更新当前值，返回前一个值。
+     * 这个函数应该是没有副作用的，因为当尝试的更新由于线程间的争用而失败时，它可能会被重新应用。
      *
      * @param updateFunction a side-effect-free function
      * @return the previous value
@@ -220,10 +219,8 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the updated value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 使用应用给定函数的结果自动更新当前值，并返回更新后的值。
+     * 这个函数应该是没有副作用的，因为当尝试的更新由于线程间的争用而失败时，它可能会被重新应用。
      *
      * @param updateFunction a side-effect-free function
      * @return the updated value

@@ -33,29 +33,23 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.queue;
+
+import java.util.concurrent.TimeUnit;
+
 
 /**
- * A {@link BlockingQueue} in which producers may wait for consumers
- * to receive elements.  A {@code TransferQueue} may be useful for
- * example in message passing applications in which producers
- * sometimes (using method {@link #transfer}) await receipt of
- * elements by consumers invoking {@code take} or {@code poll}, while
- * at other times enqueue elements (via method {@code put}) without
- * waiting for receipt.
- * {@linkplain #tryTransfer(Object) Non-blocking} and
- * {@linkplain #tryTransfer(Object,long,TimeUnit) time-out} versions of
- * {@code tryTransfer} are also available.
- * A {@code TransferQueue} may also be queried, via {@link
- * #hasWaitingConsumer}, whether there are any threads waiting for
- * items, which is a converse analogy to a {@code peek} operation.
+ * 一个{@link java.util.concurrent.blocking.queue.BlockingQueue} 在这种情况下，生产者可以等待消费者接收元素。
+ * {@code TransferQueue}可能在消息传递应用程序中很有用，在这些应用程序中，生产者有时(使用方法{@link #transfer})等待调用{@code take}或{@code poll}的消费者接收元素，
+ * 而在其他时候(通过方法{@code put})不等待接收元素进入队列。
+ * {@code tryTransfer}的{@linkplain #tryTransfer(Object) Non-blocking}
+ * 和{@linkplain #tryTransfer(Object,long, TimeUnit) time-out}版本也可用。
+ * {@code TransferQueue}也可以通过{@link #hasWaitingConsumer}来查询是否有线程在等待项，这与{@code peek}操作相反。
  *
- * <p>Like other blocking queues, a {@code TransferQueue} may be
- * capacity bounded.  If so, an attempted transfer operation may
- * initially block waiting for available space, and/or subsequently
- * block waiting for reception by a consumer.  Note that in a queue
- * with zero capacity, such as {@link SynchronousQueue}, {@code put}
- * and {@code transfer} are effectively synonymous.
+ *
+ * <p>像其他阻塞队列一样，{@code TransferQueue}可能是容量有限的。
+ * 如果是这样，尝试的传输操作可能首先阻塞等待可用空间，然后阻塞等待消费者接收。
+ * 注意，在一个容量为零的队列中，例如{@link SynchronousQueue}， {@code put}和{@code transfer}实际上是同义的。
  *
  * <p>This interface is a member of the
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
@@ -63,25 +57,21 @@ package java.util.concurrent;
  *
  * @since 1.7
  * @author Doug Lea
- * @param <E> the type of elements held in this collection
+ * @param <E> 此集合中保存的元素的类型
  */
 public interface TransferQueue<E> extends BlockingQueue<E> {
     /**
-     * Transfers the element to a waiting consumer immediately, if possible.
+     * 如果可能的话，将元素立即转移给等待的消费者。
      *
-     * <p>More precisely, transfers the specified element immediately
-     * if there exists a consumer already waiting to receive it (in
-     * {@link #take} or timed {@link #poll(long,TimeUnit) poll}),
-     * otherwise returning {@code false} without enqueuing the element.
+     * <p>更准确地说，如果存在一个消费者正在等待接收指定的元素，
+     * 则立即传输指定的元素(在{@link #take}或timed {@link #poll(long,TimeUnit) poll}中)，
+     * 否则返回{@code false}而不将元素排队。
      *
-     * @param e the element to transfer
-     * @return {@code true} if the element was transferred, else
-     *         {@code false}
-     * @throws ClassCastException if the class of the specified element
-     *         prevents it from being added to this queue
-     * @throws NullPointerException if the specified element is null
-     * @throws IllegalArgumentException if some property of the specified
-     *         element prevents it from being added to this queue
+     * @param e 要转移的元素
+     * @return {@code true} 如果元素被转移，否则{@code false}
+     * @throws ClassCastException 如果指定元素的类阻止将其添加到此队列中
+     * @throws NullPointerException 如果指定的元素为空
+     * @throws IllegalArgumentException 如果指定元素的某些属性阻止它被添加到此队列
      */
     boolean tryTransfer(E e);
 

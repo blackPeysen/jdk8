@@ -50,7 +50,7 @@ import java.io.Serializable;
  * 例如，要添加一个计数到{@code ConcurrentHashMap<String,LongAdder> freqs}，初始化如果还没有出现，
  * 你可以使用{@code * freqs. computeifabsent (k -> new LongAdder()).increment();};
  *
- * <p>这个类扩展了{@link Number}，但是<em>不是</em>定义了{@code =}、{@code hashCode}和{@code * compareTo}等方法吗?
+ * <p>这个类扩展了{@link Number}，但是不是定义了{@code =}、{@code hashCode}和{@code compareTo}等方法吗?
  *
  * @since 1.8
  * @author Doug Lea

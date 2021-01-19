@@ -35,16 +35,16 @@
 
 package java.util.concurrent;
 
+import java.util.concurrent.blocking.queue.BlockingQueue;
+
 /**
  * {@code TimeUnit}表示给定的粒度单位上的时间持续时间，并提供实用程序方法来跨单位转换，
  * 以及在这些单位中执行定时和延迟操作。
  * {@code TimeUnit}不维护时间信息，但仅帮助组织和使用可能在不同上下文中分别维护的时间表示形式。
  * 纳秒被定义为千分之一微秒，千分之一微秒，千分之一毫秒，一分一秒是六十秒，一小时是六十分钟，一天是二十四小时。
  *
- * <p>A {@code TimeUnit} is mainly used to inform time-based methods
- * how a given timing parameter should be interpreted. For example,
- * the following code will timeout in 50 milliseconds if the {@link
- * java.util.concurrent.locks.Lock lock} is not available:
+ * <p>{@code TimeUnit}主要用于通知基于时间的方法如何解释给定的计时参数。
+ * 例如，下面的代码将在50毫秒内超时，如果{@link java.util.concurrent.locks.Lock Lock}不可用:
  *
  *  <pre> {@code
  * Lock lock = ...;
@@ -55,9 +55,7 @@ package java.util.concurrent;
  * Lock lock = ...;
  * if (lock.tryLock(50L, TimeUnit.SECONDS)) ...}</pre>
  *
- * Note however, that there is no guarantee that a particular timeout
- * implementation will be able to notice the passage of time at the
- * same granularity as the given {@code TimeUnit}.
+ * 但是请注意，不能保证特定的超时实现能够以与给定的{@code TimeUnit}相同的粒度注意到时间的流逝。
  *
  * @since 1.5
  * @author Doug Lea

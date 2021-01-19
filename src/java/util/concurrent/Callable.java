@@ -46,15 +46,15 @@ package java.util.concurrent;
  * @see Executor
  * @since 1.5
  * @author Doug Lea
- * @param <V> the result type of method {@code call}
+ * @param <V> 方法{@code call}的结果类型
  */
 @FunctionalInterface
 public interface Callable<V> {
     /**
-     * Computes a result, or throws an exception if unable to do so.
+     * 计算结果，如果无法这样做，则抛出异常。
      *
-     * @return computed result
-     * @throws Exception if unable to compute a result
+     * @return 计算结果
+     * @throws Exception 如果无法计算结果
      */
     V call() throws Exception;
 }

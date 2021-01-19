@@ -30,6 +30,9 @@ package com.sun.org.apache.xerces.internal.dom;
     Move it when we have a chance to do so. Sorry; we were
     rushed.
 */
+
+import java.util.concurrent.collection.ConcurrentHashMap;
+
 /**
  * @xerces.internal
  *
@@ -37,7 +40,7 @@ package com.sun.org.apache.xerces.internal.dom;
 
 class LCount
 {
-    static final java.util.Map<String, LCount> lCounts=new java.util.concurrent.ConcurrentHashMap<>();
+    static final java.util.Map<String, LCount> lCounts=new ConcurrentHashMap<>();
     public int captures=0,bubbles=0,defaults, total=0;
 
     static LCount lookup(String evtName)

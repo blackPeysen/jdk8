@@ -27,7 +27,7 @@ package java.security;
 
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 import java.io.*;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -37,7 +37,6 @@ import java.nio.ByteBuffer;
 import java.security.Provider.Service;
 
 import javax.crypto.Cipher;
-import javax.crypto.CipherSpi;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.NoSuchPaddingException;

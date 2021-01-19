@@ -34,7 +34,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.collection.CopyOnWriteArrayList;
 import java.util.function.Supplier;
 import sun.reflect.CallerSensitive;
 import sun.reflect.Reflection;

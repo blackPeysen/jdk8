@@ -37,25 +37,17 @@ package java.util.concurrent.atomic;
 import java.io.Serializable;
 
 /**
- * One or more variables that together maintain an initially zero
- * {@code double} sum.  When updates (method {@link #add}) are
- * contended across threads, the set of variables may grow dynamically
- * to reduce contention.  Method {@link #sum} (or, equivalently {@link
- * #doubleValue}) returns the current total combined across the
- * variables maintaining the sum. The order of accumulation within or
- * across threads is not guaranteed. Thus, this class may not be
- * applicable if numerical stability is required, especially when
- * combining values of substantially different orders of magnitude.
+ * 一个或多个变量一起维持初始的{@code double}和。
+ * 当更新(方法{@link #add})在线程间被争用时，变量集可以动态增长以减少争用。
+ * 方法{@link #sum}(或者等效的{@link #doubleValue})返回维护该sum的变量的当前总和。
+ * 不能保证线程内或线程间的累积顺序。
+ * 因此，如果需要数值稳定性，这类可能不适用，特别是当组合的值有很大的不同数量级时。
  *
- * <p>This class is usually preferable to alternatives when multiple
- * threads update a common value that is used for purposes such as
- * summary statistics that are frequently updated but less frequently
- * read.
+ * <p>当多个线程更新用于某些目的(如经常更新但读取次数较少的摘要统计信息)的通用值时，这个类通常比其他选项更可取。
  *
- * <p>This class extends {@link Number}, but does <em>not</em> define
- * methods such as {@code equals}, {@code hashCode} and {@code
- * compareTo} because instances are expected to be mutated, and so are
- * not useful as collection keys.
+ * <p>这个类扩展了{@link Number}，
+ * 而不是定义了{@code equals}、{@code hashCode}和{@code compareTo}这样的方法，
+ * 因为实例需要被改变，所以作为集合键没有用处。
  *
  * @since 1.8
  * @author Doug Lea
@@ -75,7 +67,7 @@ public class DoubleAdder extends Striped64 implements Serializable {
      */
 
     /**
-     * Creates a new adder with initial sum of zero.
+     * 创建一个初始和为零的新加法器。
      */
     public DoubleAdder() {
     }

@@ -27,7 +27,7 @@ package java.security;
 
 import java.lang.reflect.*;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 import java.io.*;
 import java.net.URL;
 import sun.security.util.Debug;

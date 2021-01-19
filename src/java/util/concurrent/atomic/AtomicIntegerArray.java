@@ -39,10 +39,10 @@ import java.util.function.IntBinaryOperator;
 import sun.misc.Unsafe;
 
 /**
- * An {@code int} array in which elements may be updated atomically.
- * See the {@link java.util.concurrent.atomic} package
- * specification for description of the properties of atomic
- * variables.
+ * 原子性更新int数组
+ * 一个{@code int}数组，其中的元素可以自动更新。
+ * 请参阅{@link java.util.concurrent。描述原子变量属性的包规范。
+ *
  * @since 1.5
  * @author Doug Lea
  */

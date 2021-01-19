@@ -33,12 +33,13 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.blocking.deque;
 
 import java.util.AbstractQueue;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.Spliterator;
@@ -46,7 +47,7 @@ import java.util.Spliterators;
 import java.util.function.Consumer;
 
 /**
- * 基于链接节点的可选绑定的{@linkplain BlockingDeque 阻塞双端队列}。
+ * 基于链接节点的可选绑定的{@linkplain java.util.concurrent.blocking.deque.BlockingDeque 阻塞双端队列}。
  *
  * <p>The optional capacity bound constructor argument serves as a
  * way to prevent excessive expansion. The capacity, if unspecified,

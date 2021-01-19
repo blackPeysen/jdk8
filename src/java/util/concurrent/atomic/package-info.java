@@ -39,30 +39,22 @@
  *
  *  <pre> {@code boolean compareAndSet(expectedValue, updateValue);}</pre>
  *
- * <p>This method (which varies in argument types across different
- * classes) atomically sets a variable to the {@code updateValue} if it
- * currently holds the {@code expectedValue}, reporting {@code true} on
- * success.  The classes in this package also contain methods to get and
- * unconditionally set values, as well as a weaker conditional atomic
- * update operation {@code weakCompareAndSet} described below.
+ * <p>这个方法(在不同的类中不同的参数类型)如果当前持有{@code expectedValue}，则自动地将变量设置为{@code updateValue}，成功时报告{@code true}。
+ * 这个包中的类还包含获取和无条件设置值的方法，以及下面描述的较弱条件原子更新操作{@code weakCompareAndSet}。
  *
- * <p>The specifications of these methods enable implementations to
- * employ efficient machine-level atomic instructions that are available
- * on contemporary processors.  However on some platforms, support may
- * entail some form of internal locking.  Thus the methods are not
- * strictly guaranteed to be non-blocking --
- * a thread may block transiently before performing the operation.
+ * <p>这些方法的规范使实现能够使用在当代处理器上可用的高效的机器级原子指令。
+ * 然而，在某些平台上，支持可能需要某种形式的内部锁定。
+ * 因此，不能严格保证这些方法是非阻塞的——线程在执行操作之前可能会暂时阻塞。
  *
  * <p>Instances of classes
  * {@link java.util.concurrent.atomic.AtomicBoolean},
  * {@link java.util.concurrent.atomic.AtomicInteger},
  * {@link java.util.concurrent.atomic.AtomicLong}, and
  * {@link java.util.concurrent.atomic.AtomicReference}
- * each provide access and updates to a single variable of the
- * corresponding type.  Each class also provides appropriate utility
- * methods for that type.  For example, classes {@code AtomicLong} and
- * {@code AtomicInteger} provide atomic increment methods.  One
- * application is to generate sequence numbers, as in:
+ * 每一个都提供对对应类型的单个变量的访问和更新。
+ * 每个类还为该类型提供适当的实用程序方法。
+ * 例如，类{@code AtomicLong}和{@code AtomicInteger}提供了原子递增方法。
+ * 一个应用程序是生成序列号，例如:
  *
  *  <pre> {@code
  * class Sequencer {
@@ -73,21 +65,7 @@
  *   }
  * }}</pre>
  *
- * <p>It is straightforward to define new utility functions that, like
- * {@code getAndIncrement}, apply a function to a value atomically.
- * For example, given some transformation
- * <pre> {@code long transform(long input)}</pre>
- *
- * write your utility method as follows:
- *  <pre> {@code
- * long getAndTransform(AtomicLong var) {
- *   long prev, next;
- *   do {
- *     prev = var.get();
- *     next = transform(prev);
- *   } while (!var.compareAndSet(prev, next));
- *   return prev; // return next; for transformAndGet
- * }}</pre>
+ * <p>定义新的实用函数很简单，像{@code getAndIncrement}这样的实用函数可以自动地将函数应用到一个值上。
  *
  * <p>The memory effects for accesses and updates of atomics generally
  * follow the rules for volatiles, as stated in
@@ -129,24 +107,17 @@
  *
  * {@link java.util.concurrent.atomic.AtomicReferenceFieldUpdater},
  * {@link java.util.concurrent.atomic.AtomicIntegerFieldUpdater}, and
- * {@link java.util.concurrent.atomic.AtomicLongFieldUpdater} are
- * reflection-based utilities that provide access to the associated
- * field types.  These are mainly of use in atomic data structures in
- * which several {@code volatile} fields of the same node (for
- * example, the links of a tree node) are independently subject to
- * atomic updates.  These classes enable greater flexibility in how
- * and when to use atomic updates, at the expense of more awkward
- * reflection-based setup, less convenient usage, and weaker
- * guarantees.
+ * {@link java.util.concurrent.atomic.AtomicLongFieldUpdater}
+ * 是基于反射的实用程序，提供对相关字段类型的访问。
+ * 它们主要用于原子数据结构中，在原子数据结构中，同一节点的几个{@code volatile}字段(例如，树节点的链接)独立地接受原子更新。
+ * 这些类在如何以及何时使用原子更新方面提供了更大的灵活性，但代价是更笨拙的基于反射的设置、更不方便的使用和更弱的保证。
  *
  * <p>The
  * {@link java.util.concurrent.atomic.AtomicIntegerArray},
  * {@link java.util.concurrent.atomic.AtomicLongArray}, and
- * {@link java.util.concurrent.atomic.AtomicReferenceArray} classes
- * further extend atomic operation support to arrays of these types.
- * These classes are also notable in providing {@code volatile} access
- * semantics for their array elements, which is not supported for
- * ordinary arrays.
+ * {@link java.util.concurrent.atomic.AtomicReferenceArray} 类
+ * 进一步将原子操作支持扩展到这些类型的数组。这
+ * 些类还为它们的数组元素提供了{@code volatile}访问语义，这在普通数组中是不受支持的。
  *
  * <p id="weakCompareAndSet">The atomic classes also support method
  * {@code weakCompareAndSet}, which has limited applicability.  On some

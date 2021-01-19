@@ -101,8 +101,7 @@ package java.util.concurrent;
  * {@link Executors}类为这些执行器提供了方便的工厂方法。
  *
  * <p>内存一致性效果:在一个线程中，
- * 在提交一个{@code Runnable}对象给{@code Executor}<a href="package-summary "之前的操作>
- *     <i>发生在</i></a>之前，它的执行可能在另一个线程中开始。
+ * 在提交一个{@code Runnable}对象给{@code Executor}之前的操作发生在之前，它的执行可能在另一个线程中开始。
  *
  * @since 1.5
  * @author Doug Lea

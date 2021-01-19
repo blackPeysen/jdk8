@@ -33,18 +33,19 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.collection;
 import java.util.Collection;
 import java.util.Set;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.Spliterators;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 import java.util.function.Consumer;
 
 /**
- * A {@link java.util.Set} that uses an internal {@link CopyOnWriteArrayList}
+ * A {@link java.util.Set} that uses an internal {@link java.util.concurrent.CopyOnWriteArrayList}
  * for all of its operations.  Thus, it shares the same basic properties:
  * <ul>
  *  <li>It is best suited for applications in which set sizes generally
@@ -88,7 +89,7 @@ import java.util.function.Consumer;
  * <a href="{@docRoot}/../technotes/guides/collections/index.html">
  * Java Collections Framework</a>.
  *
- * @see CopyOnWriteArrayList
+ * @see java.util.concurrent.CopyOnWriteArrayList
  * @since 1.5
  * @author Doug Lea
  * @param <E> the type of elements held in this collection
@@ -97,13 +98,13 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E>
         implements java.io.Serializable {
     private static final long serialVersionUID = 5457747651344034263L;
 
-    private final CopyOnWriteArrayList<E> al;
+    private final java.util.concurrent.collection.CopyOnWriteArrayList<E> al;
 
     /**
      * Creates an empty set.
      */
     public CopyOnWriteArraySet() {
-        al = new CopyOnWriteArrayList<E>();
+        al = new java.util.concurrent.collection.CopyOnWriteArrayList<E>();
     }
 
     /**
@@ -117,10 +118,10 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E>
         if (c.getClass() == CopyOnWriteArraySet.class) {
             @SuppressWarnings("unchecked") CopyOnWriteArraySet<E> cc =
                 (CopyOnWriteArraySet<E>)c;
-            al = new CopyOnWriteArrayList<E>(cc.al);
+            al = new java.util.concurrent.collection.CopyOnWriteArrayList<E>(cc.al);
         }
         else {
-            al = new CopyOnWriteArrayList<E>();
+            al = new java.util.concurrent.collection.CopyOnWriteArrayList<E>();
             al.addAllAbsent(c);
         }
     }

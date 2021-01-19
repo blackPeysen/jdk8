@@ -33,11 +33,11 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.collection;
 import java.util.*;
 
 /**
- * A {@link ConcurrentMap} supporting {@link NavigableMap} operations,
+ * A {@link java.util.concurrent.collection.ConcurrentMap} supporting {@link NavigableMap} operations,
  * and recursively so for its navigable sub-maps.
  *
  * <p>This interface is a member of the

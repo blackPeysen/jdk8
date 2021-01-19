@@ -36,6 +36,7 @@
 package java.util.concurrent;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.blocking.queue.BlockingQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.*;
@@ -356,7 +357,7 @@ public class ScheduledThreadPoolExecutor
      * due to shutdown policy.  Invoked within super.shutdown.
      */
     @Override void onShutdown() {
-        BlockingQueue<Runnable> q = super.getQueue();
+        java.util.concurrent.blocking.queue.BlockingQueue<Runnable> q = super.getQueue();
         boolean keepDelayed =
             getExecuteExistingDelayedTasksAfterShutdownPolicy();
         boolean keepPeriodic =
@@ -797,7 +798,7 @@ public class ScheduledThreadPoolExecutor
      *
      * @return the task queue
      */
-    public BlockingQueue<Runnable> getQueue() {
+    public java.util.concurrent.blocking.queue.BlockingQueue<Runnable> getQueue() {
         return super.getQueue();
     }
 

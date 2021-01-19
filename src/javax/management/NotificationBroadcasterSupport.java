@@ -28,7 +28,7 @@ package javax.management;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.collection.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
 
 import com.sun.jmx.remote.util.ClassLogger;

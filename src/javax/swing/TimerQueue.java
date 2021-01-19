@@ -29,8 +29,8 @@ package javax.swing;
 
 
 
-import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.blocking.queue.DelayQueue;
 import java.util.concurrent.locks.*;
 import java.util.concurrent.atomic.AtomicLong;
 import sun.awt.AppContext;
@@ -52,7 +52,7 @@ class TimerQueue implements Runnable
     private static final Object expiredTimersKey =
         new StringBuffer("TimerQueue.expiredTimersKey");
 
-    private final DelayQueue<DelayedTimer> queue;
+    private final java.util.concurrent.blocking.queue.DelayQueue<DelayedTimer> queue;
     private volatile boolean running;
     private final Lock runningLock;
 

@@ -40,9 +40,9 @@ import java.util.*;
  * 提供{@link ExecutorService} 执行方法的默认实现。
  * 这个类使用{@code newTaskFor}返回的{@link RunnableFuture}实现
  * {@code submit}、 {@code invokeAny}和{@code invokeAll}方法，
- * {@code newTaskFor}在这个包中提供的{@link FutureTask}类的默认值是。
- * 例如，{@code submit(Runnable)}的实现创建了一个关联的{@code RunnableFuture}，
- * 该{@code RunnableFuture}被执行并返回。
+ * {@code newTaskFor}在这个包中提供的{@link FutureTask}类的默认值。
+ *
+ * 例如，{@code submit(Runnable)}的实现创建了一个关联的{@code RunnableFuture}，该{@code RunnableFuture}被执行并返回。
  * 子类可以覆盖{@code newTaskFor}方法来返回{@code RunnableFuture}实现，而不是{@code FutureTask}。
  *
  * @since 1.5
@@ -53,13 +53,11 @@ public abstract class AbstractExecutorService implements ExecutorService {
     /**
      * 为给定的runnable和默认值返回{@code RunnableFuture}。
      *
-     * @param runnable the runnable task being wrapped
-     * @param value the default value for the returned future
-     * @param <T> the type of the given value
-     * @return a {@code RunnableFuture} which, when run, will run the
-     * underlying runnable and which, as a {@code Future}, will yield
-     * the given value as its result and provide for cancellation of
-     * the underlying task
+     * @param runnable 正在包装的可运行任务
+     * @param value 返回的future的默认值
+     * @param <T> 给定值的类型
+     * @return {@code RunnableFuture}，它在运行时将运行底层的runnable，作为{@code Future}，
+     *          它将产生给定的值作为其结果，并提供取消底层任务
      * @since 1.6
      */
     protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
@@ -67,14 +65,12 @@ public abstract class AbstractExecutorService implements ExecutorService {
     }
 
     /**
-     * Returns a {@code RunnableFuture} for the given callable task.
+     * 为给定的可调用任务返回{@code RunnableFuture}。
      *
-     * @param callable the callable task being wrapped
-     * @param <T> the type of the callable's result
-     * @return a {@code RunnableFuture} which, when run, will call the
-     * underlying callable and which, as a {@code Future}, will yield
-     * the callable's result as its result and provide for
-     * cancellation of the underlying task
+     * @param callable 被包装的可调用任务
+     * @param <T> 可调用对象的结果类型
+     * @return {@code RunnableFuture}，当运行时，将调用底层可调用对象，作为{@code Future}，
+     *          将产生可调用对象的结果作为其结果，并提供底层任务的取消
      * @since 1.6
      */
     protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable) {

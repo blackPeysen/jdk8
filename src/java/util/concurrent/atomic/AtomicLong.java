@@ -39,14 +39,11 @@ import java.util.function.LongBinaryOperator;
 import sun.misc.Unsafe;
 
 /**
- * A {@code long} value that may be updated atomically.  See the
- * {@link java.util.concurrent.atomic} package specification for
- * description of the properties of atomic variables. An
- * {@code AtomicLong} is used in applications such as atomically
- * incremented sequence numbers, and cannot be used as a replacement
- * for a {@link java.lang.Long}. However, this class does extend
- * {@code Number} to allow uniform access by tools and utilities that
- * deal with numerically-based classes.
+ * 原子性更新long值
+ * 一个可以自动更新的{@code long}值。
+ * 请参阅{@link java.util.concurrent。描述原子变量属性的包规范。
+ * {@code AtomicLong}在应用程序中使用，比如原子递增的序列号，不能用来替换{@link java.lang.Long}。
+ * 然而，这个类确实扩展了{@code Number}，允许处理基于数字的类的工具和实用程序进行统一访问。
  *
  * @since 1.5
  * @author Doug Lea

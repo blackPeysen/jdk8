@@ -101,34 +101,34 @@
  *
  * <h2>Queues</h2>
  *
- * The {@link java.util.concurrent.ConcurrentLinkedQueue} class
+ * The {@link java.util.concurrent.blocking.queue.ConcurrentLinkedQueue} class
  * supplies an efficient scalable thread-safe non-blocking FIFO queue.
- * The {@link java.util.concurrent.ConcurrentLinkedDeque} class is
+ * The {@link java.util.concurrent.blocking.deque.ConcurrentLinkedDeque} class is
  * similar, but additionally supports the {@link java.util.Deque}
  * interface.
  *
  * <p>Five implementations in {@code java.util.concurrent} support
- * the extended {@link java.util.concurrent.BlockingQueue}
+ * the extended {@link java.util.concurrent.blocking.queue.BlockingQueue}
  * interface, that defines blocking versions of put and take:
- * {@link java.util.concurrent.LinkedBlockingQueue},
- * {@link java.util.concurrent.ArrayBlockingQueue},
- * {@link java.util.concurrent.SynchronousQueue},
- * {@link java.util.concurrent.PriorityBlockingQueue}, and
- * {@link java.util.concurrent.DelayQueue}.
+ * {@link java.util.concurrent.blocking.queue.LinkedBlockingQueue},
+ * {@link java.util.concurrent.blocking.queue.ArrayBlockingQueue},
+ * {@link java.util.concurrent.blocking.queue.SynchronousQueue},
+ * {@link java.util.concurrent.blocking.queue.PriorityBlockingQueue}, and
+ * {@link java.util.concurrent.blocking.queue.DelayQueue}.
  * The different classes cover the most common usage contexts
  * for producer-consumer, messaging, parallel tasking, and
  * related concurrent designs.
  *
- * <p>Extended interface {@link java.util.concurrent.TransferQueue},
- * and implementation {@link java.util.concurrent.LinkedTransferQueue}
+ * <p>Extended interface {@link java.util.concurrent.blocking.queue.TransferQueue},
+ * and implementation {@link java.util.concurrent.blocking.queue.LinkedTransferQueue}
  * introduce a synchronous {@code transfer} method (along with related
  * features) in which a producer may optionally block awaiting its
  * consumer.
  *
- * <p>The {@link java.util.concurrent.BlockingDeque} interface
+ * <p>The {@link java.util.concurrent.blocking.deque.BlockingDeque} interface
  * extends {@code BlockingQueue} to support both FIFO and LIFO
  * (stack-based) operations.
- * Class {@link java.util.concurrent.LinkedBlockingDeque}
+ * Class {@link java.util.concurrent.blocking.deque.LinkedBlockingDeque}
  * provides an implementation.
  *
  * <h2>Timing</h2>
@@ -178,11 +178,11 @@
  *
  * Besides Queues, this package supplies Collection implementations
  * designed for use in multithreaded contexts:
- * {@link java.util.concurrent.ConcurrentHashMap},
- * {@link java.util.concurrent.ConcurrentSkipListMap},
- * {@link java.util.concurrent.ConcurrentSkipListSet},
- * {@link java.util.concurrent.CopyOnWriteArrayList}, and
- * {@link java.util.concurrent.CopyOnWriteArraySet}.
+ * {@link java.util.concurrent.collection.ConcurrentHashMap},
+ * {@link java.util.concurrent.collection.ConcurrentSkipListMap},
+ * {@link java.util.concurrent.collection.ConcurrentSkipListSet},
+ * {@link java.util.concurrent.collection.CopyOnWriteArrayList}, and
+ * {@link java.util.concurrent.collection.CopyOnWriteArraySet}.
  * When many threads are expected to access a given collection, a
  * {@code ConcurrentHashMap} is normally preferable to a synchronized
  * {@code HashMap}, and a {@code ConcurrentSkipListMap} is normally
@@ -196,7 +196,7 @@
  * "synchronized" classes.  For example {@code java.util.Hashtable} and
  * {@code Collections.synchronizedMap(new HashMap())} are
  * synchronized.  But {@link
- * java.util.concurrent.ConcurrentHashMap} is "concurrent".  A
+ * java.util.concurrent.collection.ConcurrentHashMap} is "concurrent".  A
  * concurrent collection is thread-safe, but not governed by a
  * single exclusion lock.  In the particular case of
  * ConcurrentHashMap, it safely permits any number of

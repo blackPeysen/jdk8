@@ -25,7 +25,7 @@
 
 package javax.management;
 
-import java.util.concurrent.CopyOnWriteArrayList;  // for Javadoc
+import java.util.concurrent.collection.CopyOnWriteArrayList;  // for Javadoc
 
 /**
  * <p>Interface implemented by an MBean that emits Notifications. It

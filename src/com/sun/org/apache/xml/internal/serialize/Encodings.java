@@ -26,7 +26,7 @@ import com.sun.org.apache.xerces.internal.util.EncodingMap;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 
 
 /**

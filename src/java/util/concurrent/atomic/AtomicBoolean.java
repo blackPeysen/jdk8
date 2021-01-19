@@ -37,6 +37,7 @@ package java.util.concurrent.atomic;
 import sun.misc.Unsafe;
 
 /**
+ * 原子性更新Boolean值
  * 一个可以自动更新的{@code boolean}值。
  * 参见{@link java.util.concurrent.atomic}包规范描述原子变量的属性。
  * {@code AtomicBoolean}用于原子更新标志等应用程序中，不能代替{@link java.lang.Boolean}。
@@ -84,10 +85,10 @@ public class AtomicBoolean implements java.io.Serializable {
     }
 
     /**
-     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值。
+     * 如果当前值{@code expect}是期望值，则自动将该值设置为给定的更新值。
      *
-     * @param expect the expected value
-     * @param update the new value
+     * @param expect 期望值
+     * @param update 新值
      * @return {@code true} 如果成功。False return表示实际值不等于期望值。
      */
     public final boolean compareAndSet(boolean expect, boolean update) {
@@ -97,7 +98,7 @@ public class AtomicBoolean implements java.io.Serializable {
     }
 
     /**
-     * 如果当前值{@code ==}是期望值，则自动将该值设置为给定的更新值
+     * 如果当前值{@code expect}是期望值，则自动将该值设置为给定的更新值
      *
      * <p><a href="package-summary.html#weakCompareAndSet">May fail
      * spuriously and does not provide ordering guarantees</a>, so is
@@ -149,7 +150,7 @@ public class AtomicBoolean implements java.io.Serializable {
 
     /**
      * 返回当前值的字符串表示形式
-     * @return the String representation of the current value
+     * @return 当前值的字符串表示形式
      */
     public String toString() {
         return Boolean.toString(get());

@@ -33,7 +33,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.collection;
 import java.io.Serializable;
 import java.util.AbstractCollection;
 import java.util.AbstractMap;
@@ -45,22 +45,20 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedMap;
-import java.util.SortedSet;
 import java.util.Spliterator;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentNavigableMap;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
- * A scalable concurrent {@link ConcurrentNavigableMap} implementation.
+ * A scalable concurrent {@link java.util.concurrent.ConcurrentNavigableMap} implementation.
  * The map is sorted according to the {@linkplain Comparable natural
  * ordering} of its keys, or by a {@link Comparator} provided at map
  * creation time, depending on which constructor is used.
@@ -114,7 +112,7 @@ import java.util.function.Function;
  * @since 1.6
  */
 public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
-    implements ConcurrentNavigableMap<K,V>, Cloneable, Serializable {
+    implements java.util.concurrent.ConcurrentNavigableMap<K,V>, Cloneable, Serializable {
     /*
      * This class implements a tree-like two-dimensionally linked skip
      * list in which the index levels are represented in separate
@@ -382,7 +380,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     /** Lazily initialized values collection */
     private transient Values<V> values;
     /** Lazily initialized descending key set */
-    private transient ConcurrentNavigableMap<K,V> descendingMap;
+    private transient java.util.concurrent.ConcurrentNavigableMap<K,V> descendingMap;
 
     /**
      * Initializes or resets state. Needed by constructors, clone,
@@ -1897,8 +1895,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
         return (es != null) ? es : (entrySet = new EntrySet<K,V>(this));
     }
 
-    public ConcurrentNavigableMap<K,V> descendingMap() {
-        ConcurrentNavigableMap<K,V> dm = descendingMap;
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> descendingMap() {
+        java.util.concurrent.ConcurrentNavigableMap<K,V> dm = descendingMap;
         return (dm != null) ? dm : (descendingMap = new SubMap<K,V>
                                     (this, null, false, null, false, true));
     }
@@ -2052,10 +2050,10 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code fromKey} or {@code toKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> subMap(K fromKey,
-                                              boolean fromInclusive,
-                                              K toKey,
-                                              boolean toInclusive) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K fromKey,
+                                                                   boolean fromInclusive,
+                                                                   K toKey,
+                                                                   boolean toInclusive) {
         if (fromKey == null || toKey == null)
             throw new NullPointerException();
         return new SubMap<K,V>
@@ -2067,8 +2065,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code toKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> headMap(K toKey,
-                                               boolean inclusive) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K toKey,
+                                                                    boolean inclusive) {
         if (toKey == null)
             throw new NullPointerException();
         return new SubMap<K,V>
@@ -2080,8 +2078,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code fromKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> tailMap(K fromKey,
-                                               boolean inclusive) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K fromKey,
+                                                                    boolean inclusive) {
         if (fromKey == null)
             throw new NullPointerException();
         return new SubMap<K,V>
@@ -2093,7 +2091,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code fromKey} or {@code toKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> subMap(K fromKey, K toKey) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> subMap(K fromKey, K toKey) {
         return subMap(fromKey, true, toKey, false);
     }
 
@@ -2102,7 +2100,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code toKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> headMap(K toKey) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> headMap(K toKey) {
         return headMap(toKey, false);
     }
 
@@ -2111,7 +2109,7 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
      * @throws NullPointerException if {@code fromKey} is null
      * @throws IllegalArgumentException {@inheritDoc}
      */
-    public ConcurrentNavigableMap<K,V> tailMap(K fromKey) {
+    public java.util.concurrent.ConcurrentNavigableMap<K,V> tailMap(K fromKey) {
         return tailMap(fromKey, true);
     }
 
@@ -2377,8 +2375,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
 
     static final class KeySet<E>
             extends AbstractSet<E> implements NavigableSet<E> {
-        final ConcurrentNavigableMap<E,?> m;
-        KeySet(ConcurrentNavigableMap<E,?> map) { m = map; }
+        final java.util.concurrent.ConcurrentNavigableMap<E,?> m;
+        KeySet(java.util.concurrent.ConcurrentNavigableMap<E,?> map) { m = map; }
         public int size() { return m.size(); }
         public boolean isEmpty() { return m.isEmpty(); }
         public boolean contains(Object o) { return m.containsKey(o); }
@@ -2460,8 +2458,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     }
 
     static final class Values<E> extends AbstractCollection<E> {
-        final ConcurrentNavigableMap<?, E> m;
-        Values(ConcurrentNavigableMap<?, E> map) {
+        final java.util.concurrent.ConcurrentNavigableMap<?, E> m;
+        Values(java.util.concurrent.ConcurrentNavigableMap<?, E> map) {
             m = map;
         }
         @SuppressWarnings("unchecked")
@@ -2495,8 +2493,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
     }
 
     static final class EntrySet<K1,V1> extends AbstractSet<Map.Entry<K1,V1>> {
-        final ConcurrentNavigableMap<K1, V1> m;
-        EntrySet(ConcurrentNavigableMap<K1, V1> map) {
+        final java.util.concurrent.ConcurrentNavigableMap<K1, V1> m;
+        EntrySet(java.util.concurrent.ConcurrentNavigableMap<K1, V1> map) {
             m = map;
         }
         @SuppressWarnings("unchecked")

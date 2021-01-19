@@ -32,7 +32,7 @@
  * All rights reserved.
  */
 
-package java.util.concurrent;
+package java.util.concurrent.collection;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.Collection;

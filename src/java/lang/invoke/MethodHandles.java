@@ -28,7 +28,6 @@ package java.lang.invoke;
 import java.lang.reflect.*;
 import java.util.BitSet;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import sun.invoke.util.ValueConversions;
@@ -39,12 +38,12 @@ import sun.reflect.Reflection;
 import sun.reflect.misc.ReflectUtil;
 import sun.security.util.SecurityConstants;
 import java.lang.invoke.LambdaForm.BasicType;
-import static java.lang.invoke.LambdaForm.BasicType.*;
+
 import static java.lang.invoke.MethodHandleStatics.*;
 import static java.lang.invoke.MethodHandleImpl.Intrinsic;
 import static java.lang.invoke.MethodHandleNatives.Constants.*;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.collection.ConcurrentHashMap;
 
 /**
  * This class consists exclusively of static methods that operate on or return

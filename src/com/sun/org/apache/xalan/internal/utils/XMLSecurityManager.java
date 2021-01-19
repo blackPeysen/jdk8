@@ -26,7 +26,7 @@
 package com.sun.org.apache.xalan.internal.utils;
 
 import com.sun.org.apache.xalan.internal.XalanConstants;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.collection.CopyOnWriteArrayList;
 import org.xml.sax.SAXException;
 
 

@@ -49,7 +49,7 @@ package java.util.concurrent;
  *   }
  * }}</pre>
  *
- * {@link exec# defaultThreadFactory}方法提供了一个更有用的简单实现，
+ * {@link #DefaultThreadFactory}方法提供了一个更有用的简单实现，
  *      它将创建的线程上下文设置为已知值，然后返回它。
  * @since 1.5
  * @author Doug Lea
@@ -57,7 +57,7 @@ package java.util.concurrent;
 public interface ThreadFactory {
 
     /**
-     *构造一个新的{@code线程}。
+     * 构造一个新的{@code Thread}。
      *  实现还可以初始化优先级、名称、守护进程状态、{@code ThreadGroup}等。
      *
      * @param r 一个可由新线程实例执行的runnable

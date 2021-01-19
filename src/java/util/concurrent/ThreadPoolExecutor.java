@@ -38,6 +38,10 @@ package java.util.concurrent;
 import java.security.AccessControlContext;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.concurrent.blocking.queue.ArrayBlockingQueue;
+import java.util.concurrent.blocking.queue.BlockingQueue;
+import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
+import java.util.concurrent.blocking.queue.SynchronousQueue;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -137,7 +141,7 @@ import java.util.*;
  *
  * <dt>Queuing</dt>
  *
- * <dd>Any {@link BlockingQueue} may be used to transfer and hold
+ * <dd>Any {@link java.util.concurrent.blocking.queue.BlockingQueue} may be used to transfer and hold
  * submitted tasks.  The use of this queue interacts with pool sizing:
  *
  * <ul>
@@ -419,7 +423,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 因此仅依靠isEmpty来查看队列是否为空（例如，在确定是否从*过渡时，我们必须*这样做）关闭并整理）。
      * 这可容纳特殊用途的队列，例如DelayQueues，允许poll（）返回null，即使延迟延迟到期后它可能随后返回non-null。
      */
-    private final BlockingQueue<Runnable> workQueue;
+    private final java.util.concurrent.blocking.queue.BlockingQueue<Runnable> workQueue;
 
     /**
      * 上锁工人进入工作场所并进行相关簿记。
@@ -767,7 +771,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 但是，如果队列是DelayQueue或其他类型的队列，而poll或drainTo可能无法删除某些元素，则会将它们逐个删除。
      */
     private List<Runnable> drainQueue() {
-        BlockingQueue<Runnable> q = workQueue;
+        java.util.concurrent.blocking.queue.BlockingQueue<Runnable> q = workQueue;
         ArrayList<Runnable> taskList = new ArrayList<Runnable>();
         q.drainTo(taskList);
         if (!q.isEmpty()) {
@@ -1078,7 +1082,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
                               int maximumPoolSize,
                               long keepAliveTime,
                               TimeUnit unit,
-                              BlockingQueue<Runnable> workQueue) {
+                              java.util.concurrent.blocking.queue.BlockingQueue<Runnable> workQueue) {
         this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
              Executors.defaultThreadFactory(), defaultHandler);
     }
@@ -1112,7 +1116,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
                               int maximumPoolSize,
                               long keepAliveTime,
                               TimeUnit unit,
-                              BlockingQueue<Runnable> workQueue,
+                              java.util.concurrent.blocking.queue.BlockingQueue<Runnable> workQueue,
                               ThreadFactory threadFactory) {
         this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
              threadFactory, defaultHandler);
@@ -1147,7 +1151,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
                               int maximumPoolSize,
                               long keepAliveTime,
                               TimeUnit unit,
-                              BlockingQueue<Runnable> workQueue,
+                              java.util.concurrent.blocking.queue.BlockingQueue<Runnable> workQueue,
                               RejectedExecutionHandler handler) {
         this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
              Executors.defaultThreadFactory(), handler);
@@ -1184,7 +1188,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
                               int maximumPoolSize,
                               long keepAliveTime,
                               TimeUnit unit,
-                              BlockingQueue<Runnable> workQueue,
+                              java.util.concurrent.blocking.queue.BlockingQueue<Runnable> workQueue,
                               ThreadFactory threadFactory,
                               RejectedExecutionHandler handler) {
         if (corePoolSize < 0 ||
@@ -1594,7 +1598,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      *
      * @return the task queue
      */
-    public BlockingQueue<Runnable> getQueue() {
+    public java.util.concurrent.blocking.queue.BlockingQueue<Runnable> getQueue() {
         return workQueue;
     }
 

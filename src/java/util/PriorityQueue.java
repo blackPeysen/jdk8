@@ -25,6 +25,7 @@
 
 package java.util;
 
+import java.util.concurrent.blocking.queue.PriorityBlockingQueue;
 import java.util.function.Consumer;
 
 /**
@@ -62,7 +63,7 @@ import java.util.function.Consumer;
  * Multiple threads should not access a {@code PriorityQueue}
  * instance concurrently if any of the threads modifies the queue.
  * Instead, use the thread-safe {@link
- * java.util.concurrent.PriorityBlockingQueue} class.
+ * PriorityBlockingQueue} class.
  *
  * <p>Implementation note: this implementation provides
  * O(log(n)) time for the enqueuing and dequeuing methods

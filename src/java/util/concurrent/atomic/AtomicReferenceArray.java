@@ -41,10 +41,10 @@ import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 /**
- * An array of object references in which elements may be updated
- * atomically.  See the {@link java.util.concurrent.atomic} package
- * specification for description of the properties of atomic
- * variables.
+ * 原子性更新对象引用数组
+ * 一个对象引用数组，其中的元素可以自动更新。
+ * 请参阅{@link java.util.concurrent}描述原子变量属性的包规范。
+ *
  * @since 1.5
  * @author Doug Lea
  * @param <E> The base class of elements held in this array
@@ -85,8 +85,7 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicReferenceArray of the given length, with all
-     * elements initially null.
+     * 创建一个给定长度的AtomicReferenceArray，所有元素初始化为null。
      *
      * @param length the length of the array
      */
@@ -95,10 +94,9 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicReferenceArray with the same length as, and
-     * all elements copied from, the given array.
+     * 创建一个新的AtomicReferenceArray，其长度与给定数组相同，并复制其中的所有元素。
      *
-     * @param array the array to copy elements from
+     * @param array 要从中复制元素的数组
      * @throws NullPointerException if array is null
      */
     public AtomicReferenceArray(E[] array) {
@@ -107,7 +105,7 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
     }
 
     /**
-     * Returns the length of the array.
+     * 返回数组的长度。
      *
      * @return the length of the array
      */
@@ -116,7 +114,7 @@ public class AtomicReferenceArray<E> implements java.io.Serializable {
     }
 
     /**
-     * Gets the current value at position {@code i}.
+     * 获取位置{@code i}的当前值。
      *
      * @param i the index
      * @return the current value
