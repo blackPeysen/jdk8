@@ -1,0 +1,20 @@
+
+csquid:CommentedOutCodeLineÅ"<This block of commented-out lines of code should be removed.(Ê¥Æ¥
+Wsquid:S1161Ò":Add the "@Override" annotation above this method signature( «ºÖ¸ˇˇˇˇ
+Wsquid:S1161¿":Add the "@Override" annotation above this method signature(ÆÒõ˙˝ˇˇˇˇ
+jsquid:S3776¿"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(´øø¯
+_squid:S00112…"FDefine and throw a dedicated exception instead of using a generic one.(á ‡ñ
+_squid:S00112‚"FDefine and throw a dedicated exception instead of using a generic one.(ê¬
+Rsquid:S1161ú":Add the "@Override" annotation above this method signature(üëÍª
+Qsquid:S1161¸":Add the "@Override" annotation above this method signature(ï‹ù)
+csquid:CommentedOutCodeLineü"<This block of commented-out lines of code should be removed.(Ê¥Æ¥
+Rsquid:S1161†":Add the "@Override" annotation above this method signature(ö¥ô˘
+jsquid:S3776ú"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(üëÍª
+Rsquid:S1161›":Add the "@Override" annotation above this method signature(Ø˛ö◊
+_squid:S00112ê"FDefine and throw a dedicated exception instead of using a generic one.(á ‡ñ
+_squid:S00112≥"FDefine and throw a dedicated exception instead of using a generic one.(á ‡ñ
+Msquid:S1191Ÿ"5Use classes from the Java API instead of Sun classes.(æØå˜
+gsquid:S1192à"JDefine a constant instead of duplicating this literal "not owner" 3 times.(∂ºâı˚ˇˇˇˇ
+_squid:S00112ê"FDefine and throw a dedicated exception instead of using a generic one.(á ‡ñ
+jsquid:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 50 to the 15 allowed.(»ﬂ˘Ø
+tsquid:S1192ê"\Define a constant instead of duplicating this literal "Maximum lock count exceeded" 4 times.(á ‡ñ

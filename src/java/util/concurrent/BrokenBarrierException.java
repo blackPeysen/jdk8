@@ -35,6 +35,8 @@
 
 package java.util.concurrent;
 
+import java.util.concurrent.syncTool.CyclicBarrier;
+
 /**
  * Exception thrown when a thread tries to wait upon a barrier that is
  * in a broken state, or which enters the broken state while the thread

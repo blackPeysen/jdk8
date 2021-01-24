@@ -1,0 +1,19 @@
+
+Lsquid:S1191-"5Use classes from the Java API instead of Sun classes.(¼¸Ñá
+Wsquid:S1161‘":Add the "@Override" annotation above this method signature(“À‘úÿÿÿÿ
+vsquid:S2293°"YReplace the type specification in this constructor call with the diamond operator ("<>").(µÚ«¹şÿÿÿÿ
+Rsquid:S1161•":Add the "@Override" annotation above this method signature(¡®¤Ñ
+Esquid:S1604Œ"(Make this anonymous inner class a lambda(ÊĞôöüÿÿÿÿ
+Esquid:S1604â"(Make this anonymous inner class a lambda(¯’Àˆşÿÿÿÿ
+qsquid:S2293Ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(™Ğºâ
+Wsquid:S1161á":Add the "@Override" annotation above this method signature(Ï¾ŞËùÿÿÿÿ
+vsquid:S2293ò"YReplace the type specification in this constructor call with the diamond operator ("<>").(È‘Š ùÿÿÿÿ
+Wsquid:S1161Œ":Add the "@Override" annotation above this method signature(Òó½™şÿÿÿÿ
+fsquid:S3014±"IRemove this use of "ThreadGroup". Prefer the use of "ThreadPoolExecutor".(‹©Öıÿÿÿÿ
+Rsquid:S1161ˆ":Add the "@Override" annotation above this method signature(²°ıù
+a"squid:ObjectFinalizeOverridenCheck¡"-Do not override the Object.finalize() method.(œäºÒúÿÿÿÿ
+?squid:S1604ä"(Make this anonymous inner class a lambda(ÆŞÖ
+vsquid:S2293ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(µ‹ÿ üÿÿÿÿ
+Rsquid:S1161…":Add the "@Override" annotation above this method signature(§©³Ñ
+Qsquid:S1161‚":Add the "@Override" annotation above this method signature(·ÓñR
+Rsquid:S1161ÿ":Add the "@Override" annotation above this method signature(è¼ãó

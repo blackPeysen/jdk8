@@ -1,0 +1,32 @@
+
+‚squid:S1845Š"jRename field "CELLSBUSY" to prevent any misunderstanding/clash with field "cellsBusy" defined on line 158.(°‚¿‚
+_$squid:AssignmentInSubExpressionCheckú".Extract the assignment out of this expression.(œ‘÷ˆ
+<squid:S1659ç"Declare "m" on a separate line.(¶ó€‹ýÿÿÿÿ
+Csquid:S3077“"&Use an "AtomicReferenceArray" instead.(Üò”°ùÿÿÿÿ
+<squid:S1659¾"Declare "m" on a separate line.(¶ó€‹ýÿÿÿÿ
+isquid:S3776Õ"RRefactor this method to reduce its Cognitive Complexity from 61 to the 15 allowed.(àãçn
+<squid:S1659¶"Declare "v" on a separate line.(¸×œÿÿÿÿÿ
+jsquid:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 61 to the 15 allowed.(õìÐ”
+<squid:S1659¶"Declare "a" on a separate line.(¸×œÿÿÿÿÿ
+p
+squid:S135Þ"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+<squid:S1659ç"Declare "j" on a separate line.(¶ó€‹ýÿÿÿÿ
+<squid:S1659ß"Declare "v" on a separate line.(¸×œÿÿÿÿÿ
+<squid:S1659¶"Declare "n" on a separate line.(¸×œÿÿÿÿÿ
+qsquid:S3012â"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ŠŽ«á
+d$squid:AssignmentInSubExpressionCheckÁ".Extract the assignment out of this expression.(–ÜÊŠûÿÿÿÿ
+_squid:S00112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(Âðð
+d$squid:AssignmentInSubExpressionCheckÑ".Extract the assignment out of this expression.(ÁÜ¹Ùùÿÿÿÿ
+<squid:S1659ß"Declare "n" on a separate line.(¸×œÿÿÿÿÿ
+_squid:S00112˜"FDefine and throw a dedicated exception instead of using a generic one.(Âðð
+<squid:S1659ß"Declare "a" on a separate line.(¸×œÿÿÿÿÿ
+d$squid:AssignmentInSubExpressionCheckê".Extract the assignment out of this expression.(–ÜÊŠûÿÿÿÿ
+ssquid:S00115€"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ãñÁÒ
+qsquid:S3012†"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ŠŽ«á
+p
+squid:S135µ"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™
+Qsquid:S1191w"5Use classes from the Java API instead of Sun classes.(¦ïæüÿÿÿÿ
+xsquid:S1845‰"`Rename field "BASE" to prevent any misunderstanding/clash with field "base" defined on line 153.(©´›
+<squid:S1659¾"Declare "j" on a separate line.(¶ó€‹ýÿÿÿÿ
+d$squid:AssignmentInSubExpressionCheck ".Extract the assignment out of this expression.(¶Þš§üÿÿÿÿ
+d$squid:AssignmentInSubExpressionCheckü".Extract the assignment out of this expression.(›˜‘óøÿÿÿÿ

@@ -113,7 +113,7 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
     private final java.util.concurrent.blocking.queue.BlockingQueue<Future<V>> completionQueue;
 
     /**
-     * FutureTask extension to enqueue upon completion
+     * 完成时进入队列的FutureTask扩展
      */
     private class QueueingFuture extends FutureTask<Void> {
         QueueingFuture(RunnableFuture<V> task) {
@@ -139,9 +139,7 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
     }
 
     /**
-     * Creates an ExecutorCompletionService using the supplied
-     * executor for base task execution and a
-     * {@link java.util.concurrent.blocking.queue.LinkedBlockingQueue} as a completion queue.
+     * 使用提供的基本任务执行器和创建ExecutorCompletionService {@link java.util.concurrent.blocking.queue.LinkedBlockingQueue}作为完成队列。
      *
      * @param executor the executor to use
      * @throws NullPointerException if executor is {@code null}
@@ -156,17 +154,12 @@ public class ExecutorCompletionService<V> implements CompletionService<V> {
     }
 
     /**
-     * Creates an ExecutorCompletionService using the supplied
-     * executor for base task execution and the supplied queue as its
-     * completion queue.
+     * 使用提供的执行器执行基本任务，并将提供的队列作为其完成队列，创建ExecutorCompletionService。
      *
      * @param executor the executor to use
-     * @param completionQueue the queue to use as the completion queue
-     *        normally one dedicated for use by this service. This
-     *        queue is treated as unbounded -- failed attempted
-     *        {@code Queue.add} operations for completed tasks cause
-     *        them not to be retrievable.
-     * @throws NullPointerException if executor or completionQueue are {@code null}
+     * @param completionQueue 作为完成队列使用的队列通常是这个服务专用的队列。
+     *                        这个队列被视为不受限制的——failed attempt {@code 队列。对于已完成任务的add}操作将导致无法检索它们。
+     * @throws NullPointerException 如果executor或completionQueue是{@code null}
      */
     public ExecutorCompletionService(Executor executor,
                                      BlockingQueue<Future<V>> completionQueue) {

@@ -1,0 +1,66 @@
+
+Wsquid:S1197ç"8Move the array designator from the variable to the type.(Çª•Ø8âÿÉø-
+\squid:S1197î"8Move the array designator from the variable to the type.(È™†°şÿÿÿÿ8âÿÉø-
+>squid:S1659¼"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659æ"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Osquid:S2160İ"+Override the "equals" method in this class.(©ë˜‘øÿÿÿÿ8âÿÉø-
+Csquid:S1659´"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+>squid:S1659¼"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+^squid:S1118¨	":Add a private constructor to hide the implicit public one.(ÕÏ‚ıÿÿÿÿ8âÿÉø-
+Ksquid:S1602¹%",Remove useless curly braces around statement(Ù÷²é8âÿÉø-
+Csquid:S1659´"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Ksquid:S1602“%",Remove useless curly braces around statement(§ÁäŒ8âÿÉø-
+Wsquid:S1197Ê"8Move the array designator from the variable to the type.(ˆ«ğ“8âÿÉø-
+Csquid:S1659é"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+\squid:S1197‚"8Move the array designator from the variable to the type.(¿ø¾áúÿÿÿÿ8âÿÉø-
+Csquid:S1659Õ"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+>squid:S1659¤"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659æ"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+‘ squid:ForLoopCounterChangedCheckŸ"XRefactor the code in order to not assign to this loop counter from within the loop body.(¿İ¹¯üÿÿÿÿ8âÿÉø-
+‘ squid:ForLoopCounterChangedCheckÜ
+"XRefactor the code in order to not assign to this loop counter from within the loop body.(¿İ¹¯üÿÿÿÿ8âÿÉø-
+>squid:S1659ö"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+>squid:S1659º"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+>squid:S1659’	"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+>squid:S1659"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+qsquid:S3776´!"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ä¹˜¾8âÿÉø-
+\squid:S1197Ó"8Move the array designator from the variable to the type.(ºèÍÁûÿÿÿÿ8âÿÉø-
+>squid:S1659ä"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659Š"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+\squid:S1197¸"8Move the array designator from the variable to the type.(ŒŞ®ğùÿÿÿÿ8âÿÉø-
+>squid:S1659È"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659”"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+>squid:S1659ö"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+‘ squid:ForLoopCounterChangedCheckŞ
+"XRefactor the code in order to not assign to this loop counter from within the loop body.(ÙòìÄûÿÿÿÿ8âÿÉø-
+Csquid:S1659 "Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+>squid:S1659"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659Î"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Csquid:S1659Î"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Csquid:S1659”"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+>squid:S1659º"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+>squid:S1659‚"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659é"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Csquid:S1659Ú"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+\squid:S1197Ã"8Move the array designator from the variable to the type.(˜…ã¡ÿÿÿÿÿ8âÿÉø-
+>squid:S1659‚"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+Wsquid:S1197ª "8Move the array designator from the variable to the type.(ÔÛé8âÿÉø-
+Csquid:S1659Ú"Declare "p" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+;squid:S1948á"#Make "a" transient or serializable.(¾Êâ‚
+fsquid:HiddenFieldCheck®"7Rename "a" which hides the field declared at line 3809.(Ë°ğşÿÿÿÿ8âÿÉø-
+Wsquid:S1197"8Move the array designator from the variable to the type.(ÏÀÔÑ8âÿÉø-
+\squid:S1197Ó "8Move the array designator from the variable to the type.(™‡†ıÿÿÿÿ8âÿÉø-
+>squid:S1659’	"Declare "g" on a separate line.(Ó›çã8âÿÉø-
+Wsquid:S1197‰ "8Move the array designator from the variable to the type.(ºÆµ¢8âÿÉø-
+Psquid:S1602í$",Remove useless curly braces around statement(Ïš‹ƒşÿÿÿÿ8âÿÉø-
+Psquid:S1602ß%",Remove useless curly braces around statement(ã…ÎŸşÿÿÿÿ8âÿÉø-
+>squid:S1659¤"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659Õ"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+squid:S00115©	"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‡ßøÿÿÿÿ8âÿÉø-
+fsquid:HiddenFieldCheckŒ"7Rename "a" which hides the field declared at line 3809.(Ë°ğşÿÿÿÿ8âÿÉø-
+vsquid:S3776$"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(Í€ˆùÿÿÿÿ8âÿÉø-
+‘ squid:ForLoopCounterChangedCheck¡"XRefactor the code in order to not assign to this loop counter from within the loop body.(ÙòìÄûÿÿÿÿ8âÿÉø-
+>squid:S1659ä"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+>squid:S1659È"Declare "p" on a separate line.(Ó›çã8âÿÉø-
+Csquid:S1659 "Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-
+Csquid:S1659Š"Declare "g" on a separate line.(ğå®¬ÿÿÿÿÿ8âÿÉø-

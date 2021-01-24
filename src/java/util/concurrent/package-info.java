@@ -154,17 +154,17 @@
  * Five classes aid common special-purpose synchronization idioms.
  * <ul>
  *
- * <li>{@link java.util.concurrent.Semaphore} is a classic concurrency tool.
+ * <li>{@link java.util.concurrent.syncTool.Semaphore} is a classic concurrency tool.
  *
- * <li>{@link java.util.concurrent.CountDownLatch} is a very simple yet
+ * <li>{@link java.util.concurrent.syncTool.CountDownLatch} is a very simple yet
  * very common utility for blocking until a given number of signals,
  * events, or conditions hold.
  *
- * <li>A {@link java.util.concurrent.CyclicBarrier} is a resettable
+ * <li>A {@link java.util.concurrent.syncTool.CyclicBarrier} is a resettable
  * multiway synchronization point useful in some styles of parallel
  * programming.
  *
- * <li>A {@link java.util.concurrent.Phaser} provides
+ * <li>A {@link java.util.concurrent.syncTool.Phaser} provides
  * a more flexible form of barrier that may be used to control phased
  * computation among multiple threads.
  *

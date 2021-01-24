@@ -1,0 +1,56 @@
+
+vsquid:S3776½"RRefactor this method to reduce its Cognitive Complexity from 65 to the 15 allowed.(èüøÅûÿÿÿÿ8øû»ğù-
+Ksquid:S3077".Remove the "volatile" keyword from this field.(¹İ—öùÿÿÿÿ
+Osquid:S2065Í"0Remove the "transient" modifier from this field.(¦¡Ê÷8øû»ğù-
+w
+squid:S135–"YReduce the total number of break and continue statements in this loop to use at most one.(´ÿÕ™8øû»ğù-
+squid:S00115¸"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(•–Ã°ıÿÿÿÿ8øû»ğù-
+^squid:S1610":Convert the abstract class "Transferer" into an interface.(–Ô´Şüÿÿÿÿ8øû»ğù-
+Osquid:S2065Ó"0Remove the "transient" modifier from this field.(Û¾´£8øû»ğù-
+k$squid:AssignmentInSubExpressionCheckë".Extract the assignment out of this expression.(ĞõÓ¢úÿÿÿÿ8øû»ğù-
+Msquid:S3077‘".Remove the "volatile" keyword from this field.(˜¸ÑÎ8øû»ğù-
+zsquid:S00115Å"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ñê€Ô8øû»ğù-
+vsquid:S3776’"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(²‡øöûÿÿÿÿ8øû»ğù-
+¥squid:S1186Õ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ş‚ÄÔıÿÿÿÿ8øû»ğù-
+ssquid:S00115¬"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(×§Úš
+Fsquid:S3077Ş".Remove the "volatile" keyword from this field.(×Ìœ
+xsquid:S2293¡	"YReplace the type specification in this constructor call with the diamond operator ("<>").(ûÓ®8øû»ğù-
+^squid:S1161«":Add the "@Override" annotation above this method signature(ª÷‚µøÿÿÿÿ8øû»ğù-
+Rsquid:S3077¤".Remove the "volatile" keyword from this field.(ÙÇ°çüÿÿÿÿ8øû»ğù-
+vsquid:S3776ù"RRefactor this method to reduce its Cognitive Complexity from 48 to the 15 allowed.(èüøÅûÿÿÿÿ8øû»ğù-
+xsquid:S2293Ö"YReplace the type specification in this constructor call with the diamond operator ("<>").(îæƒá8øû»ğù-
+squid:S00115“"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŞÔ—¸üÿÿÿÿ8øû»ğù-
+fsquid:S00112Å"FDefine and throw a dedicated exception instead of using a generic one.(Âğğ8øû»ğù-
+~squid:S1450ı"_Remove the "waitingConsumers" field and declare it as a local variable in the relevant methods.(†êÿ8øû»ğù-
+Msquid:S3077Í".Remove the "volatile" keyword from this field.(¦¡Ê÷8øû»ğù-
+zsquid:S00115õ"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(×§Úš8øû»ğù-
+Ksquid:S3077ß".Remove the "volatile" keyword from this field.(¡¶Èıÿÿÿÿ
+}squid:S2293Ÿ	"YReplace the type specification in this constructor call with the diamond operator ("<>").(ğÀÏîøÿÿÿÿ8øû»ğù-
+fsquid:S00112º"FDefine and throw a dedicated exception instead of using a generic one.(Âğğ8øû»ğù-
+zsquid:S00115¿"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢´ü8øû»ğù-
+hsquid:S3358¬"DExtract this nested ternary operation into an independent statement.(Ò¹›»ûÿÿÿÿ8øû»ğù-
+Ksquid:S3077".Remove the "volatile" keyword from this field.( äŸúÿÿÿÿ
+Msquid:S3077à".Remove the "volatile" keyword from this field.(˜¸ÑÎ8øû»ğù-
+qsquid:S00117¥	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ÉãÜ8øû»ğù-
+fsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Âğğ8øû»ğù-
+ssquid:S1450û"TRemove the "qlock" field and declare it as a local variable in the relevant methods.(Ÿ–¥é8øû»ğù-
+Tsquid:S2065Ë"0Remove the "transient" modifier from this field.(Ù–ÅÑûÿÿÿÿ8øû»ğù-
+w
+squid:S135‚"YReduce the total number of break and continue statements in this loop to use at most one.( Ëı 8øû»ğù-
+Msquid:S3077Ó".Remove the "volatile" keyword from this field.(Û¾´£8øû»ğù-
+rsquid:S00115­"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¡Ø¢
+xsquid:S00115¹"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ú¸³Èúÿÿÿÿ
+Tsquid:S1191‘"5Use classes from the Java API instead of Sun classes.(¾¯Œ÷8øû»ğù-
+squid:S00115º"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŞÔ—¸üÿÿÿÿ8øû»ğù-
+hsquid:S3358Ü"DExtract this nested ternary operation into an independent statement.(Ò¹›»ûÿÿÿÿ8øû»ğù-
+Hsquid:S1068û")Remove this unused "qlock" private field.(Ÿ–¥é8øû»ğù-
+squid:S00115®"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(äÊô§ÿÿÿÿÿ8øû»ğù-
+Rsquid:S3077Æ".Remove the "volatile" keyword from this field.(ç“Æûÿÿÿÿÿ8øû»ğù-
+fsquid:S00112ı"FDefine and throw a dedicated exception instead of using a generic one.(Âğğ8øû»ğù-
+xsquid:S2293Ö"YReplace the type specification in this constructor call with the diamond operator ("<>").(îæƒá8øû»ğù-
+Rsquid:S3077Ë".Remove the "volatile" keyword from this field.(Ù–ÅÑûÿÿÿÿ8øû»ğù-
+vsquid:S3776ø"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(Ã‚çÀûÿÿÿÿ8øû»ğù-
+ssquid:S00115’"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(©¹üş
+f$squid:AssignmentInSubExpressionCheckŞ".Extract the assignment out of this expression.(Â”İ‰8øû»ğù-
+qsquid:S3776×"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(–Ìôª8øû»ğù-
+Ssquid:S1068ı"4Remove this unused "waitingConsumers" private field.(†êÿ8øû»ğù-

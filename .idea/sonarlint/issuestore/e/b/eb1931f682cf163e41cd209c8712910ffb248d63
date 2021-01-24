@@ -1,0 +1,26 @@
+
+S
+squid:S899ß"<Do something with the "long" value returned by "awaitNanos".(İ«ø
+[squid:HiddenFieldCheckñ"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheck‡"8Rename "lock" which hides the field declared at line 73.(º·úã
+Tsquid:S2589”"7Remove this expression which always evaluates to "true"( ³Ÿıÿÿÿÿ
+[squid:HiddenFieldCheckÕ"8Rename "lock" which hides the field declared at line 73.(º·úã
+Tsquid:S2589á"7Remove this expression which always evaluates to "true"( ³Ÿıÿÿÿÿ
+[squid:HiddenFieldCheckÍ"8Rename "lock" which hides the field declared at line 73.(º·úã
+hsquid:CommentedOutCodeLineÄ"<This block of commented-out lines of code should be removed.(·†ÁÈıÿÿÿÿ
+[squid:HiddenFieldCheck¶"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheckã"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheckÕ"8Rename "lock" which hides the field declared at line 73.(º·úã
+psquid:S2293J"YReplace the type specification in this constructor call with the diamond operator ("<>").(‹´İ
+Gsquid:S2065I"0Remove the "transient" modifier from this field.(´Ô¦Á
+osquid:S3776ø"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(§“³şÿÿÿÿ
+[squid:HiddenFieldCheck‰"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheckú"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheckğ"8Rename "lock" which hides the field declared at line 73.(º·úã
+V
+squid:S899Ÿ":Do something with the "boolean" value returned by "offer".(çÆßêúÿÿÿÿ
+osquid:S3776Ì"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¬²±«üÿÿÿÿ
+[squid:HiddenFieldCheck¬"8Rename "lock" which hides the field declared at line 73.(º·úã
+[squid:HiddenFieldCheck¨"8Rename "lock" which hides the field declared at line 73.(º·úã
+Wsquid:S1161¥":Add the "@Override" annotation above this method signature(¦³üëûÿÿÿÿ
+[squid:HiddenFieldCheck¸"8Rename "lock" which hides the field declared at line 73.(º·úã

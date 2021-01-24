@@ -35,6 +35,9 @@
 
 package java.util.concurrent;
 
+import java.util.concurrent.syncTool.Phaser;
+import java.util.concurrent.syncTool.Semaphore;
+
 /**
  * A {@link ForkJoinTask} with a completion action performed when
  * triggered and there are no remaining pending actions.
@@ -54,8 +57,8 @@ package java.util.concurrent;
  * decremented; otherwise, the completion action is performed, and if
  * this completer itself has a completer, the process is continued
  * with its completer.  As is the case with related synchronization
- * components such as {@link java.util.concurrent.Phaser Phaser} and
- * {@link java.util.concurrent.Semaphore Semaphore}, these methods
+ * components such as {@link Phaser Phaser} and
+ * {@link Semaphore Semaphore}, these methods
  * affect only internal counts; they do not establish any further
  * internal bookkeeping. In particular, the identities of pending
  * tasks are not maintained. As illustrated below, you can create

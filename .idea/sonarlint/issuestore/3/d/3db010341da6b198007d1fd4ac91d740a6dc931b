@@ -1,0 +1,15 @@
+
+nsquid:S3776x"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(îç¸‚øÿÿÿÿ
+Gsquid:S00108á")Either remove or fill this block of code.(¨ÿÊ»úÿÿÿÿ
+osquid:S3776î"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Òó½™şÿÿÿÿ
+bsquid:S2147"ECombine this catch with the one at line 269, which has the same body.(¨ÿÊ»úÿÿÿÿ
+Bsquid:S00108à")Either remove or fill this block of code.(î§Ÿ¹
+qsquid:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(î£¡„
+Bsquid:S00108")Either remove or fill this block of code.(î§Ÿ¹
+vsquid:S2293€"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Ó‹èÿÿÿÿÿ
+Gsquid:S00108")Either remove or fill this block of code.(¨ÿÊ»úÿÿÿÿ
+usquid:S2293Q"YReplace the type specification in this constructor call with the diamond operator ("<>").(†çıòûÿÿÿÿ
+vsquid:S2293Ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤Å®€şÿÿÿÿ
+vsquid:S2293ô"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤Å®€şÿÿÿÿ
+bsquid:S2147á"ECombine this catch with the one at line 224, which has the same body.(¨ÿÊ»úÿÿÿÿ
+usquid:S2293B"YReplace the type specification in this constructor call with the diamond operator ("<>").(•ÙÂ‚ûÿÿÿÿ

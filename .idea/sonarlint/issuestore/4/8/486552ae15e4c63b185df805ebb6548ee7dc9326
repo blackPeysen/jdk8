@@ -1,0 +1,22 @@
+
+gsquid:HiddenFieldCheckø"8Rename "size" which hides the field declared at line 70.(Ó•š•øÿÿÿÿ8î°ŽŒ„.
+jsquid:CommentedOutCodeLineí"<This block of commented-out lines of code should be removed.(¸œþŽ8î°ŽŒ„.
+>squid:S1659Ê	"Declare "n" on a separate line.(´£ºŒ8î°ŽŒ„.
+hsquid:CommentedOutCodeLine¶"<This block of commented-out lines of code should be removed.(Üµê’ùÿÿÿÿ
+csquid:CommentedOutCodeLinež"<This block of commented-out lines of code should be removed.(Ã‚à
+rsquid:S2272ä"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(¤¿ðßýÿÿÿÿ8î°ŽŒ„.
+rsquid:S2975û"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Ž²ÈÞ8î°ŽŒ„.
+}squid:S2293‘	"YReplace the type specification in this constructor call with the diamond operator ("<>").(ªÊúùúÿÿÿÿ8î°ŽŒ„.
+Fsquid:S1659’""Declare "succ" on a separate line.(Èž®Ðûÿÿÿÿ8î°ŽŒ„.
+Xsquid:S1161É	":Add the "@Override" annotation above this method signature(ºˆ¡8î°ŽŒ„.
+jsquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(Þõß½8î°ŽŒ„.
+tsquid:S4144Û"UUpdate this method so that its implementation is not identical to "peek" on line 649.(ùÎ³ž8î°ŽŒ„.
+hsquid:CommentedOutCodeLineÉ"<This block of commented-out lines of code should be removed.(´¶«øÿÿÿÿ
+Asquid:S2160B"+Override the "equals" method in this class.(Áž‰A
+csquid:CommentedOutCodeLineŽ"<This block of commented-out lines of code should be removed.(ûöÿ
+ysquid:S4144õ"UUpdate this method so that its implementation is not identical to "poll" on line 671.(ÓÈ¸óøÿÿÿÿ8î°ŽŒ„.
+Xsquid:S1161¸":Add the "@Override" annotation above this method signature(ºˆ¡8î°ŽŒ„.
+gsquid:S1182û"HUse super.clone() to create and seed the cloned instance to be returned.(Ž²ÈÞ8î°ŽŒ„.
+osquid:CommentedOutCodeLine—	"<This block of commented-out lines of code should be removed.(àý‘Ïûÿÿÿÿ8î°ŽŒ„.
+‘ squid:ForLoopCounterChangedCheckÈ"XRefactor the code in order to not assign to this loop counter from within the loop body.(ïßóùøÿÿÿÿ8î°ŽŒ„.
+^squid:S1161ç":Add the "@Override" annotation above this method signature(¦³üëûÿÿÿÿ8î°ŽŒ„.

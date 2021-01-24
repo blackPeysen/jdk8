@@ -1,0 +1,40 @@
+
+bsquid:CommentedOutCodeLine‹"<This block of commented-out lines of code should be removed.(°Ôû
+esquid:HiddenFieldCheckÌ"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ
+bsquid:HiddenFieldCheckÑ":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+esquid:HiddenFieldCheckÜ"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ
+hsquid:CommentedOutCodeLineð"<This block of commented-out lines of code should be removed.(¦ÛªÂÿÿÿÿÿ
+esquid:HiddenFieldCheckµ"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ
+bsquid:HiddenFieldCheck´":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+esquid:HiddenFieldCheckú"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ
+jsquid:S3776è"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(÷ž¾˜
+hsquid:CommentedOutCodeLineÇ"<This block of commented-out lines of code should be removed.(ÂÄ±×ýÿÿÿÿ
+qsquid:S2293Ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ø·®º
+qsquid:S2293ˆ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ê‚¸
+bsquid:CommentedOutCodeLinef"<This block of commented-out lines of code should be removed.(ÏÖ¦Û
+_$squid:AssignmentInSubExpressionCheck‚".Extract the assignment out of this expression.(æ¾žˆ
+isquid:S3776Ž"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ºˆ¡
+hsquid:CommentedOutCodeLineð"<This block of commented-out lines of code should be removed.(Úùóþÿÿÿÿ
+\squid:S3358ì"DExtract this nested ternary operation into an independent statement.(»³¡
+qsquid:S2293†"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ê‚¸
+hsquid:CommentedOutCodeLineÒ"<This block of commented-out lines of code should be removed.(Ï‡¶îúÿÿÿÿ
+vsquid:S2293Ü"YReplace the type specification in this constructor call with the diamond operator ("<>").(ý·Ê«þÿÿÿÿ
+_squid:HiddenFieldCheckù"<Rename "putLock" which hides the field declared at line 161.(ÛšÁü
+hsquid:CommentedOutCodeLineÛ"<This block of commented-out lines of code should be removed.(àý‘Ïûÿÿÿÿ
+_squid:HiddenFieldCheckÐ"<Rename "putLock" which hides the field declared at line 161.(ÛšÁü
+Rsquid:S1161š":Add the "@Override" annotation above this method signature(Á»›ê
+_squid:HiddenFieldCheck•"<Rename "putLock" which hides the field declared at line 161.(ÛšÁü
+bsquid:HiddenFieldCheck›":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+Wsquid:S1161Ä":Add the "@Override" annotation above this method signature(¦³üëûÿÿÿÿ
+Wsquid:S1161Û":Add the "@Override" annotation above this method signature(ª÷‚µøÿÿÿÿ
+_squid:HiddenFieldCheck¸"<Rename "putLock" which hides the field declared at line 161.(ÛšÁü
+bsquid:HiddenFieldCheckú":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+_squid:HiddenFieldCheck "<Rename "putLock" which hides the field declared at line 161.(ÛšÁü
+bsquid:HiddenFieldCheckË":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+bsquid:HiddenFieldChecká":Rename "count" which hides the field declared at line 140.(ÞÜ´´úÿÿÿÿ
+hsquid:CommentedOutCodeLine¼"<This block of commented-out lines of code should be removed.(Ð¤òùÿÿÿÿ
+esquid:HiddenFieldCheck«"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ
+qsquid:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(ø·®º
+Qsquid:S1161Ž":Add the "@Override" annotation above this method signature(ºˆ¡
+csquid:CommentedOutCodeLineò"<This block of commented-out lines of code should be removed.(§‹Ö„
+esquid:HiddenFieldCheckæ"=Rename "takeLock" which hides the field declared at line 155.(–õíßùÿÿÿÿ

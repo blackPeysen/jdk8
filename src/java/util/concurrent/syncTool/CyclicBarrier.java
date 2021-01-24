@@ -33,9 +33,13 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent;
+package java.util.concurrent.syncTool;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.syncTool.CountDownLatch;
 
 /**
  * 一个同步帮助，允许一组线程都等待彼此达到一个公共障碍点。
@@ -194,7 +198,7 @@ public class CyclicBarrier {
      */
     private int dowait(boolean timed, long nanos)
         throws InterruptedException, BrokenBarrierException,
-               TimeoutException {
+            TimeoutException {
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {

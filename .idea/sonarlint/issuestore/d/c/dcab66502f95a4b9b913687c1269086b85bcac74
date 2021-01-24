@@ -1,0 +1,17 @@
+
+Qsquid:S1191<"5Use classes from the Java API instead of Sun classes.(øÜˆøÿÿÿÿ
+msquid:S1192r"WDefine a constant instead of duplicating this literal "Unsupported platform: " 3 times.(˜é÷!
+_$squid:AssignmentInSubExpressionCheck½".Extract the assignment out of this expression.(µº¡ 
+Usquid:S00107Ğ"=Method has 10 parameters, which is greater than 7 authorized.(î€‚n
+Zsquid:S00107ï"AConstructor has 8 parameters, which is greater than 7 authorized.(÷ø²÷
+vsquid:S00116H"^Rename this field "stdout_inner_stream" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÉ£„
+?squid:S2786J")Remove this redundant "static" qualifier.(Ãñôa
+@squid:S2786Q")Remove this redundant "static" qualifier.(’æÙ…
+jsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(²À¯è
+osquid:S3776®"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(•‰œ³üÿÿÿÿ
+Bsquid:S00108½")Either remove or fill this block of code.(¬Ï‡Ï
+Bsquid:S00108¾")Either remove or fill this block of code.(´Â¹ã
+Gsquid:S00108¿")Either remove or fill this block of code.(¯Å‚­şÿÿÿÿ
+Gsquid:S00108š")Either remove or fill this block of code.(õ÷£ğúÿÿÿÿ
+asquid:S3358Ş"DExtract this nested ternary operation into an independent statement.(øë›¾ûÿÿÿÿ
+Gsquid:S00108ê")Either remove or fill this block of code.(õ÷£ğúÿÿÿÿ
