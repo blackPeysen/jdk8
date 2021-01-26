@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executor;
+import java.util.concurrent.executor.Executor;
 
 import java.security.AccessControlContext;
 import java.security.AccessController;
@@ -76,7 +76,7 @@ public abstract class ClientNotifForwarder {
        for instance one that you are using to execute a bunch of other
        unrelated work.
 
-       You might expect that a java.util.concurrent.ThreadPoolExecutor
+       You might expect that a java.util.concurrent.executor.ThreadPoolExecutor
        with corePoolSize=0 and maximumPoolSize=1 would have the same
        behavior, but it does not.  A ThreadPoolExecutor only creates
        a new thread when a new task is submitted and the number of

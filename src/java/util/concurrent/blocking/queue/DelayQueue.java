@@ -36,9 +36,8 @@
 package java.util.concurrent.blocking.queue;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
-import java.util.concurrent.Delayed;
+import java.util.concurrent.future.Delayed;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.blocking.queue.BlockingQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.*;

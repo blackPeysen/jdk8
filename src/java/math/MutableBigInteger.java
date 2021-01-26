@@ -26,15 +26,9 @@
 package java.math;
 
 /**
- * A class used to represent multiprecision integers that makes efficient
- * use of allocated space by allowing a number to occupy only part of
- * an array so that the arrays do not have to be reallocated as often.
- * When performing an operation with many iterations the array used to
- * hold a number is only reallocated when necessary and does not have to
- * be the same size as the number it represents. A mutable number allows
- * calculations to occur on the same number without having to create
- * a new number for every step of the calculation as occurs with
- * BigIntegers.
+ * 一个用于表示多精度整数的类，该类通过允许数字仅占用数组的一部分来有效利用分配的空间，从而不必经常重新分配数组。
+ * 在执行多次迭代操作时，用于保存数字的数组仅在必要时才重新分配，并且不必与其表示的数字大小相同。
+ * 可变数字使计算可以在相同的数字上进行，而不必像BigIntegers那样为计算的每个步骤创建新的数字。
  *
  * @see     BigInteger
  * @author  Michael McCloskey
@@ -48,9 +42,8 @@ import java.util.Arrays;
 
 class MutableBigInteger {
     /**
-     * Holds the magnitude of this MutableBigInteger in big endian order.
-     * The magnitude may start at an offset into the value array, and it may
-     * end before the length of the value array.
+     * 以大端顺序保留此MutableBigInteger的大小。
+     * 幅度可以从值数组的偏移量开始，并且可以在值数组的长度之前结束。
      */
     int[] value;
 

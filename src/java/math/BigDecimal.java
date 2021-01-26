@@ -33,14 +33,11 @@ import java.util.Arrays;
 import static java.math.BigInteger.LONG_MASK;
 
 /**
- * Immutable, arbitrary-precision signed decimal numbers.  A
- * {@code BigDecimal} consists of an arbitrary precision integer
- * <i>unscaled value</i> and a 32-bit integer <i>scale</i>.  If zero
- * or positive, the scale is the number of digits to the right of the
- * decimal point.  If negative, the unscaled value of the number is
- * multiplied by ten to the power of the negation of the scale.  The
- * value of the number represented by the {@code BigDecimal} is
- * therefore <tt>(unscaledValue &times; 10<sup>-scale</sup>)</tt>.
+ * 不可变的，任意精度的带符号十进制数字。
+ * {@code BigDecimal}由任意精度整数未缩放的值和32位整数scale组成。
+ * 如果为零或正数，则小数位数是小数点右边的位数。
+ * 如果为负，则数字的未标度值将乘以十乘以标度的负数。
+ * {@code BigDecimal}表示的数字的值为 -scale。
  *
  * <p>The {@code BigDecimal} class provides operations for
  * arithmetic, scale manipulation, rounding, comparison, hashing, and
@@ -203,9 +200,7 @@ import static java.math.BigInteger.LONG_MASK;
  * java.util.SortedMap} or {@link java.util.SortedSet} for more
  * information.
  *
- * <p>All methods and constructors for this class throw
- * {@code NullPointerException} when passed a {@code null} object
- * reference for any input parameter.
+ * <p>传递给所有输入参数的{@code null}对象引用时，此类的所有方法和构造函数都将抛出{@code NullPointerException}。
  *
  * @see     BigInteger
  * @see     MathContext
@@ -219,8 +214,7 @@ import static java.math.BigInteger.LONG_MASK;
  */
 public class BigDecimal extends Number implements Comparable<BigDecimal> {
     /**
-     * The unscaled value of this BigDecimal, as returned by {@link
-     * #unscaledValue}.
+     * 此BigDecimal的未缩放值，由{@link #unscaledValue}返回。
      *
      * @serial
      * @see #unscaledValue
@@ -228,42 +222,37 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
     private final BigInteger intVal;
 
     /**
-     * The scale of this BigDecimal, as returned by {@link #scale}.
+     * {@link #scale}返回的此BigDecimal的小数位数。
      *
      * @serial
      * @see #scale
      */
-    private final int scale;  // Note: this may have any value, so
-                              // calculations must be done in longs
+    private final int scale;  // 注意：这可能有任何值，因此必须长时间进行计算
 
     /**
-     * The number of decimal digits in this BigDecimal, or 0 if the
-     * number of digits are not known (lookaside information).  If
-     * nonzero, the value is guaranteed correct.  Use the precision()
-     * method to obtain and set the value if it might be 0.  This
-     * field is mutable until set nonzero.
+     * 此BigDecimal中的小数位数，如果位数未知（后备信息），则为0。
+     * 如果非零，则保证该值正确。
+     * 如果可能为0，请使用precision（）方法获取并设置该值。
+     * 该字段是可变的，直到设置为非零为止。
      *
      * @since  1.5
      */
     private transient int precision;
 
     /**
-     * Used to store the canonical string representation, if computed.
+     * 用于存储规范的字符串表示形式（如果已计算）。
      */
     private transient String stringCache;
 
     /**
-     * Sentinel value for {@link #intCompact} indicating the
-     * significand information is only available from {@code intVal}.
+     * {@link #intCompact}的前哨值指示有效信息只能从{@code intVal}获得。
      */
     static final long INFLATED = Long.MIN_VALUE;
 
     private static final BigInteger INFLATED_BIGINT = BigInteger.valueOf(INFLATED);
 
     /**
-     * If the absolute value of the significand of this BigDecimal is
-     * less than or equal to {@code Long.MAX_VALUE}, the value can be
-     * compactly stored in this field and used in computations.
+     * 如果此BigDecimal的有效位数的绝对值小于或等于{@code Long.MAX_VALUE}，则可以将该值紧凑地存储在此字段中并在计算中使用。
      */
     private final transient long intCompact;
 
@@ -282,7 +271,7 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
         }
     };
 
-    // Cache of common small BigDecimal values.
+    // 常见的小BigDecimal值的缓存。
     private static final BigDecimal zeroThroughTen[] = {
         new BigDecimal(BigInteger.ZERO,       0,  0, 1),
         new BigDecimal(BigInteger.ONE,        1,  0, 1),
@@ -297,7 +286,7 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
         new BigDecimal(BigInteger.TEN,        10, 0, 2),
     };
 
-    // Cache of zero scaled by 0 - 15
+    // 零缓存，范围为0-15
     private static final BigDecimal[] ZERO_SCALED_BY = {
         zeroThroughTen[0],
         new BigDecimal(BigInteger.ZERO, 0, 1, 1),
@@ -317,13 +306,13 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
         new BigDecimal(BigInteger.ZERO, 0, 15, 1),
     };
 
-    // Half of Long.MIN_VALUE & Long.MAX_VALUE.
+    // Long.MIN_VALUE和Long.MAX_VALUE的一半。
     private static final long HALF_LONG_MAX_VALUE = Long.MAX_VALUE / 2;
     private static final long HALF_LONG_MIN_VALUE = Long.MIN_VALUE / 2;
 
     // Constants
     /**
-     * The value 0, with a scale of 0.
+     * 值为0，小数位数为0。
      *
      * @since  1.5
      */
@@ -331,7 +320,7 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
         zeroThroughTen[0];
 
     /**
-     * The value 1, with a scale of 0.
+     * 值为1，小数位数为0。
      *
      * @since  1.5
      */
@@ -339,7 +328,7 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
         zeroThroughTen[1];
 
     /**
-     * The value 10, with a scale of 0.
+     * 值为10，小数位数为0。
      *
      * @since  1.5
      */
@@ -349,9 +338,9 @@ public class BigDecimal extends Number implements Comparable<BigDecimal> {
     // Constructors
 
     /**
-     * Trusted package private constructor.
-     * Trusted simply means if val is INFLATED, intVal could not be null and
-     * if intVal is null, val could not be INFLATED.
+     * 受信任的包私有构造函数。
+     * Trusted仅表示如果val为INFLATED，则intVal不能为null；
+     * 如果intVal为null，则val不能为INFLATED。
      */
     BigDecimal(BigInteger intVal, long val, int scale, int prec) {
         this.scale = scale;

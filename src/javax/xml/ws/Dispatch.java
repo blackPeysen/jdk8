@@ -25,7 +25,7 @@
 
 package javax.xml.ws;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.future.Future;
 
 /** The <code>Dispatch</code> interface provides support
  *  for the dynamic invocation of a service endpoint operations. The

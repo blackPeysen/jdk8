@@ -34,6 +34,8 @@
  */
 
 package java.util.concurrent;
+import java.util.concurrent.exception.BrokenBarrierException;
+import java.util.concurrent.exception.TimeoutException;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -117,7 +119,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * for failed synchronization attempts: If a thread leaves a barrier
  * point prematurely because of interruption, failure, or timeout, all
  * other threads waiting at that barrier point will also leave
- * abnormally via {@link BrokenBarrierException} (or
+ * abnormally via {@link java.util.concurrent.exception.BrokenBarrierException} (or
  * {@link InterruptedException} if they too were interrupted at about
  * the same time).
  *
@@ -193,15 +195,15 @@ public class CyclicBarrier {
      * 主要障碍代码，涵盖了各种策略。
      */
     private int dowait(boolean timed, long nanos)
-        throws InterruptedException, BrokenBarrierException,
-               TimeoutException {
+        throws InterruptedException, java.util.concurrent.exception.BrokenBarrierException,
+            java.util.concurrent.exception.TimeoutException {
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
             final Generation g = generation;
 
             if (g.broken)
-                throw new BrokenBarrierException();
+                throw new java.util.concurrent.exception.BrokenBarrierException();
 
             if (Thread.interrupted()) {
                 breakBarrier();
@@ -244,14 +246,14 @@ public class CyclicBarrier {
                 }
 
                 if (g.broken)
-                    throw new BrokenBarrierException();
+                    throw new java.util.concurrent.exception.BrokenBarrierException();
 
                 if (g != generation)
                     return index;
 
                 if (timed && nanos <= 0L) {
                     breakBarrier();
-                    throw new TimeoutException();
+                    throw new java.util.concurrent.exception.TimeoutException();
                 }
             }
         } finally {
@@ -318,10 +320,10 @@ public class CyclicBarrier {
      *
      * <p>如果屏障是{@link #reset}而任何线程正在等待，
      * 或者当{@code await}被调用时屏障{@linkplain #isBroken 被打破}，
-     * 或者当任何线程正在等待时，那么{@link BrokenBarrierException}将被抛出。
+     * 或者当任何线程正在等待时，那么{@link java.util.concurrent.exception.BrokenBarrierException}将被抛出。
      *
      * <p>如果任何线程在等待的时候是{@linkplain Thread #interrupt interrupted}，
-     * 那么所有其他等待的线程将抛出{@link BrokenBarrierException}，屏障被置于broken状态。
+     * 那么所有其他等待的线程将抛出{@link java.util.concurrent.exception.BrokenBarrierException}，屏障被置于broken状态。
      *
      * <p>如果当前线程是最后到达的线程，并且构造函数中提供了非null barrier操作，
      * 那么*当前线程在允许其他线程继续之前运行该操作。
@@ -331,16 +333,16 @@ public class CyclicBarrier {
      * @return 当前线程的到达索引，其中索引{@code getParties() - 1}表示第一个到达的，
      *          0表示最后一个到达的.
      * @throws InterruptedException 如果当前线程在等待时被中断
-     * @throws BrokenBarrierException if another thread was
+     * @throws java.util.concurrent.exception.BrokenBarrierException if another thread was
      *         interrupted or timed out while the current thread was
      *         waiting, or the barrier was reset, or the barrier was
      *         broken when {@code await} was called, or the barrier
      *         action (if present) failed due to an exception
      */
-    public int await() throws InterruptedException, BrokenBarrierException {
+    public int await() throws InterruptedException, java.util.concurrent.exception.BrokenBarrierException {
         try {
             return dowait(false, 0L);
-        } catch (TimeoutException toe) {
+        } catch (java.util.concurrent.exception.TimeoutException toe) {
             throw new Error(toe); // cannot happen
         }
     }
@@ -371,18 +373,18 @@ public class CyclicBarrier {
      * then {@link InterruptedException} is thrown and the current thread's
      * interrupted status is cleared.
      *
-     * <p>If the specified waiting time elapses then {@link TimeoutException}
+     * <p>If the specified waiting time elapses then {@link java.util.concurrent.exception.TimeoutException}
      * is thrown. If the time is less than or equal to zero, the
      * method will not wait at all.
      *
      * <p>If the barrier is {@link #reset} while any thread is waiting,
      * or if the barrier {@linkplain #isBroken is broken} when
      * {@code await} is invoked, or while any thread is waiting, then
-     * {@link BrokenBarrierException} is thrown.
+     * {@link java.util.concurrent.exception.BrokenBarrierException} is thrown.
      *
      * <p>If any thread is {@linkplain Thread#interrupt interrupted} while
      * waiting, then all other waiting threads will throw {@link
-     * BrokenBarrierException} and the barrier is placed in the broken
+     * java.util.concurrent.exception.BrokenBarrierException} and the barrier is placed in the broken
      * state.
      *
      * <p>If the current thread is the last thread to arrive, and a
@@ -400,9 +402,9 @@ public class CyclicBarrier {
      *         to arrive and zero indicates the last to arrive
      * @throws InterruptedException if the current thread was interrupted
      *         while waiting
-     * @throws TimeoutException if the specified timeout elapses.
+     * @throws java.util.concurrent.exception.TimeoutException if the specified timeout elapses.
      *         In this case the barrier will be broken.
-     * @throws BrokenBarrierException if <em>another</em> thread was
+     * @throws java.util.concurrent.exception.BrokenBarrierException if <em>another</em> thread was
      *         interrupted or timed out while the current thread was
      *         waiting, or the barrier was reset, or the barrier was broken
      *         when {@code await} was called, or the barrier action (if
@@ -410,8 +412,8 @@ public class CyclicBarrier {
      */
     public int await(long timeout, TimeUnit unit)
         throws InterruptedException,
-               BrokenBarrierException,
-               TimeoutException {
+            java.util.concurrent.exception.BrokenBarrierException,
+            TimeoutException {
         return dowait(true, unit.toNanos(timeout));
     }
 

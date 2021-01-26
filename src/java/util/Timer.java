@@ -24,8 +24,8 @@
  */
 
 package java.util;
-import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.executor.ScheduledThreadPoolExecutor;
 
 /**
  * A facility for threads to schedule tasks for future execution in a
@@ -63,7 +63,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * <p>Java 5.0 introduced the {@code java.util.concurrent} package and
  * one of the concurrency utilities therein is the {@link
- * java.util.concurrent.ScheduledThreadPoolExecutor
+ * ScheduledThreadPoolExecutor
  * ScheduledThreadPoolExecutor} which is a thread pool for repeatedly
  * executing tasks at a given rate or delay.  It is effectively a more
  * versatile replacement for the {@code Timer}/{@code TimerTask}

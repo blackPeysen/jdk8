@@ -30,9 +30,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
-import java.util.concurrent.*;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.concurrent.executor.ExecutorService;
+import java.util.concurrent.executor.ThreadFactory;
 
 /**
  * Service-provider class for asynchronous channels.

@@ -26,7 +26,7 @@
 package java.sql;
 
 import java.util.Properties;
-import java.util.concurrent.Executor;
+import java.util.concurrent.executor.Executor;
 
 /**
  * <P>A connection (session) with a specific

@@ -29,32 +29,19 @@
 package java.math;
 
 /**
- * Specifies a <i>rounding behavior</i> for numerical operations
- * capable of discarding precision. Each rounding mode indicates how
- * the least significant returned digit of a rounded result is to be
- * calculated.  If fewer digits are returned than the digits needed to
- * represent the exact numerical result, the discarded digits will be
- * referred to as the <i>discarded fraction</i> regardless the digits'
- * contribution to the value of the number.  In other words,
- * considered as a numerical value, the discarded fraction could have
- * an absolute value greater than one.
+ * 为能够舍弃精度的数值运算指定舍入行为。
+ * 每个舍入模式指示如何计算舍入结果的最低有效位。
+ * 如果返回的位数少于表示精确数值结果所需的位数，则无论这些位数对数字值的贡献如何，丢弃的位数都将被称为舍弃分数。
+ * 换句话说，被视为数值，丢弃的分数可能具有大于1的绝对值。
  *
- * <p>Each rounding mode description includes a table listing how
- * different two-digit decimal values would round to a one digit
- * decimal value under the rounding mode in question.  The result
- * column in the tables could be gotten by creating a
- * {@code BigDecimal} number with the specified value, forming a
- * {@link MathContext} object with the proper settings
- * ({@code precision} set to {@code 1}, and the
- * {@code roundingMode} set to the rounding mode in question), and
- * calling {@link BigDecimal#round round} on this number with the
- * proper {@code MathContext}.  A summary table showing the results
- * of these rounding operations for all rounding modes appears below.
+ * <p>每个舍入模式的描述都包含一个表格，该表格列出了在所讨论的舍入模式下，不同的两位十进制值将如何舍入为一位十进制值。
+ * 表中的结果列可通过创建具有指定值的{@code BigDecimal}数字，形成具有适当设置的{@link MathContext}对象（{@code precision}设置为{@code 1}，
+ * 并将{@code roundingMode}设置为所讨论的舍入模式），然后用正确的{@code MathContext}对该数字调用{@link BigDecimal＃round round}。
+ * 下表显示了所有舍入模式下这些舍入运算的结果。
  *
  *<table border>
- * <caption><b>Summary of Rounding Operations Under Different Rounding Modes</b></caption>
- * <tr><th></th><th colspan=8>Result of rounding input to one digit with the given
- *                           rounding mode</th>
+ * <caption><b>不同舍入模式下的舍入操作摘要</b></caption>
+ * <tr><th></th><th colspan=8>使用给定舍入模式将输入舍入到一位数字的结果</th>
  * <tr valign=top>
  * <th>Input Number</th>         <th>{@code UP}</th>
  *                                           <th>{@code DOWN}</th>
@@ -78,10 +65,7 @@ package java.math;
  *</table>
  *
  *
- * <p>This {@code enum} is intended to replace the integer-based
- * enumeration of rounding mode constants in {@link BigDecimal}
- * ({@link BigDecimal#ROUND_UP}, {@link BigDecimal#ROUND_DOWN},
- * etc. ).
+ * <p>此{@code 枚举}旨在替换{@link BigDecimal} （{@link BigDecimal＃ROUND_UP}，{@link BigDecimal＃ROUND_DOWN}等）中基于整数的舍入模式常量的枚举。
  *
  * @see     BigDecimal
  * @see     MathContext
@@ -93,10 +77,9 @@ package java.math;
 public enum RoundingMode {
 
         /**
-         * Rounding mode to round away from zero.  Always increments the
-         * digit prior to a non-zero discarded fraction.  Note that this
-         * rounding mode never decreases the magnitude of the calculated
-         * value.
+         * 舍入模式从零舍入。
+         * 始终在非零废弃分数之前增加数字。请注意，这种四舍五入模式永远不会减小计算出的值的大小。
+         * 向远离零的方向舍入：若舍入位为非零，则对舍入部分的前一位数字加1；若舍入位为零，则直接舍弃。即为向外取整模式。
          *
          *<p>Example:
          *<table border>
@@ -118,9 +101,9 @@ public enum RoundingMode {
     UP(BigDecimal.ROUND_UP),
 
         /**
-         * Rounding mode to round towards zero.  Never increments the digit
-         * prior to a discarded fraction (i.e., truncates).  Note that this
-         * rounding mode never increases the magnitude of the calculated value.
+         * 舍入模式向零舍入。
+         * 切勿在舍弃小数（即截断）之前增加数字。注意，这种四舍五入模式永远不会增加计算值的大小。
+         * 向接近零的方向舍入：不论舍入位是否为零，都直接舍弃。即为向内取整模式。
          *
          *<p>Example:
          *<table border>
@@ -142,10 +125,11 @@ public enum RoundingMode {
     DOWN(BigDecimal.ROUND_DOWN),
 
         /**
-         * Rounding mode to round towards positive infinity.  If the
-         * result is positive, behaves as for {@code RoundingMode.UP};
-         * if negative, behaves as for {@code RoundingMode.DOWN}.  Note
-         * that this rounding mode never decreases the calculated value.
+         * 舍入模式向正无穷大舍入。
+         * 如果结果为正，则行为与{@code RoundingMode.UP}相同；
+         * 如果为负，则与{@code RoundingMode.DOWN}一样。
+         * 注意此舍入模式永远不会减少计算值。
+         * 向正无穷大的方向舍入：若 BigDecimal 为正，则舍入行为与 ROUND_UP 相同；若为负，则舍入行为与 ROUND_DOWN 相同。即为向上取整模式。
          *
          *<p>Example:
          *<table border>
@@ -167,10 +151,11 @@ public enum RoundingMode {
     CEILING(BigDecimal.ROUND_CEILING),
 
         /**
-         * Rounding mode to round towards negative infinity.  If the
-         * result is positive, behave as for {@code RoundingMode.DOWN};
-         * if negative, behave as for {@code RoundingMode.UP}.  Note that
-         * this rounding mode never increases the calculated value.
+         * 舍入模式向负无穷大舍入。
+         * 如果结果为肯定，则行为与{@code RoundingMode.DOWN}相同；
+         * 如果为负，则与{@code RoundingMode.UP}一样。
+         * 注意此舍入模式永远不会增加计算值。
+         * 向负无穷大的方向舍入： 若 BigDecimal 为正，则舍入行为与 ROUND_UP 相同；若为负，则舍入行为与 ROUND_DOWN 相同。即为向上取整模式。
          *
          *<p>Example:
          *<table border>
@@ -192,12 +177,11 @@ public enum RoundingMode {
     FLOOR(BigDecimal.ROUND_FLOOR),
 
         /**
-         * Rounding mode to round towards {@literal "nearest neighbor"}
-         * unless both neighbors are equidistant, in which case round up.
-         * Behaves as for {@code RoundingMode.UP} if the discarded
-         * fraction is &ge; 0.5; otherwise, behaves as for
-         * {@code RoundingMode.DOWN}.  Note that this is the rounding
-         * mode commonly taught at school.
+         * 舍入模式向{@literal“最近的邻居”} 舍入，除非两个邻居等距。
+         * 如果丢弃的*分数≥0.5，则行为与{@code RoundingMode.UP}相同；
+         * 否则，其行为与{@code RoundingMode.DOWN}相同。
+         * 请注意，这是学校通常教的四舍五入模式。
+         * 向“最接近的”整数舍入：若舍入位大于等于5，则对舍入部分的前一位数字加1；若舍入位小于5，则直接舍弃。即为四舍五入模式。
          *
          *<p>Example:
          *<table border>
@@ -219,11 +203,10 @@ public enum RoundingMode {
     HALF_UP(BigDecimal.ROUND_HALF_UP),
 
         /**
-         * Rounding mode to round towards {@literal "nearest neighbor"}
-         * unless both neighbors are equidistant, in which case round
-         * down.  Behaves as for {@code RoundingMode.UP} if the discarded
-         * fraction is &gt; 0.5; otherwise, behaves as for
-         * {@code RoundingMode.DOWN}.
+         * 舍入模式向{@literal“最近的邻居”} 舍入，除非两个邻居都是等距的，在这种情况下舍入。
+         * 如果丢弃的分数> 0.5，则行为与{@code RoundingMode.UP}相同；
+         * 否则，其行为与{@code RoundingMode.DOWN}相同。
+         * 向“最接近的”整数舍入：若舍入位大于5，则对舍入部分的前一位数字加1；若舍入位小于等于5，则直接舍弃。即为五舍六入模式。
          *
          *<p>Example:
          *<table border>
@@ -245,18 +228,14 @@ public enum RoundingMode {
     HALF_DOWN(BigDecimal.ROUND_HALF_DOWN),
 
         /**
-         * Rounding mode to round towards the {@literal "nearest neighbor"}
-         * unless both neighbors are equidistant, in which case, round
-         * towards the even neighbor.  Behaves as for
-         * {@code RoundingMode.HALF_UP} if the digit to the left of the
-         * discarded fraction is odd; behaves as for
-         * {@code RoundingMode.HALF_DOWN} if it's even.  Note that this
-         * is the rounding mode that statistically minimizes cumulative
-         * error when applied repeatedly over a sequence of calculations.
-         * It is sometimes known as {@literal "Banker's rounding,"} and is
-         * chiefly used in the USA.  This rounding mode is analogous to
-         * the rounding policy used for {@code float} and {@code double}
-         * arithmetic in Java.
+         * 舍入模式向{@literal“最近的邻居”} 舍入，除非两个邻居都等距，在这种情况下，向偶数邻居舍入。
+         * 如果丢弃的分数左侧的数字为奇数，则{@code RoundingMode.HALF_UP}的行为；的行为与{@code RoundingMode.HALF_DOWN}相同。
+         * 请注意，这是四舍五入模式，当在一系列计算中重复应用时，统计上最小化累积误差。
+         * 它有时被称为{@literal“银行家四舍五入”，}并且*主要在美国使用。
+         * 这种舍入模式类似于Java中用于{@code float}和{@code double}算术的舍入策略。
+         * 向“最接近的”整数舍入：
+         *         若（舍入位大于5）或者（舍入位等于5且前一位为奇数），则对舍入部分的前一位数字加1；
+         *         若（舍入位小于5）或者（舍入位等于5且前一位为偶数），则直接舍弃。即为银行家舍入模式。
          *
          *<p>Example:
          *<table border>
@@ -278,10 +257,9 @@ public enum RoundingMode {
     HALF_EVEN(BigDecimal.ROUND_HALF_EVEN),
 
         /**
-         * Rounding mode to assert that the requested operation has an exact
-         * result, hence no rounding is necessary.  If this rounding mode is
-         * specified on an operation that yields an inexact result, an
-         * {@code ArithmeticException} is thrown.
+         * 舍入模式可以断言所请求的操作具有精确的*结果，因此不需要舍入。
+         * 如果在产生不精确结果的操作上指定了这种舍入模式，则会抛出{@code ArithmeticException}。
+         *
          *<p>Example:
          *<table border>
          * <caption><b>Rounding mode UNNECESSARY Examples</b></caption>
@@ -307,20 +285,18 @@ public enum RoundingMode {
     /**
      * Constructor
      *
-     * @param oldMode The {@code BigDecimal} constant corresponding to
-     *        this mode
+     * @param oldMode 与此模式对应的{@code BigDecimal}常量
      */
     private RoundingMode(int oldMode) {
         this.oldMode = oldMode;
     }
 
     /**
-     * Returns the {@code RoundingMode} object corresponding to a
-     * legacy integer rounding mode constant in {@link BigDecimal}.
+     * 返回与{@link BigDecimal}中的旧式整数舍入模式常量相对应的{@code RoundingMode}对象。
      *
-     * @param  rm legacy integer rounding mode to convert
-     * @return {@code RoundingMode} corresponding to the given integer.
-     * @throws IllegalArgumentException integer is out of range
+     * @param  rm 旧式整数舍入模式进行转换
+     * @return {@code RoundingMode} 对应于给定的整数。
+     * @throws IllegalArgumentException 整数超出范围
      */
     public static RoundingMode valueOf(int rm) {
         switch(rm) {

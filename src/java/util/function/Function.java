@@ -52,12 +52,10 @@ public interface Function<T, R> {
      * 返回一个复合函数，该函数首先将{@code before}函数应用于其输入，然后将该函数应用于结果。
      * 如果任意一个函数的求值抛出异常，则将其传递给组合函数的调用者。
      *
-     * @param <V> the type of input to the {@code before} function, and to the
-     *           composed function
-     * @param before the function to apply before this function is applied
-     * @return a composed function that first applies the {@code before}
-     * function and then applies this function
-     * @throws NullPointerException if before is null
+     * @param <V> {@code before}函数和组成函数的输入类型
+     * @param before 在应用此功能之前要应用的功能
+     * @return 一个组合函数，首先应用{@code before}函数，然后应用此函数
+     * @throws NullPointerException 如果before为null
      *
      * @see #andThen(Function)
      */

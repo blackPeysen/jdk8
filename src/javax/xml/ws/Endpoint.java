@@ -27,6 +27,8 @@ package javax.xml.ws;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.executor.Executor;
+
 import javax.xml.ws.spi.Provider;
 import javax.xml.ws.spi.http.HttpContext;
 import javax.xml.ws.wsaddressing.W3CEndpointReference;
@@ -66,7 +68,7 @@ import org.w3c.dom.Element;
  * @see javax.xml.ws.Binding
  * @see javax.xml.ws.BindingType
  * @see javax.xml.ws.soap.SOAPBinding
- * @see java.util.concurrent.Executor
+ * @see Executor
  *
  **/
 public abstract class Endpoint {
@@ -377,12 +379,12 @@ public abstract class Endpoint {
      * The executor is used to dispatch an incoming request to
      * the implementor object.
      *
-     * @return The <code>java.util.concurrent.Executor</code> to be
+     * @return The <code>java.util.concurrent.executor.Executor</code> to be
      *         used to dispatch a request.
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public abstract java.util.concurrent.Executor getExecutor();
+    public abstract Executor getExecutor();
 
     /**
      * Sets the executor for this <code>Endpoint</code> instance.
@@ -395,16 +397,16 @@ public abstract class Endpoint {
      * context defines its own threading behavior, the executor
      * may be ignored.
      *
-     * @param executor The <code>java.util.concurrent.Executor</code>
+     * @param executor The <code>java.util.concurrent.executor.Executor</code>
      *        to be used to dispatch a request.
      *
      * @throws SecurityException  If the instance does not support
      *         setting an executor for security reasons (e.g. the
      *         necessary permissions are missing).
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public abstract void setExecutor(java.util.concurrent.Executor executor);
+    public abstract void setExecutor(Executor executor);
 
 
     /**

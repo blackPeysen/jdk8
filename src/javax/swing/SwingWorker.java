@@ -35,6 +35,15 @@ import java.util.concurrent.*;
 import java.util.concurrent.blocking.queue.LinkedBlockingQueue;
 
 import java.awt.event.*;
+import java.util.concurrent.exception.ExecutionException;
+import java.util.concurrent.exception.TimeoutException;
+import java.util.concurrent.executor.Executor;
+import java.util.concurrent.executor.ExecutorService;
+import java.util.concurrent.executor.Executors;
+import java.util.concurrent.executor.ThreadFactory;
+import java.util.concurrent.executor.ThreadPoolExecutor;
+import java.util.concurrent.future.FutureTask;
+import java.util.concurrent.future.RunnableFuture;
 
 import sun.awt.AppContext;
 import sun.swing.AccumulativeRunnable;
@@ -209,7 +218,7 @@ import sun.swing.AccumulativeRunnable;
  * <p>
  * Because {@code SwingWorker} implements {@code Runnable}, a
  * {@code SwingWorker} can be submitted to an
- * {@link java.util.concurrent.Executor} for execution.
+ * {@link Executor} for execution.
  *
  * @author Igor Kushnirskiy
  *
@@ -240,7 +249,7 @@ public abstract class SwingWorker<T, V> implements RunnableFuture<T> {
      * everything is run inside this FutureTask. Also it is used as
      * a delegatee for the Future API.
      */
-    private final FutureTask<T> future;
+    private final java.util.concurrent.future.FutureTask<T> future;
 
     /**
      * all propertyChangeSupport goes through this.
@@ -596,7 +605,7 @@ public abstract class SwingWorker<T, V> implements RunnableFuture<T> {
      * dialog.setVisible(true);
      * </pre>
      */
-    public final T get() throws InterruptedException, ExecutionException {
+    public final T get() throws InterruptedException, java.util.concurrent.exception.ExecutionException {
         return future.get();
     }
 
@@ -751,14 +760,14 @@ public abstract class SwingWorker<T, V> implements RunnableFuture<T> {
      *
      * @return ExecutorService for the {@code SwingWorkers}
      */
-    private static synchronized ExecutorService getWorkersExecutorService() {
+    private static synchronized java.util.concurrent.executor.ExecutorService getWorkersExecutorService() {
         final AppContext appContext = AppContext.getAppContext();
-        ExecutorService executorService =
-            (ExecutorService) appContext.get(SwingWorker.class);
+        java.util.concurrent.executor.ExecutorService executorService =
+            (java.util.concurrent.executor.ExecutorService) appContext.get(SwingWorker.class);
         if (executorService == null) {
             //this creates daemon threads.
-            ThreadFactory threadFactory =
-                new ThreadFactory() {
+            java.util.concurrent.executor.ThreadFactory threadFactory =
+                new java.util.concurrent.executor.ThreadFactory() {
                     final ThreadFactory defaultFactory =
                         Executors.defaultThreadFactory();
                     public Thread newThread(final Runnable r) {
@@ -780,15 +789,15 @@ public abstract class SwingWorker<T, V> implements RunnableFuture<T> {
 
             // Don't use ShutdownHook here as it's not enough. We should track
             // AppContext disposal instead of JVM shutdown, see 6799345 for details
-            final ExecutorService es = executorService;
+            final java.util.concurrent.executor.ExecutorService es = executorService;
             appContext.addPropertyChangeListener(AppContext.DISPOSED_PROPERTY_NAME,
                 new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent pce) {
                         boolean disposed = (Boolean)pce.getNewValue();
                         if (disposed) {
-                            final WeakReference<ExecutorService> executorServiceRef =
-                                new WeakReference<ExecutorService>(es);
+                            final WeakReference<java.util.concurrent.executor.ExecutorService> executorServiceRef =
+                                new WeakReference<java.util.concurrent.executor.ExecutorService>(es);
                             final ExecutorService executorService =
                                 executorServiceRef.get();
                             if (executorService != null) {

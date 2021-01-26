@@ -46,31 +46,31 @@
  *
  * <b>Interfaces.</b>
  *
- * {@link java.util.concurrent.Executor} is a simple standardized
+ * {@link java.util.concurrent.executor.Executor} is a simple standardized
  * interface for defining custom thread-like subsystems, including
  * thread pools, asynchronous I/O, and lightweight task frameworks.
  * Depending on which concrete Executor class is being used, tasks may
  * execute in a newly created thread, an existing task-execution thread,
- * or the thread calling {@link java.util.concurrent.Executor#execute
+ * or the thread calling {@link java.util.concurrent.executor.Executor#execute
  * execute}, and may execute sequentially or concurrently.
  *
- * {@link java.util.concurrent.ExecutorService} provides a more
+ * {@link java.util.concurrent.executor.ExecutorService} provides a more
  * complete asynchronous task execution framework.  An
  * ExecutorService manages queuing and scheduling of tasks,
  * and allows controlled shutdown.
  *
- * The {@link java.util.concurrent.ScheduledExecutorService}
+ * The {@link java.util.concurrent.executor.ScheduledExecutorService}
  * subinterface and associated interfaces add support for
  * delayed and periodic task execution.  ExecutorServices
  * provide methods arranging asynchronous execution of any
  * function expressed as {@link java.util.concurrent.Callable},
  * the result-bearing analog of {@link java.lang.Runnable}.
  *
- * A {@link java.util.concurrent.Future} returns the results of
+ * A {@link java.util.concurrent.future.Future} returns the results of
  * a function, allows determination of whether execution has
  * completed, and provides a means to cancel execution.
  *
- * A {@link java.util.concurrent.RunnableFuture} is a {@code Future}
+ * A {@link java.util.concurrent.future.RunnableFuture} is a {@code Future}
  * that possesses a {@code run} method that upon execution,
  * sets its results.
  *
@@ -78,23 +78,23 @@
  *
  * <b>Implementations.</b>
  *
- * Classes {@link java.util.concurrent.ThreadPoolExecutor} and
- * {@link java.util.concurrent.ScheduledThreadPoolExecutor}
+ * Classes {@link java.util.concurrent.executor.ThreadPoolExecutor} and
+ * {@link java.util.concurrent.executor.ScheduledThreadPoolExecutor}
  * provide tunable, flexible thread pools.
  *
- * The {@link java.util.concurrent.Executors} class provides
+ * The {@link java.util.concurrent.executor.Executors} class provides
  * factory methods for the most common kinds and configurations
  * of Executors, as well as a few utility methods for using
  * them.  Other utilities based on {@code Executors} include the
- * concrete class {@link java.util.concurrent.FutureTask}
+ * concrete class {@link java.util.concurrent.future.FutureTask}
  * providing a common extensible implementation of Futures, and
- * {@link java.util.concurrent.ExecutorCompletionService}, that
+ * {@link java.util.concurrent.executor.ExecutorCompletionService}, that
  * assists in coordinating the processing of groups of
  * asynchronous tasks.
  *
- * <p>Class {@link java.util.concurrent.ForkJoinPool} provides an
+ * <p>Class {@link java.util.concurrent.fork.ForkJoinPool} provides an
  * Executor primarily designed for processing instances of {@link
- * java.util.concurrent.ForkJoinTask} and its subclasses.  These
+ * java.util.concurrent.fork.ForkJoinTask} and its subclasses.  These
  * classes employ a work-stealing scheduler that attains high
  * throughput for tasks conforming to restrictions that often hold in
  * computation-intensive parallel processing.

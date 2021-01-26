@@ -56,6 +56,8 @@ import javax.print.attribute.PrintRequestAttributeSet;
 
 import java.text.*;
 import java.text.AttributedCharacterIterator.Attribute;
+import java.util.concurrent.exception.ExecutionException;
+import java.util.concurrent.future.FutureTask;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -2212,7 +2214,7 @@ public abstract class JTextComponent extends JComponent implements Scrollable, A
      * @see #getPrintable
      * @see java.text.MessageFormat
      * @see java.awt.GraphicsEnvironment#isHeadless
-     * @see java.util.concurrent.FutureTask
+     * @see java.util.concurrent.future.FutureTask
      *
      * @since 1.6
      */
@@ -2278,7 +2280,7 @@ public abstract class JTextComponent extends JComponent implements Scrollable, A
                 }
             };
 
-        final FutureTask<Object> futurePrinting =
+        final java.util.concurrent.future.FutureTask<Object> futurePrinting =
             new FutureTask<Object>(doPrint);
 
         final Runnable runnablePrinting =
@@ -2305,7 +2307,7 @@ public abstract class JTextComponent extends JComponent implements Scrollable, A
                                 }).get();
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
-                        } catch (ExecutionException e) {
+                        } catch (java.util.concurrent.exception.ExecutionException e) {
                             Throwable cause = e.getCause();
                             if (cause instanceof Error) {
                                 throw (Error) cause;
@@ -2333,7 +2335,7 @@ public abstract class JTextComponent extends JComponent implements Scrollable, A
                                     }, null).get();
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
-                            } catch (ExecutionException e) {
+                            } catch (java.util.concurrent.exception.ExecutionException e) {
                                 Throwable cause = e.getCause();
                                 if (cause instanceof Error) {
                                     throw (Error) cause;
