@@ -1,36 +1,34 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
+ */
+
+/**
+ * 将atomic 进行分类：
+ *  1、基本数据类型
+ *      {@link java.util.concurrent.atomic.AtomicBoolean}：以原子更新的方式更新boolean
+ *      {@link java.util.concurrent.atomic.AtomicInteger}：以原子更新的方式更新Integer
+ *      {@link java.util.concurrent.atomic.AtomicLong}：以原子更新的方式更新Long
+ *
+ * 2、基本数据类型数组
+ *      {@link java.util.concurrent.atomic.AtomicIntegerArray}：原子更新整型数组中的元素
+ *      {@link java.util.concurrent.atomic.AtomicLongArray}：原子更新长整型数组中的元素
+ *      {@link java.util.concurrent.atomic.AtomicReferenceArray}：原子更新引用类型数组中的元素
+ *
+ *  3、原子更新引用类型
+ *      {@link java.util.concurrent.atomic.AtomicReference}：以原子更新的方式更新引用类型
+ *      {@link java.util.concurrent.atomic.AtomicReferenceFieldUpdater}：原子更新引用类型里的字段；
+ *      {@link java.util.concurrent.atomic.AtomicMarkableReference}：原子更新带有标记位的引用类型
+ *
+ * 4、原子更新字段类型
+ *      {@link java.util.concurrent.atomic.AtomicIntegerFieldUpdater}：原子更新整型字段类；
+ *      {@link java.util.concurrent.atomic.AtomicLongFieldUpdater}：原子更新长整型字段类；
+ *      {@link java.util.concurrent.atomic.AtomicStampedReference}：原子更新引用类型，解决ABA问题
  */
 
 /**
@@ -46,7 +44,7 @@
  * 然而，在某些平台上，支持可能需要某种形式的内部锁定。
  * 因此，不能严格保证这些方法是非阻塞的——线程在执行操作之前可能会暂时阻塞。
  *
- * <p>Instances of classes
+ * <p>类的实例
  * {@link java.util.concurrent.atomic.AtomicBoolean},
  * {@link java.util.concurrent.atomic.AtomicInteger},
  * {@link java.util.concurrent.atomic.AtomicLong}, and
@@ -54,16 +52,6 @@
  * 每一个都提供对对应类型的单个变量的访问和更新。
  * 每个类还为该类型提供适当的实用程序方法。
  * 例如，类{@code AtomicLong}和{@code AtomicInteger}提供了原子递增方法。
- * 一个应用程序是生成序列号，例如:
- *
- *  <pre> {@code
- * class Sequencer {
- *   private final AtomicLong sequenceNumber
- *     = new AtomicLong(0);
- *   public long next() {
- *     return sequenceNumber.getAndIncrement();
- *   }
- * }}</pre>
  *
  * <p>定义新的实用函数很简单，像{@code getAndIncrement}这样的实用函数可以自动地将函数应用到一个值上。
  *
@@ -74,19 +62,13 @@
  *
  * <ul>
  *
- *   <li> {@code get} has the memory effects of reading a
- * {@code volatile} variable.
+ *   <li> {@code get}具有读取{@code volatile}变量的存储效果。
  *
- *   <li> {@code set} has the memory effects of writing (assigning) a
- * {@code volatile} variable.
+ *   <li> {@code set}具有写入（分配）{@code volatile}变量的记忆效应。
  *
- *   <li> {@code lazySet} has the memory effects of writing (assigning)
- *   a {@code volatile} variable except that it permits reorderings with
- *   subsequent (but not previous) memory actions that do not themselves
- *   impose reordering constraints with ordinary non-{@code volatile}
- *   writes.  Among other usage contexts, {@code lazySet} may apply when
- *   nulling out, for the sake of garbage collection, a reference that is
- *   never accessed again.
+ *   <li> {@code lazySet}具有写入（分配）{@code volatile}变量的内存效果，除了它允许使用后续（但不是以前）的内存操作进行重排序，
+ *   而这些内存操作本身并不对普通的非-施加重排序约束。
+ *   {@code volatile}写在其他用法上下文中，{@code lazySet}可能适用于为避免垃圾回收而将永不再访问的引用。
  *
  *   <li>{@code weakCompareAndSet} atomically reads and conditionally
  *   writes a variable but does <em>not</em>
@@ -100,10 +82,7 @@
  *   writing {@code volatile} variables.
  * </ul>
  *
- * <p>In addition to classes representing single values, this package
- * contains <em>Updater</em> classes that can be used to obtain
- * {@code compareAndSet} operations on any selected {@code volatile}
- * field of any selected class.
+ * <p>除了表示单个值的类之外，此包还包含Updater类，这些类可用于在任何选定类的任何选定{@code volatile} 字段上获取{@code compareAndSet}操作。
  *
  * {@link java.util.concurrent.atomic.AtomicReferenceFieldUpdater},
  * {@link java.util.concurrent.atomic.AtomicIntegerFieldUpdater}, and
@@ -112,12 +91,11 @@
  * 它们主要用于原子数据结构中，在原子数据结构中，同一节点的几个{@code volatile}字段(例如，树节点的链接)独立地接受原子更新。
  * 这些类在如何以及何时使用原子更新方面提供了更大的灵活性，但代价是更笨拙的基于反射的设置、更不方便的使用和更弱的保证。
  *
- * <p>The
- * {@link java.util.concurrent.atomic.AtomicIntegerArray},
+ * <p>{@link java.util.concurrent.atomic.AtomicIntegerArray},
  * {@link java.util.concurrent.atomic.AtomicLongArray}, and
  * {@link java.util.concurrent.atomic.AtomicReferenceArray} 类
- * 进一步将原子操作支持扩展到这些类型的数组。这
- * 些类还为它们的数组元素提供了{@code volatile}访问语义，这在普通数组中是不受支持的。
+ * 进一步将原子操作支持扩展到这些类型的数组。
+ * 这些类还为它们的数组元素提供了{@code volatile}访问语义，这在普通数组中是不受支持的。
  *
  * <p id="weakCompareAndSet">The atomic classes also support method
  * {@code weakCompareAndSet}, which has limited applicability.  On some
@@ -142,34 +120,23 @@
  * acceptable when, for example, updating performance statistics, but
  * rarely otherwise.
  *
- * <p>The {@link java.util.concurrent.atomic.AtomicMarkableReference}
- * class associates a single boolean with a reference.  For example, this
- * bit might be used inside a data structure to mean that the object
- * being referenced has logically been deleted.
+ * <p>{@link java.util.concurrent.atomic.AtomicMarkableReference} 类将单个布尔值与引用关联。
+ * 例如，该位可能在数据结构内使用，表示被引用的对象在逻辑上已被删除。
  *
- * The {@link java.util.concurrent.atomic.AtomicStampedReference}
- * class associates an integer value with a reference.  This may be
- * used for example, to represent version numbers corresponding to
- * series of updates.
+ * {@link java.util.concurrent.atomic.AtomicStampedReference} 类将整数值与引用关联。
+ * 例如，可以使用来表示与系列更新相对应的版本号。
  *
- * <p>Atomic classes are designed primarily as building blocks for
- * implementing non-blocking data structures and related infrastructure
- * classes.  The {@code compareAndSet} method is not a general
- * replacement for locking.  It applies only when critical updates for an
- * object are confined to a <em>single</em> variable.
+ * <p>原子类主要设计为构建块，用于实现非阻塞数据结构和相关的基础结构类。
+ * {@code compareAndSet}方法不是锁定的通用替代。它仅在对象的关键更新被限制在单个变量中时适用。
  *
- * <p>Atomic classes are not general purpose replacements for
- * {@code java.lang.Integer} and related classes.  They do <em>not</em>
- * define methods such as {@code equals}, {@code hashCode} and
- * {@code compareTo}.  (Because atomic variables are expected to be
- * mutated, they are poor choices for hash table keys.)  Additionally,
- * classes are provided only for those types that are commonly useful in
- * intended applications.  For example, there is no atomic class for
- * representing {@code byte}.  In those infrequent cases where you would
- * like to do so, you can use an {@code AtomicInteger} to hold
- * {@code byte} values, and cast appropriately.
+ * <p>原子类不是* {@code java.lang.Integer}和相关类的通用替代品。
+ * 它们不会定义以下方法，例如{@code equals}，{@code hashCode}和{@code compareTo}。 （由于期望原子变量被*突变，因此它们对于哈希表键是不好的选择。）
+ * 此外，类仅针对那些在预期应用程序中通常有用的类型提供。
+ * 例如，没有用于的原子类表示{@code byte}。
+ * 如果您不希望这样做，可以使用{@code AtomicInteger}来保存{@code byte}值，并进行适当的转换。
  *
- * You can also hold floats using
+ *
+ * 您也可以使用
  * {@link java.lang.Float#floatToRawIntBits} and
  * {@link java.lang.Float#intBitsToFloat} conversions, and doubles using
  * {@link java.lang.Double#doubleToRawLongBits} and

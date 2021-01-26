@@ -40,7 +40,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.blocking.queue.BlockingQueue;
 import java.util.concurrent.exception.RejectedExecutionException;
-import java.util.concurrent.future.Delayed;
+import java.util.concurrent.blocking.queue.Delayed;
 import java.util.concurrent.future.FutureTask;
 import java.util.concurrent.future.ScheduledFuture;
 import java.util.concurrent.locks.Condition;
@@ -243,7 +243,7 @@ public class ScheduledThreadPoolExecutor
             return unit.convert(time - now(), NANOSECONDS);
         }
 
-        public int compareTo(java.util.concurrent.future.Delayed other) {
+        public int compareTo(Delayed other) {
             if (other == this) // compare zero if same object
                 return 0;
             if (other instanceof ScheduledFutureTask) {
@@ -516,7 +516,7 @@ public class ScheduledThreadPoolExecutor
      * Long.MAX_VALUE.
      */
     private long overflowFree(long delay) {
-        java.util.concurrent.future.Delayed head = (Delayed) super.getQueue().peek();
+        Delayed head = (Delayed) super.getQueue().peek();
         if (head != null) {
             long headDelay = head.getDelay(NANOSECONDS);
             if (headDelay < 0 && (delay - headDelay < 0))

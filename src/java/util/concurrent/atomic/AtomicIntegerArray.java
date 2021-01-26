@@ -73,8 +73,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicIntegerArray of the given length, with all
-     * elements initially zero.
+     * 创建一个给定长度的新AtomicIntegerArray，所有元素最初为零。
      *
      * @param length the length of the array
      */
@@ -83,8 +82,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Creates a new AtomicIntegerArray with the same length as, and
-     * all elements copied from, the given array.
+     * 创建一个新AtomicIntegerArray，其长度与给定数组相同，并且从该数组复制所有元素。
      *
      * @param array the array to copy elements from
      * @throws NullPointerException if array is null
@@ -95,7 +93,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Returns the length of the array.
+     * 返回数组的长度。
      *
      * @return the length of the array
      */
@@ -104,7 +102,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Gets the current value at position {@code i}.
+     * 获取位置{@code i}的当前值
      *
      * @param i the index
      * @return the current value
@@ -118,7 +116,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Sets the element at position {@code i} to the given value.
+     * 将位置{@code i}的元素设置为给定值
      *
      * @param i the index
      * @param newValue the new value
@@ -128,7 +126,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Eventually sets the element at position {@code i} to the given value.
+     * 最终将位置{@code i}的元素设置为给定值
      *
      * @param i the index
      * @param newValue the new value
@@ -139,8 +137,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the element at position {@code i} to the given
-     * value and returns the old value.
+     * 以原子方式将位置{@code i}的元素设置为给定值并返回旧值.
      *
      * @param i the index
      * @param newValue the new value
@@ -151,14 +148,12 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically sets the element at position {@code i} to the given
-     * updated value if the current value {@code ==} the expected value.
+     * 如果当前值{@code ==}是期望值，则以原子方式将位置{@code i}的元素设置为给定的更新值。
      *
      * @param i the index
      * @param expect the expected value
      * @param update the new value
-     * @return {@code true} if successful. False return indicates that
-     * the actual value was not equal to the expected value.
+     * @return {@code true}如果成功。错误的返回值表示实际值不等于期望值。
      */
     public final boolean compareAndSet(int i, int expect, int update) {
         return compareAndSetRaw(checkedByteOffset(i), expect, update);
@@ -186,7 +181,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically increments by one the element at index {@code i}.
+     * 以原子方式将索引{@code i}处的元素加1。
      *
      * @param i the index
      * @return the previous value
@@ -196,7 +191,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically decrements by one the element at index {@code i}.
+     * 以原子方式将索引{@code i}处的元素减1。
      *
      * @param i the index
      * @return the previous value
@@ -206,7 +201,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically adds the given value to the element at index {@code i}.
+     * 以原子方式将给定值添加到索引为{@code i}的元素。
      *
      * @param i the index
      * @param delta the value to add
@@ -217,7 +212,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically increments by one the element at index {@code i}.
+     * 以原子方式将索引{@code i}处的元素加1。
      *
      * @param i the index
      * @return the updated value
@@ -227,7 +222,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically decrements by one the element at index {@code i}.
+     * 以原子方式将索引{@code i}处的元素减1。
      *
      * @param i the index
      * @return the updated value
@@ -237,7 +232,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically adds the given value to the element at index {@code i}.
+     * 以原子方式将给定值添加到索引为{@code i}的元素。
      *
      * @param i the index
      * @param delta the value to add
@@ -249,13 +244,11 @@ public class AtomicIntegerArray implements java.io.Serializable {
 
 
     /**
-     * Atomically updates the element at index {@code i} with the results
-     * of applying the given function, returning the previous value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 使用应用给定函数的结果以原子方式更新索引{@code i}处的元素，并返回先前的值。
+     * 函数应无副作用，因为当尝试更新由于线程间争用而失败时，函数可能会重新应用。
      *
      * @param i the index
-     * @param updateFunction a side-effect-free function
+     * @param updateFunction 无副作用的功能
      * @return the previous value
      * @since 1.8
      */
@@ -270,14 +263,12 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the element at index {@code i} with the results
-     * of applying the given function, returning the updated value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
+     * 使用应用给定函数的结果以原子方式更新索引{@code i}处的元素，并返回更新后的值。
+     * 函数应无副作用，因为当尝试更新由于线程间争用而失败时，函数可能会重新应用。
      *
-     * @param i the index
-     * @param updateFunction a side-effect-free function
-     * @return the updated value
+     * @param i 索引
+     * @param updateFunction 无副作用的功能
+     * @return 更新值
      * @since 1.8
      */
     public final int updateAndGet(int i, IntUnaryOperator updateFunction) {
@@ -291,17 +282,13 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the element at index {@code i} with the
-     * results of applying the given function to the current and
-     * given values, returning the previous value. The function should
-     * be side-effect-free, since it may be re-applied when attempted
-     * updates fail due to contention among threads.  The function is
-     * applied with the current value at index {@code i} as its first
-     * argument, and the given update as the second argument.
+     * 用*将给定函数应用于当前值和给定值，并返回先前值的结果*以原子方式更新索引{@code i}处的元素。
+     * 该功能应无副作用，因为当尝试更新由于线程间争用而失败时，它可能会重新应用。
+     * 应用带有索引{@code i}的当前值作为其第一个*参数，并使用给定的update作为第二个参数。
      *
      * @param i the index
      * @param x the update value
-     * @param accumulatorFunction a side-effect-free function of two arguments
+     * @param accumulatorFunction 两个参数的无副作用功能
      * @return the previous value
      * @since 1.8
      */
@@ -317,17 +304,13 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Atomically updates the element at index {@code i} with the
-     * results of applying the given function to the current and
-     * given values, returning the updated value. The function should
-     * be side-effect-free, since it may be re-applied when attempted
-     * updates fail due to contention among threads.  The function is
-     * applied with the current value at index {@code i} as its first
-     * argument, and the given update as the second argument.
+     * 使用将给定函数应用于当前值和*给定值的结果，以原子方式更新索引{@code i}处的元素，并返回更新后的值。
+     * 该功能应无副作用，因为当尝试更新由于线程间争用而失败时，它可能会重新应用。
+     * 应用带有索引{@code i}的当前值作为其第一个*参数，并使用给定的update作为第二个参数。
      *
      * @param i the index
      * @param x the update value
-     * @param accumulatorFunction a side-effect-free function of two arguments
+     * @param accumulatorFunction 两个参数的无副作用功能
      * @return the updated value
      * @since 1.8
      */
@@ -343,7 +326,7 @@ public class AtomicIntegerArray implements java.io.Serializable {
     }
 
     /**
-     * Returns the String representation of the current values of array.
+     * 返回数组当前值的字符串表示形式。
      * @return the String representation of the current values of array
      */
     public String toString() {

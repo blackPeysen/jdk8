@@ -33,7 +33,7 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent.future;
+package java.util.concurrent.blocking.queue;
 
 import java.util.concurrent.TimeUnit;
 
