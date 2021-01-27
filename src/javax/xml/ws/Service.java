@@ -27,6 +27,8 @@ package javax.xml.ws;
 
 import javax.xml.namespace.QName;
 import java.util.Iterator;
+import java.util.concurrent.executor.Executor;
+
 import javax.xml.ws.handler.HandlerResolver;
 import javax.xml.bind.JAXBContext;
 import javax.xml.ws.spi.ServiceDelegate;
@@ -61,7 +63,7 @@ import javax.xml.ws.spi.Provider;
  *
  * @see javax.xml.ws.spi.Provider
  * @see javax.xml.ws.handler.HandlerResolver
- * @see java.util.concurrent.Executor
+ * @see Executor
  **/
 public class Service {
 
@@ -661,12 +663,12 @@ public class Service {
      * The executor is used for all asynchronous invocations that
      * require callbacks.
      *
-     * @return The <code>java.util.concurrent.Executor</code> to be
+     * @return The <code>java.util.concurrent.executor.Executor</code> to be
      *         used to invoke a callback.
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public java.util.concurrent.Executor getExecutor() {
+    public Executor getExecutor() {
         return delegate.getExecutor();
     }
 
@@ -676,16 +678,16 @@ public class Service {
      * The executor is used for all asynchronous invocations that
      * require callbacks.
      *
-     * @param executor The <code>java.util.concurrent.Executor</code>
+     * @param executor The <code>java.util.concurrent.executor.Executor</code>
      *        to be used to invoke a callback.
      *
      * @throws SecurityException If the instance does not support
      *         setting an executor for security reasons (e.g. the
      *         necessary permissions are missing).
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public void setExecutor(java.util.concurrent.Executor executor) {
+    public void setExecutor(Executor executor) {
         delegate.setExecutor(executor);
     }
 

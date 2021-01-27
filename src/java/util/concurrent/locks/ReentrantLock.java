@@ -43,18 +43,12 @@ import java.util.Collection;
  * 但是效率不高，实际上应该是写操作互斥，读操作共享。而jdk提供了读写锁ReentrantReadWriteLock。
  *
  *
- * A reentrant mutual exclusion {@link Lock} with the same basic
- * behavior and semantics as the implicit monitor lock accessed using
- * {@code synchronized} methods and statements, but with extended
- * capabilities.
+ * 可重入的互斥{@link Lock}，具有与使用{@code sync}方法和语句访问的隐式监视器锁相同的基本行为和语义，但具有扩展的功能。
  *
- * <p>A {@code ReentrantLock} is <em>owned</em> by the thread last
- * successfully locking, but not yet unlocking it. A thread invoking
- * {@code lock} will return, successfully acquiring the lock, when
- * the lock is not owned by another thread. The method will return
- * immediately if the current thread already owns the lock. This can
- * be checked using methods {@link #isHeldByCurrentThread}, and {@link
- * #getHoldCount}.
+ * <p>{@code ReentrantLock}由线程last成功拥有，但尚未将其解锁。当
+ * 锁未被另一个线程拥有时，调用{@code lock}的线程将返回并成功获取该锁。
+ * 如果当前线程已经拥有该锁，则该方法将立即返回。
+ * 可以使用{@link #isHeldByCurrentThread}和{@link #getHoldCount}方法进行检查。
  *
  * <p>The constructor for this class accepts an optional
  * <em>fairness</em> parameter.  When set {@code true}, under

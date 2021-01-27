@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.collection.CopyOnWriteArrayList;
-import java.util.concurrent.Executor;
+import java.util.concurrent.executor.Executor;
 
 import com.sun.jmx.remote.util.ClassLogger;
 
@@ -72,7 +72,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
 
     /**
      * Constructs a NotificationBroadcasterSupport where each listener is invoked using
-     * the given {@link java.util.concurrent.Executor}. When {@link #sendNotification
+     * the given {@link java.util.concurrent.executor.Executor}. When {@link #sendNotification
      * sendNotification} is called, a listener is selected if it was added with a null
      * {@link NotificationFilter}, or if {@link NotificationFilter#isNotificationEnabled
      * isNotificationEnabled} returns true for the notification being sent. The call to
@@ -119,7 +119,7 @@ public class NotificationBroadcasterSupport implements NotificationEmitter {
 
     /**
      * <p>Constructs a NotificationBroadcasterSupport with information about the notifications that may be sent,
-     * and where each listener is invoked using the given {@link java.util.concurrent.Executor}.</p>
+     * and where each listener is invoked using the given {@link java.util.concurrent.executor.Executor}.</p>
      *
      * <p>When {@link #sendNotification sendNotification} is called, a
      * listener is selected if it was added with a null {@link

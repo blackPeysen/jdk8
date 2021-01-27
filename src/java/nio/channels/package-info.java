@@ -241,7 +241,7 @@
  * <p> {@link java.nio.channels.AsynchronousChannel Asynchronous channels} are a
  * special type of channel capable of asynchronous I/O operations. Asynchronous
  * channels are non-blocking and define methods to initiate asynchronous
- * operations, returning a {@link java.util.concurrent.Future} representing the
+ * operations, returning a {@link java.util.concurrent.future.Future} representing the
  * pending result of each operation. The {@code Future} can be used to poll or
  * wait for the result of the operation. Asynchronous I/O operations can also
  * specify a {@link java.nio.channels.CompletionHandler} to invoke when the
@@ -261,7 +261,7 @@
  *
  * <p> Asynchronous channels are bound to an asynchronous channel group for the
  * purpose of resource sharing. A group has an associated {@link
- * java.util.concurrent.ExecutorService} to which tasks are submitted to handle
+ * java.util.concurrent.executor.ExecutorService} to which tasks are submitted to handle
  * I/O events and dispatch to completion handlers that consume the result of
  * asynchronous operations performed on channels in the group. The group can
  * optionally be specified when creating the channel or the channel can be bound

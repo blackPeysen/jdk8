@@ -26,7 +26,7 @@
 package javax.xml.ws;
 
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.future.Future;
 
 /** The <code>Response</code> interface provides methods used to obtain the
  *  payload and context of a message sent in response to an operation

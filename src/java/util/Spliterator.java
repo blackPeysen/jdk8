@@ -26,6 +26,7 @@ package java.util;
 
 import java.util.concurrent.collection.ConcurrentHashMap;
 import java.util.concurrent.collection.CopyOnWriteArrayList;
+import java.util.concurrent.fork.CountedCompleter;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import java.util.function.IntConsumer;
@@ -251,7 +252,7 @@ import java.util.function.LongConsumer;
  * sequentially. Here we assume that the order of processing across
  * subtasks doesn't matter; different (forked) tasks may further split
  * and process elements concurrently in undetermined order.  This
- * example uses a {@link java.util.concurrent.CountedCompleter};
+ * example uses a {@link CountedCompleter};
  * similar usages apply to other parallel task constructions.
  *
  * <pre>{@code

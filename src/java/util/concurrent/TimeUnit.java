@@ -38,9 +38,9 @@ package java.util.concurrent;
 import java.util.concurrent.blocking.queue.BlockingQueue;
 
 /**
- * {@code TimeUnit}表示给定的粒度单位上的时间持续时间，并提供实用程序方法来跨单位转换，
- * 以及在这些单位中执行定时和延迟操作。
+ * {@code TimeUnit}表示给定的粒度单位上的时间持续时间，并提供实用程序方法来跨单位转换，以及在这些单位中执行定时和延迟操作。
  * {@code TimeUnit}不维护时间信息，但仅帮助组织和使用可能在不同上下文中分别维护的时间表示形式。
+ *
  * 纳秒被定义为千分之一微秒，千分之一微秒，千分之一毫秒，一分一秒是六十秒，一小时是六十分钟，一天是二十四小时。
  *
  * <p>{@code TimeUnit}主要用于通知基于时间的方法如何解释给定的计时参数。
@@ -289,10 +289,9 @@ public enum TimeUnit {
     }
 
     /**
-     * Equivalent to
-     * {@link #convert(long, TimeUnit) DAYS.convert(duration, this)}.
-     * @param duration the duration
-     * @return the converted duration
+     * 等效于{@@ link #convert（long，TimeUnit）DAYS.convert（duration，this）}。
+     * @param duration 持续时间
+     * @return 转换后的持续时间
      * @since 1.6
      */
     public long toDays(long duration) {
@@ -300,23 +299,18 @@ public enum TimeUnit {
     }
 
     /**
-     * Utility to compute the excess-nanosecond argument to wait,
-     * sleep, join.
-     * @param d the duration
-     * @param m the number of milliseconds
-     * @return the number of nanoseconds
+     * 实用程序，用于计算多余的纳秒参数以等待，睡眠，加入。
+     * @param d 持续时间
+     * @param m 毫秒数
+     * @return 纳秒数
      */
     abstract int excessNanos(long d, long m);
 
     /**
-     * Performs a timed {@link Object#wait(long, int) Object.wait}
-     * using this time unit.
-     * This is a convenience method that converts timeout arguments
-     * into the form required by the {@code Object.wait} method.
+     * 使用此时间单位执行定时的{@link Object＃wait（long，int）Object.wait}
+     * 这是一种方便的方法，可以将超时参数转换为{@code Object.wait}方法所需的形式。
      *
-     * <p>For example, you could implement a blocking {@code poll}
-     * method (see {@link BlockingQueue#poll BlockingQueue.poll})
-     * using:
+     * <p>例如，您可以使用以下方法实现阻塞的{@code poll}方法（请参阅{@link BlockingQueue＃poll BlockingQueue.poll}）
      *
      *  <pre> {@code
      * public synchronized Object poll(long timeout, TimeUnit unit)
@@ -327,10 +321,9 @@ public enum TimeUnit {
      *   }
      * }}</pre>
      *
-     * @param obj the object to wait on
-     * @param timeout the maximum time to wait. If less than
-     * or equal to zero, do not wait at all.
-     * @throws InterruptedException if interrupted while waiting
+     * @param obj 等待的对象
+     * @param timeout 等待的最长时间。如果小于或等于零，请不要等待。
+     * @throws InterruptedException 如果在等待时被打断
      */
     public void timedWait(Object obj, long timeout)
             throws InterruptedException {
@@ -342,15 +335,12 @@ public enum TimeUnit {
     }
 
     /**
-     * Performs a timed {@link Thread#join(long, int) Thread.join}
-     * using this time unit.
-     * This is a convenience method that converts time arguments into the
-     * form required by the {@code Thread.join} method.
+     * 使用此时间单位执行定时的{@link Thread＃join（long，int）Thread.join}。
+     * 这是一种方便的方法，可以将时间参数转换为{@code Thread.join}方法所需的形式。
      *
-     * @param thread the thread to wait for
-     * @param timeout the maximum time to wait. If less than
-     * or equal to zero, do not wait at all.
-     * @throws InterruptedException if interrupted while waiting
+     * @param thread 等待的线程
+     * @param timeout 等待的最长时间。如果小于或等于零，请不要等待。
+     * @throws InterruptedException 如果在等待时被打断
      */
     public void timedJoin(Thread thread, long timeout)
             throws InterruptedException {
@@ -362,12 +352,11 @@ public enum TimeUnit {
     }
 
     /**
-     * 执行一个{@link Thread#sleep(long, int)Thread.sleep}使用这个时间单位。
-     * 这是一个方便的方法，可以将时间参数转换成{@code线程所需的*形式。睡眠}方法。
+     * 执行一个{@link Thread#sleep(long, int)}使用这个时间单位。
+     * 这是一个方便的方法，可以将时间参数转换成{@code 线程所需的形式睡眠}方法。
      *
-     * @param timeout the minimum time to sleep. If less than
-     * or equal to zero, do not sleep at all.
-     * @throws InterruptedException if interrupted while sleeping
+     * @param timeout 最短的睡眠时间。如果小于或等于零，则根本不睡觉。
+     * @throws InterruptedException 如果在睡觉时打断
      */
     public void sleep(long timeout) throws InterruptedException {
         if (timeout > 0) {

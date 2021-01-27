@@ -26,6 +26,8 @@
 package javax.xml.ws.spi;
 
 import java.util.Iterator;
+import java.util.concurrent.executor.Executor;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.Service;
@@ -595,12 +597,12 @@ public abstract class ServiceDelegate {
      * The executor is used for all asynchronous invocations that
      * require callbacks.
      *
-     * @return The <code>java.util.concurrent.Executor</code> to be
+     * @return The <code>java.util.concurrent.executor.Executor</code> to be
      *         used to invoke a callback.
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public abstract java.util.concurrent.Executor getExecutor();
+    public abstract Executor getExecutor();
 
     /**
      * Sets the executor for this <code>Service</code> instance.
@@ -608,15 +610,15 @@ public abstract class ServiceDelegate {
      * The executor is used for all asynchronous invocations that
      * require callbacks.
      *
-     * @param executor The <code>java.util.concurrent.Executor</code>
+     * @param executor The <code>java.util.concurrent.executor.Executor</code>
      *        to be used to invoke a callback.
      *
      * @throws SecurityException If the instance does not support
      *         setting an executor for security reasons (e.g. the
      *         necessary permissions are missing).
      *
-     * @see java.util.concurrent.Executor
+     * @see Executor
      **/
-    public abstract void setExecutor(java.util.concurrent.Executor executor);
+    public abstract void setExecutor(Executor executor);
 
 }

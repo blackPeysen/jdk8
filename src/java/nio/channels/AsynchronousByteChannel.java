@@ -26,7 +26,7 @@
 package java.nio.channels;
 
 import java.nio.ByteBuffer;
-import java.util.concurrent.Future;
+import java.util.concurrent.future.Future;
 
 /**
  * An asynchronous channel that can read and write bytes.

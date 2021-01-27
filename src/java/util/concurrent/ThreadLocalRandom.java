@@ -40,6 +40,7 @@ import java.util.Random;
 import java.util.Spliterator;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.fork.ForkJoinTask;
 import java.util.function.DoubleConsumer;
 import java.util.function.IntConsumer;
 import java.util.function.LongConsumer;
@@ -49,32 +50,21 @@ import java.util.stream.LongStream;
 import java.util.stream.StreamSupport;
 
 /**
- * A random number generator isolated to the current thread.  Like the
- * global {@link java.util.Random} generator used by the {@link
- * java.lang.Math} class, a {@code ThreadLocalRandom} is initialized
- * with an internally generated seed that may not otherwise be
- * modified. When applicable, use of {@code ThreadLocalRandom} rather
- * than shared {@code Random} objects in concurrent programs will
- * typically encounter much less overhead and contention.  Use of
- * {@code ThreadLocalRandom} is particularly appropriate when multiple
- * tasks (for example, each a {@link ForkJoinTask}) use random numbers
- * in parallel in thread pools.
+ * 隔离到当前线程的随机数生成器。
+ * 像{@link java.lang.Math}类使用的全局{@link java.util.Random}生成器一样，
+ * {@code ThreadLocalRandom}会使用内部生成的种子进行初始化，否则可能无法进行修改。
+ * 如果适用，在并发程序中使用{@code ThreadLocalRandom}而不是共享{@code Random}对象，通常会少得多的开销和争用。
+ * 当多个任务（例如每个{@link ForkJoinTask}）在线程池中并行使用随机数时，使用{@code ThreadLocalRandom}特别合适。
  *
- * <p>Usages of this class should typically be of the form:
- * {@code ThreadLocalRandom.current().nextX(...)} (where
- * {@code X} is {@code Int}, {@code Long}, etc).
- * When all usages are of this form, it is never possible to
- * accidently share a {@code ThreadLocalRandom} across multiple threads.
+ * <p>此类的用法通常应采用以下形式：
+ *      {@code ThreadLocalRandom.current（）.nextX（...）}（其中{@code X}是{@code Int}，{@code Long}等） ）。
+ *      当所有用法都是这种形式时，不可能在多个线程之间意外共享{@code ThreadLocalRandom}。
  *
- * <p>This class also provides additional commonly used bounded random
- * generation methods.
+ * <p>此类还提供其他常用的有界随机生成方法。
  *
- * <p>Instances of {@code ThreadLocalRandom} are not cryptographically
- * secure.  Consider instead using {@link java.security.SecureRandom}
- * in security-sensitive applications. Additionally,
- * default-constructed instances do not use a cryptographically random
- * seed unless the {@linkplain System#getProperty system property}
- * {@code java.util.secureRandomSeed} is set to {@code true}.
+ * <p>{@code ThreadLocalRandom}的实例不是加密的安全的。考虑在对安全敏感的应用程序中使用{@link java.security.SecureRandom} 。
+ * 此外，除非将{@linkplain System＃getProperty系统属性} {@code java.util.secureRandomSeed}设置为{@code true}，
+ * 否则默认构造的实例不会使用加密的随机种子。
  *
  * @since 1.7
  * @author Doug Lea

@@ -42,17 +42,12 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * A capability-based lock with three modes for controlling read/write
- * access.  The state of a StampedLock consists of a version and mode.
- * Lock acquisition methods return a stamp that represents and
- * controls access with respect to a lock state; "try" versions of
- * these methods may instead return the special value zero to
- * represent failure to acquire access. Lock release and conversion
- * methods require stamps as arguments, and fail if they do not match
- * the state of the lock. The three modes are:
+ * 基于功能的锁，具有三种模式来控制读/写访问。 StampedLock的状态由版本和模式组成。
+ * 锁获取方法返回一个表示并相对于锁状态控制访问的标记；这些方法的“尝试”版本可能会改为将特殊值零返回给，表示无法获取访问权限。
+ * 锁的释放和转换方法需要使用图章作为参数，如果它们与锁的状态不匹配，则会失败。
+ * 三种模式是：
  *
  * <ul>
- *
  *  <li><b>Writing.</b> Method {@link #writeLock} possibly blocks
  *   waiting for exclusive access, returning a stamp that can be used
  *   in method {@link #unlockWrite} to release the lock. Untimed and

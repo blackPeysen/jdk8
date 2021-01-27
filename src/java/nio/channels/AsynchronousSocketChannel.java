@@ -27,7 +27,7 @@ package java.nio.channels;
 
 import java.nio.channels.spi.*;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Future;
+import java.util.concurrent.future.Future;
 import java.io.IOException;
 import java.net.SocketOption;
 import java.net.SocketAddress;

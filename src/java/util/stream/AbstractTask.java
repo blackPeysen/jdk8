@@ -25,8 +25,8 @@
 package java.util.stream;
 
 import java.util.Spliterator;
-import java.util.concurrent.CountedCompleter;
-import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.fork.CountedCompleter;
+import java.util.concurrent.fork.ForkJoinPool;
 
 /**
  * Abstract base class for most fork-join tasks used to implement stream ops.

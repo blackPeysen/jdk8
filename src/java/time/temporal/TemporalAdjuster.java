@@ -64,17 +64,15 @@ package java.time.temporal;
 import java.time.DateTimeException;
 
 /**
- * Strategy for adjusting a temporal object.
+ * 调整时间对象的策略。
  * <p>
- * Adjusters are a key tool for modifying temporal objects.
- * They exist to externalize the process of adjustment, permitting different
- * approaches, as per the strategy design pattern.
- * Examples might be an adjuster that sets the date avoiding weekends, or one that
- * sets the date to the last day of the month.
+ * 调节器是用于修改时间对象的关键工具。
+ * 根据战略设计模式，它们的存在是为了使调整过程外在化，允许采取不同的方法。
+ * 例如，可能是一个调整器，将日期设置为避免使用周末，或者将日期设置为该月的最后一天。
  * <p>
- * There are two equivalent ways of using a {@code TemporalAdjuster}.
- * The first is to invoke the method on this interface directly.
- * The second is to use {@link Temporal#with(TemporalAdjuster)}:
+ * 使用{@code TemporalAdjuster}有两种等效的方法。
+ * 第一种是直接在此接口上调用方法。
+ * 第二种方法是使用{@link Temporal＃with（TemporalAdjuster）}：
  * <pre>
  *   // these two lines are equivalent, but the second approach is recommended
  *   temporal = thisAdjuster.adjustInto(temporal);
@@ -96,8 +94,7 @@ import java.time.DateTimeException;
  * </ul>
  *
  * @implSpec
- * This interface places no restrictions on the mutability of implementations,
- * however immutability is strongly recommended.
+ * 此接口对实现的可变性没有任何限制，强烈建议保持不变性。
  *
  * @see TemporalAdjusters
  * @since 1.8

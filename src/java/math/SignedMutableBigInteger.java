@@ -26,18 +26,12 @@
 package java.math;
 
 /**
- * A class used to represent multiprecision integers that makes efficient
- * use of allocated space by allowing a number to occupy only part of
- * an array so that the arrays do not have to be reallocated as often.
- * When performing an operation with many iterations the array used to
- * hold a number is only increased when necessary and does not have to
- * be the same size as the number it represents. A mutable number allows
- * calculations to occur on the same number without having to create
- * a new number for every step of the calculation as occurs with
- * BigIntegers.
+ * 一个用于表示多精度整数的类，该类通过允许数字仅占用数组的一部分来有效利用分配的空间，从而不必经常重新分配数组。
+ * 在执行多次迭代操作时，用于*保留数字的数组仅在必要时才增加，而不必与它所代表的数字相同。
+ * 可变数字使计算可以在相同的数字上进行，而不必像BigIntegers那样为计算的每个步骤创建新的数字。
  *
- * Note that SignedMutableBigIntegers only support signed addition and
- * subtraction. All other operations occur as with MutableBigIntegers.
+ * 请注意，SignedMutableBigIntegers仅支持带符号的加法和减法。
+ * 所有其他操作都与MutableBigIntegers一样发生。
  *
  * @see     BigInteger
  * @author  Michael McCloskey

@@ -27,9 +27,10 @@ package java.nio.channels;
 
 import java.nio.channels.spi.AsynchronousChannelProvider;
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.executor.ExecutorService;
+import java.util.concurrent.executor.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.executor.Executors;
 
 /**
  * A grouping of asynchronous channels for the purpose of resource sharing.
@@ -56,7 +57,7 @@ import java.util.concurrent.TimeUnit;
  * construction time are bound to the default group. The default group has an
  * associated thread pool that creates new threads as needed. The default group
  * may be configured by means of system properties defined in the table below.
- * Where the {@link java.util.concurrent.ThreadFactory ThreadFactory} for the
+ * Where the {@link ThreadFactory ThreadFactory} for the
  * default group is not configured then the pooled threads of the default group
  * are {@link Thread#isDaemon daemon} threads.
  *
@@ -68,9 +69,9 @@ import java.util.concurrent.TimeUnit;
  *   <tr>
  *     <td> {@code java.nio.channels.DefaultThreadPool.threadFactory} </td>
  *     <td> The value of this property is taken to be the fully-qualified name
- *     of a concrete {@link java.util.concurrent.ThreadFactory ThreadFactory}
+ *     of a concrete {@link ThreadFactory ThreadFactory}
  *     class. The class is loaded using the system class loader and instantiated.
- *     The factory's {@link java.util.concurrent.ThreadFactory#newThread
+ *     The factory's {@link ThreadFactory#newThread
  *     newThread} method is invoked to create each thread for the default
  *     group's thread pool. If the process to load and instantiate the value
  *     of the property fails then an unspecified error is thrown during the
@@ -223,7 +224,7 @@ public abstract class AsynchronousChannelGroup {
      * @throws  IOException
      *          If an I/O error occurs
      *
-     * @see java.util.concurrent.Executors#newCachedThreadPool
+     * @see Executors#newCachedThreadPool
      */
     public static AsynchronousChannelGroup withCachedThreadPool(ExecutorService executor,
                                                                 int initialSize)

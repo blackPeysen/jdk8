@@ -36,6 +36,7 @@
 
 package java.util.concurrent;
 import java.util.concurrent.blocking.queue.SynchronousQueue;
+import java.util.concurrent.exception.TimeoutException;
 
 /**
  * A synchronization point at which threads can pair and swap elements
@@ -597,7 +598,7 @@ public class Exchanger<V> {
      * interrupted status is cleared.
      *
      * <p>If the specified waiting time elapses then {@link
-     * TimeoutException} is thrown.  If the time is less than or equal
+     * java.util.concurrent.exception.TimeoutException} is thrown.  If the time is less than or equal
      * to zero, the method will not wait at all.
      *
      * @param x the object to exchange
@@ -606,12 +607,12 @@ public class Exchanger<V> {
      * @return the object provided by the other thread
      * @throws InterruptedException if the current thread was
      *         interrupted while waiting
-     * @throws TimeoutException if the specified waiting time elapses
+     * @throws java.util.concurrent.exception.TimeoutException if the specified waiting time elapses
      *         before another thread enters the exchange
      */
     @SuppressWarnings("unchecked")
     public V exchange(V x, long timeout, TimeUnit unit)
-        throws InterruptedException, TimeoutException {
+        throws InterruptedException, java.util.concurrent.exception.TimeoutException {
         Object v;
         Object item = (x == null) ? NULL_ITEM : x;
         long ns = unit.toNanos(timeout);

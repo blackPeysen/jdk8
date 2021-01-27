@@ -31,6 +31,7 @@ package javax.swing;
 
 import java.util.concurrent.*;
 import java.util.concurrent.blocking.queue.DelayQueue;
+import java.util.concurrent.blocking.queue.Delayed;
 import java.util.concurrent.locks.*;
 import java.util.concurrent.atomic.AtomicLong;
 import sun.awt.AppContext;
@@ -245,7 +246,7 @@ class TimerQueue implements Runnable
 
     static class DelayedTimer implements Delayed {
         // most of it copied from
-        // java.util.concurrent.ScheduledThreadPoolExecutor
+        // java.util.concurrent.executor.ScheduledThreadPoolExecutor
 
         /**
          * Sequence number to break scheduling ties, and in turn to

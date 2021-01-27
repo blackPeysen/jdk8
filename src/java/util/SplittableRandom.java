@@ -26,6 +26,7 @@
 package java.util;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.fork.ForkJoinTask;
 import java.util.function.IntConsumer;
 import java.util.function.LongConsumer;
 import java.util.function.DoubleConsumer;
@@ -64,7 +65,7 @@ import java.util.stream.DoubleStream;
  *
  * <li>Instances of SplittableRandom are <em>not</em> thread-safe.
  * They are designed to be split, not shared, across threads. For
- * example, a {@link java.util.concurrent.ForkJoinTask
+ * example, a {@link ForkJoinTask
  * fork/join-style} computation using random numbers might include a
  * construction of the form {@code new
  * Subtask(aSplittableRandom.split()).fork()}.

@@ -25,7 +25,7 @@
 package java.util.stream;
 
 import java.util.Spliterator;
-import java.util.concurrent.CountedCompleter;
+import java.util.concurrent.fork.CountedCompleter;
 import java.util.function.IntFunction;
 
 /**

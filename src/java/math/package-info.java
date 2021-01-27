@@ -24,21 +24,12 @@
  */
 
 /**
- * Provides classes for performing arbitrary-precision integer
- * arithmetic ({@code BigInteger}) and arbitrary-precision decimal
- * arithmetic ({@code BigDecimal}).  {@code BigInteger} is analogous
- * to the primitive integer types except that it provides arbitrary
- * precision, hence operations on {@code BigInteger}s do not overflow
- * or lose precision.  In addition to standard arithmetic operations,
- * {@code BigInteger} provides modular arithmetic, GCD calculation,
- * primality testing, prime generation, bit manipulation, and a few
- * other miscellaneous operations.
+ * 提供用于执行任意精度整数（{@code BigInteger}）和任意精度十进制（{@code BigDecimal}）的类。
+ * {@code BigInteger}与原始整数类型类似，只是它提供任意精度，因此对{@code BigInteger}的操作不会溢出或丢失精度。
+ * 除标准算术运算外，{@code BigInteger}还提供模块化算术，GCD计算，素数测试，素数生成，位操作以及一些其他杂项运算。
  *
- * {@code BigDecimal} provides arbitrary-precision signed decimal
- * numbers suitable for currency calculations and the like.  {@code
- * BigDecimal} gives the user complete control over rounding behavior,
- * allowing the user to choose from a comprehensive set of eight
- * rounding modes.
+ * {@code BigDecimal}提供适用于货币计算等的任意精度的带符号十进制数字。
+ * {@code BigDecimal}为用户提供了对舍入行为的完全控制，允许用户从八个舍入模式的全面集合中进行选择。
  *
  * @since JDK1.1
  */

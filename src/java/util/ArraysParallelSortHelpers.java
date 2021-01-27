@@ -24,8 +24,7 @@
  */
 package java.util;
 
-import java.util.concurrent.RecursiveAction;
-import java.util.concurrent.CountedCompleter;
+import java.util.concurrent.fork.CountedCompleter;
 
 /**
  * Helper utilities for the parallel sort methods in Arrays.parallelSort.

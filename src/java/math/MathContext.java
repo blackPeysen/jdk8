@@ -31,19 +31,12 @@ package java.math;
 import java.io.*;
 
 /**
- * Immutable objects which encapsulate the context settings which
- * describe certain rules for numerical operators, such as those
- * implemented by the {@link BigDecimal} class.
+ * 不可变的对象封装了上下文设置，这些上下文设置描述了一些数字运算符的规则，例如由{@link BigDecimal}类实现的那些规则。
  *
- * <p>The base-independent settings are:
+ * <p>与基准无关的设置是：
  * <ol>
- * <li>{@code precision}:
- * the number of digits to be used for an operation; results are
- * rounded to this precision
- *
- * <li>{@code roundingMode}:
- * a {@link RoundingMode} object which specifies the algorithm to be
- * used for rounding.
+ * <li>{@code precision}: 用于操作的数字位数；结果四舍五入到此精度
+ * <li>{@code roundingMode}：一个{@link RoundingMode}对象，它指定要用于舍入的算法。
  * </ol>
  *
  * @see     BigDecimal

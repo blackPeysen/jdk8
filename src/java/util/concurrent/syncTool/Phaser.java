@@ -33,19 +33,17 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent.syncTool;
+package java.util.concurrent;
 
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.exception.TimeoutException;
+import java.util.concurrent.fork.ForkJoinPool;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * A reusable synchronization barrier, similar in functionality to
- * {@link java.util.concurrent.syncTool.CyclicBarrier CyclicBarrier} and
- * {@link CountDownLatch CountDownLatch}
- * but supporting more flexible usage.
+ * 可重用的同步屏障，
+ *      其功能类似于{@link java.util.concurrent.CyclicBarrier CyclicBarrier}和{@link java.util.concurrent.CountDownLatch CountDownLatch}，
+ * 但支持更灵活的用法。
  *
  * <p><b>Registration.</b> Unlike the case for other barriers, the
  * number of parties <em>registered</em> to synchronize on a phaser
@@ -63,7 +61,7 @@ import java.util.concurrent.locks.LockSupport;
  * <p><b>Synchronization.</b> Like a {@code CyclicBarrier}, a {@code
  * Phaser} may be repeatedly awaited.  Method {@link
  * #arriveAndAwaitAdvance} has effect analogous to {@link
- * CyclicBarrier#await CyclicBarrier.await}. Each
+ * java.util.concurrent.CyclicBarrier#await CyclicBarrier.await}. Each
  * generation of a phaser has an associated phase number. The phase
  * number starts at zero, and advances when all parties arrive at the
  * phaser, wrapping around to zero after reaching {@code
@@ -98,7 +96,7 @@ import java.util.concurrent.locks.LockSupport;
  *       state of the phaser. If necessary, you can perform any
  *       associated recovery within handlers of those exceptions,
  *       often after invoking {@code forceTermination}.  Phasers may
- *       also be used by tasks executing in a {@link ForkJoinPool},
+ *       also be used by tasks executing in a {@link java.util.concurrent.fork.ForkJoinPool},
  *       which will ensure sufficient parallelism to execute tasks
  *       when others are blocked waiting for a phase to advance.
  *
@@ -781,11 +779,11 @@ public class Phaser {
      * negative, or the (negative) {@linkplain #getPhase() current phase}
      * if terminated
      * @throws InterruptedException if thread interrupted while waiting
-     * @throws TimeoutException if timed out while waiting
+     * @throws java.util.concurrent.exception.TimeoutException if timed out while waiting
      */
     public int awaitAdvanceInterruptibly(int phase,
                                          long timeout, TimeUnit unit)
-        throws InterruptedException, TimeoutException {
+        throws InterruptedException, java.util.concurrent.exception.TimeoutException {
         long nanos = unit.toNanos(timeout);
         final Phaser root = this.root;
         long s = (root == this) ? state : reconcileState();
@@ -1065,7 +1063,7 @@ public class Phaser {
             }
             else {
                 try {
-                    ForkJoinPool.managedBlock(node);
+                    java.util.concurrent.fork.ForkJoinPool.managedBlock(node);
                 } catch (InterruptedException ie) {
                     node.wasInterrupted = true;
                 }
