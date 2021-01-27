@@ -87,7 +87,7 @@
  *
  * <li>{@link java.util.concurrent.Phaser}提供了更灵活的屏障形式，可用于控制多个线程之间的分阶段计算。
  *
- * <li>{@link java.util.concurrent.Exchanger}允许两个线程在集合点交换对象，并且在几种管道设计中很有用。
+ * <li>{@link java.util.concurrent.syncTool.Exchanger}允许两个线程在集合点交换对象，并且在几种管道设计中很有用。
  *
  * <h2>并发集合</h2>
  *
