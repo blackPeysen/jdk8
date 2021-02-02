@@ -40,10 +40,11 @@ import java.util.concurrent.exception.RejectedExecutionException;
 import java.util.concurrent.future.Future;
 
 /**
- * 一种将新异步任务的产生与完成任务的结果消耗分开的服务。生产者* {@code Submit}任务要执行。
- * 消费者{@code take}完成任务并按完成顺序处理结果。
+ * 一种将新异步任务的产生与完成任务的结果消耗分开的服务。
+ *  生产者{@code Submit}任务要执行。
+ *  消费者{@code take}完成任务并按完成顺序处理结果。
  * 例如，{@code CompletionService}可以用于管理异步I / O，其中，
- * 执行读取的任务*在程序或系统的一部分中提交，然后在程序的不同部分中执行读取完成，可能以与请求不同的顺序进行。
+ * 执行读取的任务在程序或系统的一部分中提交，然后在程序的不同部分中执行读取完成，可能以与请求不同的顺序进行。
  *
  * <p>通常，{@code CompletionService}依赖单独的{@link Executor}实际执行任务，在这种情况下，{{code CompletionService}仅管理内部完成队列。
  * {@link ExecutorCompletionService}类提供了此方法的实现。

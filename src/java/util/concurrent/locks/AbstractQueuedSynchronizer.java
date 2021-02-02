@@ -433,7 +433,8 @@ public abstract class AbstractQueuedSynchronizer
 
     /**
      * 设置同步状态的值。该操作具有{@code volatile}写的内存语义。
-     * @param newState the new state value
+     *
+     * @param newState 新的状态值
      */
     protected final void setState(int newState) {
         state = newState;

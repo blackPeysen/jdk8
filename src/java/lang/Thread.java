@@ -1820,21 +1820,13 @@ class Thread implements Runnable {
     // Added in JSR-166
 
     /**
-     * Interface for handlers invoked when a <tt>Thread</tt> abruptly
-     * terminates due to an uncaught exception.
-     * <p>When a thread is about to terminate due to an uncaught exception
-     * the Java Virtual Machine will query the thread for its
-     * <tt>UncaughtExceptionHandler</tt> using
-     * {@link #getUncaughtExceptionHandler} and will invoke the handler's
-     * <tt>uncaughtException</tt> method, passing the thread and the
-     * exception as arguments.
-     * If a thread has not had its <tt>UncaughtExceptionHandler</tt>
-     * explicitly set, then its <tt>ThreadGroup</tt> object acts as its
-     * <tt>UncaughtExceptionHandler</tt>. If the <tt>ThreadGroup</tt> object
-     * has no
-     * special requirements for dealing with the exception, it can forward
-     * the invocation to the {@linkplain #getDefaultUncaughtExceptionHandler
-     * default uncaught exception handler}.
+     * 接口，用于当线程由于未捕获的异常而突然终止时调用的处理程序。
+     * <p>当一个线程终止由于未捕获的异常的Java虚拟机将查询线程UncaughtExceptionHandler使用{@link #getUncaughtExceptionHandler},
+     *      将调用处理程序的uncaughtException方法,作为参数传递和异常的线程。
+     *
+     * 如果一个线程没有显式地设置它的UncaughtExceptionHandler，
+     *      那么它的ThreadGroup对象就作为它的<tt>UncaughtExceptionHandler<tt>。
+     * 如果ThreadGroup对象对处理异常没有特殊要求，它可以将调用转发到{@linkplain #getDefaultUncaughtExceptionHandler defaultUncaughtExceptionHandler}。
      *
      * @see #setDefaultUncaughtExceptionHandler
      * @see #setUncaughtExceptionHandler
@@ -1844,20 +1836,19 @@ class Thread implements Runnable {
     @FunctionalInterface
     public interface UncaughtExceptionHandler {
         /**
-         * Method invoked when the given thread terminates due to the
-         * given uncaught exception.
-         * <p>Any exception thrown by this method will be ignored by the
-         * Java Virtual Machine.
+         * 方法在给定线程由于给定的未捕获异常而终止时调用。
+         * <p>此方法抛出的任何异常都会被Java虚拟机忽略。
+         *
          * @param t the thread
          * @param e the exception
          */
         void uncaughtException(Thread t, Throwable e);
     }
 
-    // null unless explicitly set
+    // null，除非显式设置
     private volatile UncaughtExceptionHandler uncaughtExceptionHandler;
 
-    // null unless explicitly set
+    // null，除非显式设置
     private static volatile UncaughtExceptionHandler defaultUncaughtExceptionHandler;
 
     /**
@@ -1952,16 +1943,14 @@ class Thread implements Runnable {
     }
 
     /**
-     * Dispatch an uncaught exception to the handler. This method is
-     * intended to be called only by the JVM.
+     * 将未捕获的异常分派给处理程序。此方法旨在仅由JVM调用。
      */
     private void dispatchUncaughtException(Throwable e) {
         getUncaughtExceptionHandler().uncaughtException(this, e);
     }
 
     /**
-     * Removes from the specified map any keys that have been enqueued
-     * on the specified reference queue.
+     * 从指定的映射中移除已进入指定引用队列的任何键。
      */
     static void processQueue(ReferenceQueue<Class<?>> queue,
                              ConcurrentMap<? extends

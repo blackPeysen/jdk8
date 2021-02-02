@@ -37,7 +37,7 @@ package java.util.concurrent.executor;
 
 /**
  * 根据需要创建新线程的对象。
- * 使用线程工厂删除对{@link Thread # thread (Runnable) new thread}的调用的硬连接，
+ * 使用线程工厂删除对{@link Thread #thread (Runnable) new thread}的调用的硬连接，
  * 允许应用程序使用特殊的线程子类、优先级等。
  *
  * <p>

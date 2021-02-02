@@ -63,7 +63,7 @@ import java.util.concurrent.future.Future;
  * <h3>Usage Examples</h3>
  *
  * 下面是一个网络服务的示意图，其中线程池服务中的线程传入请求。
- * 它使用预先配置的{@link * exec# newFixedThreadPool} factory方法:
+ * 它使用预先配置的{@link exec#newFixedThreadPool} factory方法:
  *
  * 下面的方法分两个阶段关闭{@code ExecutorService}，
  * 首先通过调用{@code shutdown}来拒绝传入的任务，然后在必要时调用{@code shutdown now}来取消任何滞留的任务:
@@ -87,7 +87,8 @@ import java.util.concurrent.future.Future;
  * }}</pre>
  *
  * <p>内存一致性的影响:线程在提交{@code Runnable}或{@code Callable}任务给{@code ExecutorService}
- * <a href="package-summary "之前的动作。htmlMemoryVisibility"><i> happens -before<i><a>该任务所采取的任何动作，依次为<i> happens -before<i>结果通过{@code Future.get()}获取。
+ *      <a href="package-summary "之前的动作。htmlMemoryVisibility">happens -before该任务所采取的任何动作，
+ *      依次为happens-before结果通过{@code Future.get()}获取。
  *
  * @since 1.5
  * @author Doug Lea
@@ -239,13 +240,12 @@ public interface ExecutorService extends Executor {
      * @param tasks 任务的集合
      * @param <T> 任务返回值的类型
      * @return 其中一个任务返回的结果
-     * @throws InterruptedException if interrupted while waiting
+     * @throws InterruptedException 如果在等待时被打断
      * @throws NullPointerException if tasks or any element task
      *         subject to execution is {@code null}
      * @throws IllegalArgumentException if tasks is empty
-     * @throws java.util.concurrent.exception.ExecutionException if no task successfully completes
-     * @throws java.util.concurrent.exception.RejectedExecutionException if tasks cannot be scheduled
-     *         for execution
+     * @throws java.util.concurrent.exception.ExecutionException 如果没有任务成功完成
+     * @throws java.util.concurrent.exception.RejectedExecutionException 任务无法调度执行
      */
     <T> T invokeAny(Collection<? extends Callable<T>> tasks)
         throws InterruptedException, java.util.concurrent.exception.ExecutionException;

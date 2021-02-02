@@ -1,33 +1,9 @@
 /*
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /*
- *
- *
- *
- *
- *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
@@ -102,8 +78,8 @@ import java.util.concurrent.exception.RejectedExecutionException;
  * {@link ThreadPoolExecutor}类提供了一个可扩展的线程池实现。
  * {@link Executors}类为这些执行器提供了方便的工厂方法。
  *
- * <p>内存一致性效果:在一个线程中，
- * 在提交一个{@code Runnable}对象给{@code Executor}之前的操作发生在之前，它的执行可能在另一个线程中开始。
+ * <p>内存一致性效果:
+ *      在一个线程中，在提交一个{@code Runnable}对象给{@code Executor}之前的操作发生在之前，它的执行可能在另一个线程中开始。
  *
  * @since 1.5
  * @author Doug Lea
@@ -112,7 +88,7 @@ public interface Executor {
 
     /**
      * 在将来的某个时候执行给定的命令。
-     * 命令可以在新线程、池化线程或调用线程中执行，由{@code Executor}实现决定。
+     * 命令可以在新线程、池化线程或调用线程(可能在调用主线程)中执行，由{@code Executor}实现决定。
      *
      * @param command 可运行的任务
      * @throws RejectedExecutionException 如果此任务不能接受执行
